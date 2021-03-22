@@ -5,15 +5,15 @@ import { API_URL } from "../constants";
 
 class NewUserForm extends React.Component {
   state = {
-    pk: 0,
+    id: 0,
     name: "",
     password: "",
   };
 
   componentDidMount() {
     if (this.props.user) {
-      const { pk, name, password} = this.props.user;
-      this.setState({ pk, name, password});
+      const { id, name, password} = this.props.user;
+      this.setState({ id, name, password});
     }
   }
 
@@ -31,7 +31,7 @@ class NewUserForm extends React.Component {
 
   editUser = e => {
     e.preventDefault();
-    axios.put(API_URL + this.state.pk, this.state).then(() => {
+    axios.put(API_URL + this.state.id, this.state).then(() => {
       this.props.resetState();
       this.props.toggle();
     });
@@ -56,7 +56,7 @@ class NewUserForm extends React.Component {
         <FormGroup>
           <Label for="password">Hasło:</Label>
           <Input
-            type="text"
+            type="password"
             name="password"
             onChange={this.onChange}
             value={this.defaultIfEmpty(this.state.password)}

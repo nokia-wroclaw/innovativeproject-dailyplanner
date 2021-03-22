@@ -18,8 +18,14 @@ from django.urls import path, re_path
 from users import views
 from django.conf.urls import url
 
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     re_path(r'^api/users/$', views.users_list),
+#     re_path(r'^api/users/([0-9])$', views.users_detail),
+# ]
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    re_path(r'^api/users/$', views.users_list),
-    #re_path(r'^api/users/([0-9])$', views.users_detail),
+path('admin/', admin.site.urls),
+re_path(r'^api/users/$', views.users_list),
+path('api/users/<int:id>/', views.users_detail)
 ]

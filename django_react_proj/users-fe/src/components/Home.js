@@ -29,7 +29,7 @@ class Home extends Component {
         <Row>
           <Col>
             <UserList
-              Users={this.state.users}
+              users={this.state.users}
               resetState={this.resetState}
             />
           </Col>

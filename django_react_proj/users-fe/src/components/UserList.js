@@ -25,7 +25,7 @@ class UserList extends Component {
             </tr>
           ) : (
             users.map(user => (
-              <tr key={user.pk}>
+              <tr key={user.id}>
                 <td>{user.name}</td>
                 <td>{user.password}</td>
                 <td>{user.registrationDate}</td>
@@ -37,7 +37,7 @@ class UserList extends Component {
                   />
                   &nbsp;&nbsp;
                   <ConfirmRemovalModal
-                    pk={user.pk}
+                    id= {user.id}
                     resetState={this.props.resetState}
                   />
                 </td>
