@@ -23,7 +23,7 @@ const ConfirmRemovalModal = (props) => {
     } 
 
    };
-  
+  //gppp
 
   return (
     <Fragment>
