@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Col, Container, Row } from "reactstrap";
-import UserList from "./UserList";
-import NewUserModal from "./NewUserModal";
-
 import axios from "axios";
-import { API_URL } from "../constants";
+
+import styles from './Home.module.css';
+import UserList from "../UserList/UserList";
+import NewUserModal from "../NewUserModal/NewUserModal";
+import { API_URL } from "../../constants";
 
 class Home extends Component {
   state = {
@@ -25,7 +26,7 @@ class Home extends Component {
 
   render() {
     return (
-      <Container style={{ marginTop: "20px" }}>
+      <Container className={styles.Container}>
         <Row>
           <Col>
             <UserList

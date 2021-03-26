@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Table } from "reactstrap";
-import NewUserModal from "./NewUserModal";
-import ConfirmRemovalModal from "./ConfirmRemovalModal";
 import axios from "axios";
-import { API_URL } from "../constants";
+import { API_URL } from "../../constants";
+
+import NewUserModal from "../NewUserModal/NewUserModal";
+import ConfirmRemovalModal from "../ConfirmRemovalModal/ConfirmRemovalModal";
 
 class UserList extends Component {
   
