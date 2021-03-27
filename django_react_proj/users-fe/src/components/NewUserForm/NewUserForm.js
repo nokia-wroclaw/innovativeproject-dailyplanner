@@ -1,71 +1,64 @@
-import React from "react";
+import React, { useEffect, useState }  from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import axios from "axios";
 import { API_URL } from "../../constants";
+const NewUserForm = ({
+  user,
+  resetState,
+  toggle
+}) => {
+  const [name,setName]=useState(user?.name || "");
+  const [password,setPassword]=useState(user?.password || "");
 
-class NewUserForm extends React.Component {
-  state = {
-    id: 0,
-    name: "",
-    password: "",
+  const onNameChange = event => {
+    setName(event.target.value)
+  };
+  const onPasswordChange = event => {
+    setPassword(event.target.value)
   };
 
-  componentDidMount() {
-    if (this.props.user) {
-      const { id, name, password} = this.props.user;
-      this.setState({ id, name, password});
-    }
-  }
-
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  createUser = e => {
-    e.preventDefault();
-    axios.post(API_URL, this.state).then(() => {
-      this.props.resetState();
-      this.props.toggle();
-    });
-  };
-
-  editUser = e => {
-    e.preventDefault();
-    axios.put(API_URL + this.state.id, this.state).then(() => {
-      this.props.resetState();
-      this.props.toggle();
-    });
-  };
-
-  defaultIfEmpty = value => {
+  const defaultIfEmpty = value => {
     return value === "" ? "" : value;
   };
-
-  render() {
-    return (
-      <Form onSubmit={this.props.user ? this.editUser : this.createUser}>
-        <FormGroup>
-          <Label for="name">Nazwa użytkownika:</Label>
-          <Input
-            type="text"
-            name="name"
-            onChange={this.onChange}
-            value={this.defaultIfEmpty(this.state.name)}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="password">Hasło:</Label>
-          <Input
-            type="password"
-            name="password"
-            onChange={this.onChange}
-            value={this.defaultIfEmpty(this.state.password)}
-          />
-        </FormGroup>
-        <Button>Zapisz</Button>
-      </Form>
-    );
-  }
-}
+const createUser = async (event) => {
+  event.preventDefault();
+  await axios.post(API_URL, {
+    id: user?.id, name, password
+  })
+  resetState();
+  toggle();
+};
+const editUser = async (event) =>{
+  event.preventDefault();
+  await axios.put(API_URL + user.id, {
+    id: user.id, name, password
+  })
+  resetState();
+  toggle();
+} ;
+return (
+  <Form onSubmit={user ? editUser : createUser}>
+    <FormGroup>
+      <Label for="name">Nazwa użytkownika:</Label>
+      <Input
+        type="text"
+        name="name"
+        onChange={onNameChange}
+        value={defaultIfEmpty(name)}
+      />
+    </FormGroup>
+    <FormGroup>
+      <Label for="password">Hasło:</Label>
+      <Input
+        type="password"
+        name="password"
+        onChange={onPasswordChange}
+        value={defaultIfEmpty(password)}
+      />
+    </FormGroup>
+    <Button>Zapisz</Button>
+  </Form>
+);
+};
 
 export default NewUserForm;
