@@ -30,7 +30,7 @@ const createUser = async (event) => {
 };
 const editUser = async (event) =>{
   event.preventDefault();
-  await axios.put(API_URL + user.id, {
+  await axios.put(API_URL + user.id + '/', {
     id: user.id, name, password
   })
   resetState();
