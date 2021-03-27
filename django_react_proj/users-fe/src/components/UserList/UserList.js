@@ -7,7 +7,8 @@ import NewUserModal from "../NewUserModal/NewUserModal";
 import ConfirmRemovalModal from "../ConfirmRemovalModal/ConfirmRemovalModal";
 
 const UserList = ({
-  users = []
+  users = [],
+  resetState
 }) => {
   const deleteUser = async(id) => {
     try{
@@ -44,7 +45,7 @@ return (
               <NewUserModal
                 create={false}
                 user={user}
-                resetState={this.props.resetState}
+                resetState={resetState}
               />
               &nbsp;&nbsp;
               <ConfirmRemovalModal

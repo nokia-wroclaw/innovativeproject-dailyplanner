@@ -1,55 +1,50 @@
-import React, { Component, Fragment } from "react";
+import React, {  useState,Fragment } from "react";
 import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 
 import NewUserForm from "../NewUserForm/NewUserForm";
 import styles from './NewUserModal.module.css';
 
-class NewUserModal extends Component {
-  state = {
-    modal: false
+const NewUserModal =({ 
+  resetState,
+  user,
+  create
+}) => {
+  const [modal, setModal]=useState();
+
+  const toggle = () => {
+    setModal(previous => !previous);
   };
+  var title = "Editing User";
+  var button = <Button onClick={toggle}>Edit</Button>;
 
-  toggle = () => {
-    this.setState(previous => ({
-      modal: !previous.modal
-    }));
-  };
+  if (create) {
+    title = "Creating New User";
 
-  render() {
-    const create = this.props.create;
-
-    var title = "Editing User";
-    var button = <Button onClick={this.toggle}>Edit</Button>;
-    if (create) {
-      title = "Creating New User";
-
-      button = (
-        <button
-          className={styles.Button}
-          onClick={this.toggle}
-        >
-          Utwórz nowe konto
-        </button>
-      );
-    }
-
-    return (
-      <Fragment>
-        {button}
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>{title}</ModalHeader>
-
-          <ModalBody>
-            <NewUserForm
-              resetState={this.props.resetState}
-              toggle={this.toggle}
-              user={this.props.user}
-            />
-          </ModalBody>
-        </Modal>
-      </Fragment>
+    button = (
+      <button
+        className={styles.Button}
+        onClick={toggle}
+      >
+        Utwórz nowe konto
+      </button>
     );
   }
-}
 
+  return (
+    <Fragment>
+      {button}
+      <Modal isOpen={modal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>{title}</ModalHeader>
+
+        <ModalBody>
+          <NewUserForm
+            resetState={resetState}
+            toggle={toggle}
+            user={user}
+          />
+        </ModalBody>
+      </Modal>
+    </Fragment>
+  );
+};
 export default NewUserModal;
