@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "reactstrap";
 import axios from "axios";
 
@@ -7,42 +7,36 @@ import UserList from "../UserList/UserList";
 import NewUserModal from "../NewUserModal/NewUserModal";
 import { API_URL } from "../../constants";
 
-class Home extends Component {
-  state = {
-    users: []
+const Home = () => {
+  const [users, setUsers] = useState();
+
+  const getUsers = () => {
+    axios.get(API_URL)
+      .then(res => setUsers(res.data));
   };
 
-  componentDidMount() {
-    this.resetState();
-  }
+  useEffect(() => {
+    getUsers();
+  }, []);
 
-  getUsers = () => {
-    axios.get(API_URL).then(res => this.setState({ users: res.data }));
-  };
 
-  resetState = () => {
-    this.getUsers();
-  };
-
-  render() {
-    return (
-      <Container className={styles.Container}>
-        <Row>
-          <Col>
-            <UserList
-              users={this.state.users}
-              resetState={this.resetState}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <NewUserModal create={true} resetState={this.resetState} />
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
-}
+  return (
+    <Container className={styles.Container}>
+      <Row>
+        <Col>
+          <UserList
+            users={users}
+            resetState={getUsers}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <NewUserModal create={true} resetState={getUsers} />
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
 export default Home;
