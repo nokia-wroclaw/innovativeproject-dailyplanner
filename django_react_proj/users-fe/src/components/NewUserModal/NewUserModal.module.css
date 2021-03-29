@@ -1,17 +1,17 @@
-.Button{
+.button{
     background-color: blue;
     border: 2px;
-    color: white;
+    color: whitesmoke;
     padding: 8px 20px;
     text-align: center;
     font-size: 16px;
     min-width: 200px;
     float: right;
 }
-.Edit{
-    background-color: blue;
+.edit{
+    background-color: lightblue;
     border: 2px;
-    color: white;
+    color: black;
     padding: 8px 20px;
     text-align: center;
     display: inline-block;

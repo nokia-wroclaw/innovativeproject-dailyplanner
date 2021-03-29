@@ -26,13 +26,15 @@ const ConfirmRemovalModal = (props) => {
 
   return (
     <Fragment>
-      <Button className = {styles.Delete} onClick={() => toggle()}>
+      <Button 
+      className = {styles.delete} 
+      onClick={() => toggle()}>
         Usuń
       </Button>
 
       <Modal isOpen={modalFlag} toggle={toggle}>
         <ModalHeader toggle={toggle}>
-          Czy chcesz usunąć konto?
+          Czy chcesz usunąć zadanie?
         </ModalHeader>
 
         <ModalFooter>

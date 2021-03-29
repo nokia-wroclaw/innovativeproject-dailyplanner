@@ -2,10 +2,10 @@ import React from "react";
 import { Table } from "reactstrap";
 import axios from "axios";
 import { API_URL } from "../../constants";
-
 import NewUserModal from "../NewUserModal/NewUserModal";
 import ConfirmRemovalModal from "../ConfirmRemovalModal/ConfirmRemovalModal";
 import TaskButton from "../TaskButtonModal/TaskButtonModal";
+import styles from "./UserList.module.css"
 
 const UserList = ({
   users = [],
@@ -25,8 +25,8 @@ return (
   <Table dark>
     <thead>
       <tr>
-        <th>Nazwa użytkownika</th>
-        <th>Hasło</th>
+        <th>Nazwa zadania</th>
+        <th>Opis</th>
         <th>Data rejestracji</th>
         <th></th>
       </tr>
@@ -35,14 +35,14 @@ return (
       {users.length === 0 ? (
         <tr>
           <td colSpan="6" align="center">
-            <b>Nikogo jeszcze tu nie ma!</b>
+            <b>Nie ma zaplanowanego żadnego zadania!</b>
           </td>
         </tr>
       ) : (
         users.map(user => (
           <tr key={user.id}>
             <td>{user.name}</td>
-            <td>{user.password}</td>
+            <td className={styles.Svg}>{user.password}</td>
             <td>{user.registrationDate}</td>
             <td align="center">
               <TaskButton

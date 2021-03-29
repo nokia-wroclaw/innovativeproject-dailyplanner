@@ -2,6 +2,8 @@ import React, {useState }  from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import axios from "axios";
 import { API_URL } from "../../constants";
+import styles from "./NewUserForm.module.css"
+
 const NewUserForm = ({
   user,
   resetState,
@@ -39,7 +41,7 @@ const editUser = async (event) =>{
 return (
   <Form onSubmit={user ? editUser : createUser}>
     <FormGroup>
-      <Label for="name">Nazwa użytkownika:</Label>
+      <Label for="name">Nazwa zadania:</Label>
       <Input
         type="text"
         name="name"
@@ -48,9 +50,9 @@ return (
       />
     </FormGroup>
     <FormGroup>
-      <Label for="password">Hasło:</Label>
-      <Input
-        type="password"
+      <Label for="password">Opis:</Label>
+      <textarea className = {styles.Svg}
+        type="text"
         name="password"
         onChange={onPasswordChange}
         value={defaultIfEmpty(password)}

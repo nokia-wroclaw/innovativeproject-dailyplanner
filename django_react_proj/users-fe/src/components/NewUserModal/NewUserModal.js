@@ -15,21 +15,21 @@ const NewUserModal =({
     setModal(previous => !previous);
   };
   
-  var title = "Editing User";
+  var title = "Edycja zadania";
   var button = <Button 
-    className = {styles.Edit} 
+    className = {styles.edit} 
     onClick={toggle}>
       Edit</Button>;
 
   if (create) {
-    title = "Creating New User";
+    title = "Tworzenie nowego zadania";
 
     button = (
       <button
-        className = {styles.Button}
+        className = {styles.button}
         onClick={toggle}
       >
-        Utwórz nowe konto
+        Zaplanuj nowe zadanie
       </button>
     );
   }

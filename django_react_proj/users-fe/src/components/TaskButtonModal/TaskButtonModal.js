@@ -25,14 +25,14 @@ const TaskButton = (props) => {
   return (
     <Fragment>
       <Button 
-        className = {styles.Done}  
+        className = {styles.done}  
         onClick = {() => toggle()}>
         TASKBUTTON
       </Button>
 
       <Modal isOpen={modalFlag} toggle={toggle}>
         <ModalHeader toggle={toggle}>
-          Czy chcesz usunąć konto?
+          Czy chcesz usunąć zadanie?
         </ModalHeader>
 
         <ModalFooter>
