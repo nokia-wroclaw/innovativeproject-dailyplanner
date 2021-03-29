@@ -13,7 +13,9 @@ const UserList = ({
   const deleteUser = async(id) => {
     try{
       await axios.delete(`${API_URL}${id}/`)
-    } catch (error){
+      resetState()
+    } 
+    catch (error){
       console.log(error)
     }
   };

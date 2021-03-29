@@ -21,9 +21,7 @@ const ConfirmRemovalModal = (props) => {
     } catch (error) {
       console.log(error)
     } 
-
    };
-  //gppp
 
   return (
     <Fragment>
