@@ -5,6 +5,7 @@ import { API_URL } from "../../constants";
 
 import NewUserModal from "../NewUserModal/NewUserModal";
 import ConfirmRemovalModal from "../ConfirmRemovalModal/ConfirmRemovalModal";
+import TaskButton from "../TaskButtonModal/TaskButtonModal";
 
 const UserList = ({
   users = [],
@@ -44,6 +45,10 @@ return (
             <td>{user.password}</td>
             <td>{user.registrationDate}</td>
             <td align="center">
+              <TaskButton
+                id= {user.id}
+                deleteUser={deleteUser}
+              />
               <NewUserModal
                 create={false}
                 user={user}

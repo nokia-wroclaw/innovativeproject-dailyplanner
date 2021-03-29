@@ -1,10 +1,8 @@
 import React, { useState, Fragment } from "react";
 import { Modal, ModalHeader, Button, ModalFooter } from "reactstrap";
-import styles from './ConfirmRemovalModal.module.css';
-import axios from "axios";
-import { API_URL } from "../../constants";
+import styles from './TaskButtonModal.module.css';
 
-const ConfirmRemovalModal = (props) => {
+const TaskButton = (props) => {
   const [modalFlag, setModalFlag] = useState(
         false
   )
@@ -26,8 +24,10 @@ const ConfirmRemovalModal = (props) => {
 
   return (
     <Fragment>
-      <Button className = {styles.Delete} onClick={() => toggle()}>
-        Usuń
+      <Button 
+        className = {styles.Done}  
+        onClick = {() => toggle()}>
+        TASKBUTTON
       </Button>
 
       <Modal isOpen={modalFlag} toggle={toggle}>
@@ -52,5 +52,5 @@ const ConfirmRemovalModal = (props) => {
   );
 };
 
-export default ConfirmRemovalModal;
+export default TaskButton;
 

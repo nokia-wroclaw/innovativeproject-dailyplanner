@@ -32,7 +32,10 @@ const Home = () => {
       </Row>
       <Row>
         <Col>
-          <NewUserModal create={true} resetState={getUsers} />
+          <NewUserModal 
+            create={true} 
+            resetState={getUsers} 
+          />
         </Col>
       </Row>
     </Container>
