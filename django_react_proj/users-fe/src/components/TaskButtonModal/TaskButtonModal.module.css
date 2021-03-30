@@ -1,0 +1,25 @@
+.ButtonFalse{
+    background-color: red;
+    border: 2px;
+    color: black;
+    padding: 8px 20px;
+    text-align: center;
+    display: inline-block;
+    flex-direction: row;
+    font-size: 15px;
+    min-width: 20px;
+    border-radius: 4px;
+}
+
+.ButtonTrue{
+    background-color: green;
+    border: 2px;
+    color: black;
+    padding: 8px 20px;
+    text-align: center;
+    display: inline-block;
+    flex-direction: row;
+    font-size: 15px;
+    min-width: 20px;
+    border-radius: 4px;
+}
