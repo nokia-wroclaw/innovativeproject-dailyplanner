@@ -9,7 +9,7 @@ const TaskButton = (props) => {
 
   const [taskFlag, setTaskFlag] = useState(
     false
-)
+  )
 
   const toggle = () => {
     setModalFlag(previous => (
@@ -26,26 +26,19 @@ const TaskButton = (props) => {
     } 
    };
 
-   let btnClass = styles.ButtonFalse;
-
   const toggleTaskFlag = () => {
     setTaskFlag(previous => (
         !previous
       ));
   };
-
-  if(taskFlag){
-    btnClass=styles.ButtonTrue
-  }
-
    
   return (
     <>
-      <button
-        className = {btnClass}  
+      <Button
+        color = {taskFlag ? 'success': 'danger'}
         onClick = {() => toggleTaskFlag()}>
         TASKBUTTON
-      </button>
+      </Button>
 
       <Modal isOpen={modalFlag} toggle={toggle}>
         <ModalHeader toggle={toggle}>

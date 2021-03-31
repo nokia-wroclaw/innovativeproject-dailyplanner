@@ -49,6 +49,7 @@ return (
                 id= {user.id}
                 deleteUser={deleteUser}
               />
+              &nbsp;&nbsp;
               <NewUserModal
                 create={false}
                 user={user}
