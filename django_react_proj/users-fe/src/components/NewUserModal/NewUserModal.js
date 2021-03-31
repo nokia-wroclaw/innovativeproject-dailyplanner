@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
-import NewUserForm from "./NewUserForm";
+
+import NewUserForm from "../NewUserForm/NewUserForm";
+import styles from './NewUserModal.module.css';
 
 class NewUserModal extends Component {
   state = {
@@ -22,14 +24,12 @@ class NewUserModal extends Component {
       title = "Creating New User";
 
       button = (
-        <Button
-          color="primary"
-          className="float-right"
+        <button
+          className={styles.Button}
           onClick={this.toggle}
-          style={{ minWidth: "200px" }}
         >
           Utwórz nowe konto
-        </Button>
+        </button>
       );
     }
 

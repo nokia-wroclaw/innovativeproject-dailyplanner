@@ -1,9 +1,21 @@
 import React, { Component } from "react";
 import { Table } from "reactstrap";
-import NewUserModal from "./NewUserModal";
-import ConfirmRemovalModal from "./ConfirmRemovalModal";
+import axios from "axios";
+import { API_URL } from "../../constants";
+
+import NewUserModal from "../NewUserModal/NewUserModal";
+import ConfirmRemovalModal from "../ConfirmRemovalModal/ConfirmRemovalModal";
 
 class UserList extends Component {
+  
+  async deleteUser(id){
+    try {
+      await axios.delete(`${API_URL}${id}/`)
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
   render() {
     const users = this.props.users;
     return (
@@ -38,7 +50,7 @@ class UserList extends Component {
                   &nbsp;&nbsp;
                   <ConfirmRemovalModal
                     id= {user.id}
-                    resetState={this.props.resetState}
+                    deleteUser={this.deleteUser}
                   />
                 </td>
               </tr>
