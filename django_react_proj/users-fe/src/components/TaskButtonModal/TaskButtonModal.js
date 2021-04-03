@@ -1,13 +1,12 @@
 import React, { useState, Fragment } from "react";
 import { Modal, ModalHeader, Button, ModalFooter } from "reactstrap";
-import styles from './ConfirmRemovalModal.module.css';
-import axios from "axios";
-import { API_URL } from "../../constants";
+import styles from './TaskButtonModal.module.css';
 
-const ConfirmRemovalModal = (props) => {
+const TaskButton = (props) => {
   const [modalFlag, setModalFlag] = useState(
         false
   )
+
   const toggle = () => {
     setModalFlag(previous => (
        !previous
@@ -17,7 +16,7 @@ const ConfirmRemovalModal = (props) => {
   const handlerDeleteUser = async id => {
     try {
       await props.deleteUser(id)
-      toggle()  
+      toggle() 
     } catch (error) {
       console.log(error)
     } 
@@ -26,9 +25,9 @@ const ConfirmRemovalModal = (props) => {
   return (
     <Fragment>
       <Button 
-      className = {styles.delete} 
-      onClick={() => toggle()}>
-        Usuń
+        className = {styles.done}  
+        onClick = {() => toggle()}>
+        TASKBUTTON
       </Button>
 
       <Modal isOpen={modalFlag} toggle={toggle}>
@@ -53,5 +52,5 @@ const ConfirmRemovalModal = (props) => {
   );
 };
 
-export default ConfirmRemovalModal;
+export default TaskButton;
 
