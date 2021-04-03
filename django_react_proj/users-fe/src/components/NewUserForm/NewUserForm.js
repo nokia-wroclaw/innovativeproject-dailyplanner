@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, {useState }  from "react";
+=======
+import React, { useState }  from "react";
+>>>>>>> origin/Develop
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import axios from "axios";
 import { API_URL } from "../../constants";

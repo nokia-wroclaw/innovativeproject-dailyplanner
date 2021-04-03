@@ -8,7 +8,6 @@ const ConfirmRemovalModal = (props) => {
   const [modalFlag, setModalFlag] = useState(
         false
   )
-
   const toggle = () => {
     setModalFlag(previous => (
        !previous
@@ -18,7 +17,7 @@ const ConfirmRemovalModal = (props) => {
   const handlerDeleteUser = async id => {
     try {
       await props.deleteUser(id)
-      toggle() 
+      toggle()  
     } catch (error) {
       console.log(error)
     } 
