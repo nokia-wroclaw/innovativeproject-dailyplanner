@@ -15,8 +15,12 @@ const UserList = ({
     try{
       await axios.delete(`${API_URL}${id}/`)
       resetState()
+<<<<<<< HEAD
     } 
     catch (error){
+=======
+    } catch (error){
+>>>>>>> Develop
       console.log(error)
     }
   };
@@ -49,7 +53,10 @@ return (
                 id= {user.id}
                 deleteUser={deleteUser}
               />
+<<<<<<< HEAD
               &nbsp;&nbsp;
+=======
+>>>>>>> Develop
               <NewUserModal
                 create={false}
                 user={user}

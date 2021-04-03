@@ -35,7 +35,11 @@ const NewUserModal =({
   }
 
   return (
+<<<<<<< HEAD
     <>
+=======
+    <Fragment>
+>>>>>>> Develop
       {button}
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>{title} </ModalHeader>
@@ -48,7 +52,11 @@ const NewUserModal =({
           />
         </ModalBody>
       </Modal>
+<<<<<<< HEAD
     </>
+=======
+    </Fragment>
+>>>>>>> Develop
   );
 };
 export default NewUserModal;
