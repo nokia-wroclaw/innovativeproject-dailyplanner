@@ -17,11 +17,11 @@ const ConfirmRemovalModal = (props) => {
   const handlerDeleteUser = async id => {
     try {
       await props.deleteUser(id)
-      toggle()  
+      toggle() 
     } catch (error) {
       console.log(error)
     } 
-   };
+  };
 
   return (
     <Fragment>

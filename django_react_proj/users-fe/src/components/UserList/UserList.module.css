@@ -18,3 +18,7 @@
     display: block;
     word-wrap: break-word;
 }
+
+.RowDone{
+    background-color: green;
+}

@@ -35,7 +35,7 @@ const NewUserModal =({
   }
 
   return (
-    <Fragment>
+    <>
       {button}
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>{title} </ModalHeader>
@@ -48,7 +48,7 @@ const NewUserModal =({
           />
         </ModalBody>
       </Modal>
-    </Fragment>
+    </>
   );
 };
 export default NewUserModal;

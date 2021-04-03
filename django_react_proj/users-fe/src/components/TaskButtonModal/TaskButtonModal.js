@@ -7,6 +7,10 @@ const TaskButton = (props) => {
         false
   )
 
+  const [taskFlag, setTaskFlag] = useState(
+    false
+  )
+
   const toggle = () => {
     setModalFlag(previous => (
        !previous
@@ -22,11 +26,17 @@ const TaskButton = (props) => {
     } 
    };
 
+  const toggleTaskFlag = () => {
+    setTaskFlag(previous => (
+        !previous
+      ));
+  };
+   
   return (
-    <Fragment>
-      <Button 
-        className = {styles.done}  
-        onClick = {() => toggle()}>
+    <>
+      <Button
+        color = {taskFlag ? 'success': 'danger'}
+        onClick = {() => toggleTaskFlag()}>
         TASKBUTTON
       </Button>
 
@@ -48,7 +58,7 @@ const TaskButton = (props) => {
           </Button>
         </ModalFooter>
       </Modal>
-    </Fragment>
+    </>
   );
 };
 
