@@ -1,17 +1,11 @@
-<<<<<<< HEAD
 .ButtonFalse{
     background-color: red;
-=======
-.done{
-    background-color: greenyellow;
->>>>>>> Develop
     border: 2px;
     color: black;
     padding: 8px 20px;
     text-align: center;
     display: inline-block;
     flex-direction: row;
-<<<<<<< HEAD
     font-size: 15px;
     min-width: 20px;
     border-radius: 4px;
@@ -29,8 +23,3 @@
     min-width: 20px;
     border-radius: 4px;
 }
-=======
-    font-size: 16px;
-    min-width: 20px;
-}
->>>>>>> Develop

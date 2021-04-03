@@ -22,37 +22,23 @@ const Home = () => {
 
   return (
     <Container className={styles.Container}>
-<<<<<<< HEAD
-      <Row >
-        <Col >
-=======
       <Row>
         <Col>
->>>>>>> Develop
           <UserList
             users={users}
             resetState={getUsers}
           />
         </Col>
       </Row>
-<<<<<<< HEAD
-      <Row >
-        <Col >
-=======
       <Row>
         <Col>
->>>>>>> Develop
           <NewUserModal 
             create={true} 
             resetState={getUsers} 
           />
         </Col>
       </Row>
-<<<<<<< HEAD
-    </Container >
-=======
     </Container>
->>>>>>> Develop
   );
 };
 
