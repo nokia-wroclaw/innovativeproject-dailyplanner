@@ -15,12 +15,7 @@ const UserList = ({
     try{
       await axios.delete(`${API_URL}${id}/`)
       resetState()
-<<<<<<< HEAD
-    } 
-    catch (error){
-=======
     } catch (error){
->>>>>>> origin/Develop
       console.log(error)
     }
   };
