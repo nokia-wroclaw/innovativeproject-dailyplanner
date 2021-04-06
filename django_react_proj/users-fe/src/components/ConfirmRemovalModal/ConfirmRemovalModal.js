@@ -1,10 +1,9 @@
 import React, { useState, Fragment } from "react";
 import { Modal, ModalHeader, Button, ModalFooter } from "reactstrap";
 import styles from './ConfirmRemovalModal.module.css';
-import axios from "axios";
-import { API_URL } from "../../constants";
+import PropTypes from 'prop-types';
 
-const ConfirmRemovalModal = (props) => {
+const ConfirmRemovalModal = ({id, deleteUser}) => {
   const [modalFlag, setModalFlag] = useState(
         false
   )
@@ -14,9 +13,9 @@ const ConfirmRemovalModal = (props) => {
      ));
   };
   
-  const handlerDeleteUser = async id => {
+  const handlerDeleteUser = async id_ => {
     try {
-      await props.deleteUser(id)
+      await deleteUser(id_)
       toggle() 
     } catch (error) {
       console.log(error)
@@ -43,7 +42,7 @@ const ConfirmRemovalModal = (props) => {
           <Button
             type="button"
             color="primary"
-            onClick={() => handlerDeleteUser(props.id)}
+            onClick={() => handlerDeleteUser(id)}
           >
             Tak
           </Button>
@@ -52,6 +51,11 @@ const ConfirmRemovalModal = (props) => {
     </Fragment>
   );
 };
+
+ConfirmRemovalModal.propTypes = {
+  id: PropTypes.number,
+  deleteUser: PropTypes.func
+}
 
 export default ConfirmRemovalModal;
 

@@ -1,8 +1,9 @@
 import React, { useState, Fragment } from "react";
 import { Modal, ModalHeader, Button, ModalFooter } from "reactstrap";
 import styles from './TaskButtonModal.module.css';
+import PropTypes from 'prop-types';
 
-const TaskButton = (props) => {
+const TaskButton = ({id, deleteUser}) => {
   const [modalFlag, setModalFlag] = useState(
         false
   )
@@ -17,9 +18,9 @@ const TaskButton = (props) => {
      ));
   };
   
-  const handlerDeleteUser = async id => {
+  const handlerDeleteUser = async id_ => {
     try {
-      await props.deleteUser(id)
+      await deleteUser(id_)
       toggle() 
     } catch (error) {
       console.log(error)
@@ -52,7 +53,7 @@ const TaskButton = (props) => {
           <Button
             type="button"
             color="primary"
-            onClick={() => handlerDeleteUser(props.id)}
+            onClick={() => handlerDeleteUser(id)}
           >
             Tak
           </Button>
@@ -61,6 +62,12 @@ const TaskButton = (props) => {
     </>
   );
 };
+
+TaskButton.propTypes = {
+  id: PropTypes.number,
+  deleteUser: PropTypes.func
+}
+
 
 export default TaskButton;
 
