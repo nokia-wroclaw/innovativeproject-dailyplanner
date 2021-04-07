@@ -26,7 +26,7 @@ const ConfirmRemovalModal = (props) => {
   return (
     <Fragment>
       <Button 
-      className = {styles.delete} 
+      color = {'danger'}
       onClick={() => toggle()}>
         Usuń
       </Button>

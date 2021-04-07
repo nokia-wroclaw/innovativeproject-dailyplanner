@@ -18,16 +18,10 @@ const TaskButton = (props) => {
     }
   };
 
-  // const toggleTaskFlag = () => {
-  //   setTaskFlag(previous => (
-  //       !previous
-  //     ));
-  // };
-
   return (
     <>
       <Button
-        color={props.taskFlag ? "success" : "danger"}
+        color = {'primary'}
         onClick={() => props.ontoggleTaskFlag()}
       >
         TASKBUTTON
