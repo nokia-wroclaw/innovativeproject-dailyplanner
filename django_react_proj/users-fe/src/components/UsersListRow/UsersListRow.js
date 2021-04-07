@@ -5,7 +5,7 @@ import NewUserModal from "../NewUserModal/NewUserModal";
 import ConfirmRemovalModal from "../ConfirmRemovalModal/ConfirmRemovalModal";
 import TaskButton from "../TaskButtonModal/TaskButtonModal";
 import styles from "../UserList/UserList.module.css";
-
+import PropTypes from 'prop-types';
 
 const UsersListRow = ({user,resetState}) => {
     const [taskFlag, setTaskFlag] = useState(
@@ -43,17 +43,22 @@ const UsersListRow = ({user,resetState}) => {
         &nbsp;&nbsp;
         <NewUserModal
           create={false}
-          user={user}
+          user={user.id}
           resetState={resetState}
         />
         &nbsp;&nbsp;
         <ConfirmRemovalModal
-          id= {user.id}
+          id= {user}
           deleteUser={deleteUser}
         />
       </td>
     </tr>
   )
+  }
+
+  UsersListRow.propTypes = {
+    user: PropTypes.object,
+    resetState: PropTypes.func
   }
 
   export default UsersListRow;

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "reactstrap";
 import axios from "axios";
-
 import styles from './Home.module.css';
 import UserList from "../UserList/UserList";
 import NewUserModal from "../NewUserModal/NewUserModal";

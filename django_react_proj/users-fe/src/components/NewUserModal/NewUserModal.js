@@ -17,9 +17,9 @@ const NewUserModal =({
   
   var title = "Edycja zadania";
   var button = <Button 
-    className = {styles.edit} 
+    color = {'success'}
     onClick={toggle}>
-      Edit</Button>;
+      Edytuj</Button>;
 
   if (create) {
     title = "Tworzenie nowego zadania";

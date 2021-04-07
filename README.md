@@ -5,3 +5,7 @@ cd django_react_proj
 pip install -r requirements.txt
 python manage.py runserver
 ```
+
+
+
+

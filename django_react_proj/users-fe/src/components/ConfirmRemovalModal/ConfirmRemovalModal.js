@@ -1,8 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { Modal, ModalHeader, Button, ModalFooter } from "reactstrap";
 import styles from './ConfirmRemovalModal.module.css';
-import axios from "axios";
-import { API_URL } from "../../constants";
+
 
 const ConfirmRemovalModal = (props) => {
   const [modalFlag, setModalFlag] = useState(
@@ -26,7 +25,7 @@ const ConfirmRemovalModal = (props) => {
   return (
     <Fragment>
       <Button 
-      className = {styles.delete} 
+      color = {'danger'}
       onClick={() => toggle()}>
         Usuń
       </Button>
