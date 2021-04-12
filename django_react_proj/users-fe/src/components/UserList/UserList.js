@@ -2,8 +2,7 @@ import React from "react";
 import { Table } from "reactstrap";
 import UsersListRow from "../UsersListRow/UsersListRow";
 
-const UserList = ({ users = [], resetState }) => {
-  return (
+const UserList = ({ users = [], resetState }) => (
     <Table dark>
       <thead>
         <tr>
@@ -22,11 +21,10 @@ const UserList = ({ users = [], resetState }) => {
           </tr>
         ) : (
           users.map((user) => (
-            <UsersListRow user={user} resetState={resetState} />
+            <UsersListRow key={user.id} user={user} resetState={resetState} />
           ))
         )}
       </tbody>
     </Table>
   );
-};
 export default UserList;

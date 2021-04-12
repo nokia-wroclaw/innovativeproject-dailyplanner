@@ -4,7 +4,7 @@ import { API_URL } from "../../constants";
 import NewUserModal from "../NewUserModal/NewUserModal";
 import ConfirmRemovalModal from "../ConfirmRemovalModal/ConfirmRemovalModal";
 import TaskButton from "../TaskButtonModal/TaskButtonModal";
-import styles from "../UserList/UserList.module.css";
+import styles from "./UsersListRow.module.css";
 
 
 const UsersListRow = ({user,resetState}) => {
@@ -12,7 +12,7 @@ const UsersListRow = ({user,resetState}) => {
       false
   )
   
-  const ontoggleTaskFlag = () => {
+  const onToggleTaskFlag = () => {
     setTaskFlag(previous => (
         !previous
       ));
@@ -37,16 +37,13 @@ const UsersListRow = ({user,resetState}) => {
           id = {user.id}
           deleteUser = {deleteUser}
           taskFlag = {taskFlag}
-  
-          ontoggleTaskFlag = {ontoggleTaskFlag}
+          onToggleTaskFlag = {onToggleTaskFlag}
         />
-        &nbsp;&nbsp;
         <NewUserModal
           create={false}
           user={user}
           resetState={resetState}
         />
-        &nbsp;&nbsp;
         <ConfirmRemovalModal
           id= {user.id}
           deleteUser={deleteUser}

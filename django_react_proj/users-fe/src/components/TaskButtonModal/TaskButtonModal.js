@@ -21,13 +21,13 @@ const TaskButton = (props) => {
   return (
     <>
       <Button
-        color = {'primary'}
-        onClick={() => props.ontoggleTaskFlag()}
+        color = "primary"
+        onClick ={props.onToggleTaskFlag}
       >
         TASKBUTTON
       </Button>
 
-      <Modal isOpen={modalFlag} toggle={toggle}>
+      <Modal isOpen = {modalFlag} toggle={toggle}>
         <ModalHeader toggle={toggle}>Czy chcesz usunąć zadanie?</ModalHeader>
 
         <ModalFooter>
@@ -35,8 +35,8 @@ const TaskButton = (props) => {
             Anuluj
           </Button>
           <Button
-            type="button"
-            color="primary"
+            type = "button"
+            color = "primary"
             onClick={() => handlerDeleteUser(props.id)}
           >
             Tak

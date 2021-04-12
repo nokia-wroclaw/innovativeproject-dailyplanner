@@ -17,7 +17,7 @@ const NewUserModal =({
   
   var title = "Edycja zadania";
   var button = <Button 
-    color = {'success'}
+    color = "success"
     onClick={toggle}>
       Edytuj</Button>;
 
