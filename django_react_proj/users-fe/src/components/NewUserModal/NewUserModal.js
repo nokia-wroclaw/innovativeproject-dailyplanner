@@ -1,4 +1,4 @@
-import React, {  useState,Fragment } from "react";
+import React, {  useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import NewUserForm from "../NewUserForm/NewUserForm";
 import styles from './NewUserModal.module.css';
