@@ -1,6 +1,8 @@
-import React, {useState} from "react";
-import { Modal, ModalHeader, Button, ModalFooter } from "reactstrap";
-import styles from "./TaskButtonModal.module.css";
+import React, { useState } from 'react';
+import {
+  Modal, ModalHeader, Button, ModalFooter,
+} from 'reactstrap';
+import styles from './TaskButtonModal.module.css';
 
 const TaskButton = (props) => {
   const [modalFlag, setModalFlag] = useState(false);
@@ -21,7 +23,7 @@ const TaskButton = (props) => {
   return (
     <>
       <Button
-        color = {'primary'}
+        color="primary"
         onClick={() => props.ontoggleTaskFlag()}
       >
         TASKBUTTON

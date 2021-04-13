@@ -1,32 +1,37 @@
-import React, { useState } from "react";
-import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
-import NewUserForm from "../NewUserForm/NewUserForm";
+import React, { useState } from 'react';
+import {
+  Button, Modal, ModalHeader, ModalBody,
+} from 'reactstrap';
+import NewUserForm from '../NewUserForm/NewUserForm';
 import styles from './NewUserModal.module.css';
 
-
-const NewUserModal =({ 
+const NewUserModal = ({
   resetState,
   user,
-  create
+  create,
 }) => {
-  const [modal, setModal]=useState();
+  const [modal, setModal] = useState();
 
   const toggle = () => {
-    setModal(previous => !previous);
+    setModal((previous) => !previous);
   };
-  
-  var title = "Edycja zadania";
-  var button = <Button 
-    color = {'success'}
-    onClick={toggle}>
-      Edytuj</Button>;
+
+  let title = 'Edycja zadania';
+  let button = (
+    <Button
+      color="success"
+      onClick={toggle}
+    >
+      Edytuj
+    </Button>
+  );
 
   if (create) {
-    title = "Tworzenie nowego zadania";
+    title = 'Tworzenie nowego zadania';
 
     button = (
       <button
-        className = {styles.button}
+        className={styles.button}
         onClick={toggle}
       >
         Zaplanuj nowe zadanie
@@ -38,7 +43,10 @@ const NewUserModal =({
     <>
       {button}
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>{title} </ModalHeader>
+        <ModalHeader toggle={toggle}>
+          {title}
+          {' '}
+        </ModalHeader>
 
         <ModalBody>
           <NewUserForm
