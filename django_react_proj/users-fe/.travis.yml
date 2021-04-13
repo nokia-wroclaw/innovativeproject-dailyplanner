@@ -14,4 +14,4 @@ language: node_js
  github_token: $GITHUB_TOKEN
  local_dir: build
  on:
-   branch: master
+   branch: main
