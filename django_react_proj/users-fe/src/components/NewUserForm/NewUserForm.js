@@ -2,8 +2,7 @@ import React, { useState }  from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import axios from "axios";
 import { API_URL } from "../../constants";
-import styles from "./NewUserForm.module.css"
-import TextField from '@material-ui/core/TextField';
+import styles from "./NewUserForm.module.css";
 
 const NewUserForm = ({
   user,
