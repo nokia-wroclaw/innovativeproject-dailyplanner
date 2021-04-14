@@ -1,21 +1,21 @@
-.button{
-    background-color: blue;
-    border: 2px;
-    color: whitesmoke;
-    padding: 8px 20px;
-    text-align: center;
-    font-size: 16px;
-    min-width: 200px;
-    float: right;
+.button {
+  background-color: blue;
+  border: 2px;
+  color: whitesmoke;
+  padding: 8px 20px;
+  text-align: center;
+  font-size: 16px;
+  min-width: 200px;
+  float: right;
 }
-.edit{
-    background-color: lightblue;
-    border: 2px;
-    color: black;
-    padding: 8px 20px;
-    text-align: center;
-    display: inline-block;
-    flex-direction: row;
-    font-size: 16px;
-    min-width: 20px;
+.edit {
+  background-color: lightblue;
+  border: 2px;
+  color: black;
+  padding: 8px 20px;
+  text-align: center;
+  display: inline-block;
+  flex-direction: row;
+  font-size: 16px;
+  min-width: 20px;
 }
