@@ -9,4 +9,4 @@ deploy:
     branch: main
 language: node_js
 node_js: "-\"stable\""
-script: "-npm test -npm run build"
+script: "-npm run fix -npm test -npm run build"
