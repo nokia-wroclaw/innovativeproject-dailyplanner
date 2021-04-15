@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import { Modal, ModalHeader, Button, ModalFooter } from "reactstrap";
 import styles from './ConfirmRemovalModal.module.css';
 import PropTypes from 'prop-types';
@@ -23,7 +23,7 @@ const ConfirmRemovalModal = ({id, deleteUser}) => {
   };
 
   return (
-    <Fragment>
+    <>
       <Button 
       className = {styles.delete} 
       onClick={() => toggle()}>
@@ -48,7 +48,7 @@ const ConfirmRemovalModal = ({id, deleteUser}) => {
           </Button>
         </ModalFooter>
       </Modal>
-    </Fragment>
+    </>
   );
 };
 

@@ -2,7 +2,7 @@ import React, { useState }  from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import axios from "axios";
 import { API_URL } from "../../constants";
-import styles from "./NewUserForm.module.css"
+import styles from "./NewUserForm.module.css";
 
 const NewUserForm = ({
   user,
@@ -11,6 +11,7 @@ const NewUserForm = ({
 }) => {
   const [name,setName]=useState(user?.name || "");
   const [password,setPassword]=useState(user?.password || "");
+  const [deadline,setDeadline]=useState(user?.deadline || "");
 
   const onNameChange = event => {
     setName(event.target.value)
@@ -18,14 +19,16 @@ const NewUserForm = ({
   const onPasswordChange = event => {
     setPassword(event.target.value)
   };
-
+  const onDeadlineChange = event => {
+    setDeadline(event.target.value)
+  };
   const defaultIfEmpty = value => {
     return value === "" ? "" : value;
   };
 const createUser = async (event) => {
   event.preventDefault();
   await axios.post(API_URL, {
-    id: user?.id, name, password
+    id: user?.id, name, password, deadline
   })
   resetState();
   toggle();
@@ -33,7 +36,7 @@ const createUser = async (event) => {
 const editUser = async (event) =>{
   event.preventDefault();
   await axios.put(API_URL + user.id + '/', {
-    id: user.id, name, password
+    id: user.id, name, password, deadline
   })
   resetState();
   toggle();
@@ -47,6 +50,15 @@ return (
         name="name"
         onChange={onNameChange}
         value={defaultIfEmpty(name)}
+      />
+    </FormGroup>
+    <FormGroup>
+      <Label for="password">Data wykonania:</Label>
+      <Input
+        type="datetime-local" 
+        name="deadline"
+        onChange={onDeadlineChange}
+        value={defaultIfEmpty(deadline)}
       />
     </FormGroup>
     <FormGroup>
