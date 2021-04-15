@@ -6,6 +6,9 @@
 # C extensions
 *.so
 
+# Ignore the node_modules directory
+node_modules/
+
 # Distribution / packaging
 .Python
 build/
