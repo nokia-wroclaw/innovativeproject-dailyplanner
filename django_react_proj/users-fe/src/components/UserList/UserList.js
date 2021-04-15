@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table } from 'reactstrap';
+import PropTypes from 'prop-types';
 import UsersListRow from '../UsersListRow/UsersListRow';
 
 const UserList = ({ users = [], resetState }) => (
@@ -20,11 +21,13 @@ const UserList = ({ users = [], resetState }) => (
           </td>
         </tr>
       ) : (
-        users.map((user) => (
-          <UsersListRow user={user} resetState={resetState} />
-        ))
+        users.map((user) => <UsersListRow user={user} resetState={resetState} />)
       )}
     </tbody>
   </Table>
 );
+UserList.propTypes = {
+  users: PropTypes.array,
+  resetState: PropTypes.func,
+};
 export default UserList;
