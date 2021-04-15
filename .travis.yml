@@ -1,6 +1,4 @@
-cache: 
-  directories:
-    -node_modules
+cache: npm
 deploy: 
   cleanup: true
   github_token: $GITHUB_TOKEN
@@ -11,4 +9,5 @@ deploy:
 language: node_js
 node_js: "7.4.0"
 script: "-npm run fix -npm test -npm run build"
+
 
