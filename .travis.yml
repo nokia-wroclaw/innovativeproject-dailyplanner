@@ -8,5 +8,6 @@ deploy:
   true: 
     branch: main
 language: node_js
-node_js: "-\"stable\""
+node_js: "7.4.0"
 script: "-npm run fix -npm test -npm run build"
+
