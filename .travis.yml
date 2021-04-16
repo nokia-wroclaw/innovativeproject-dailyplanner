@@ -9,23 +9,27 @@ deploy:
 include: 
   - 
     name: test
-    script: "npm test"
+    script: npm test
     stage: test
   - 
     name: build
-    script: "npm run build"
+    script: npm run build
     stage: build
   - 
     name: eslint
-    script: "~npm run eslint"
+    script: npm run eslint
     stage: eslint
   - 
     name: fix
-    script: "npm run fix"
+    script: npm run fix
     stage: fix
 jobs: ~
 language: node_js
 node_js: "7.4.0"
-stages: "-build -test -eslint -fix"
+stages: 
+  - build 
+  - test 
+  - eslint 
+  - fix
 
 
