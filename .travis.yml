@@ -6,8 +6,26 @@ deploy:
   provider: pages
   true: 
     branch: main
+include: 
+  - 
+    name: test
+    script: "npm test"
+    stage: test
+  - 
+    name: build
+    script: "npm run build"
+    stage: build
+  - 
+    name: eslint
+    script: "~npm run eslint"
+    stage: eslint
+  - 
+    name: fix
+    script: "npm run fix"
+    stage: fix
+jobs: ~
 language: node_js
 node_js: "7.4.0"
-script: "-npm run fix -npm test -npm run build"
+stages: "-build -test -eslint -fix"
 
 
