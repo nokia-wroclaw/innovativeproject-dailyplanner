@@ -29,7 +29,8 @@ jobs:
       script: npm run fix
       stage: fix
 language: node_js
-node_js: "7.4.0"
+node_js:
+  - 15
 stages: 
   - build 
   - test 
