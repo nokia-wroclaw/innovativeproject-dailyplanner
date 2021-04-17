@@ -1,4 +1,3 @@
-cache: npm
 deploy: 
   cleanup: true
   github_token: $GITHUB_TOKEN
@@ -9,16 +8,28 @@ deploy:
 jobs:
   include:
     - language: node_js
+      cache:
+        directories:
+          - "./django_react_proj/users-fe/"
+        npm: true
       name: test
       install: cd django_react_proj/users-fe/ && npm install
       script: npm test
       stage: test
     - language: node_js
+      cache:
+        directories:
+          - "./django_react_proj/users-fe/"
+        npm: true
       name: build
       install: cd django_react_proj/users-fe/ && npm install
       script: npm run build
       stage: build
     - language: node_js
+      cache:
+        directories:
+          - "./django_react_proj/users-fe/"
+        npm: true
       name: fix
       install: cd django_react_proj/users-fe/ && npm install
       script: npm run fix
