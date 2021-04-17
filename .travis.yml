@@ -11,18 +11,13 @@ jobs:
     - language: node_js
       name: test
       install: cd django_react_proj/users-fe/ && npm install
-      script: cd django_react_proj/users-fe/ && npm test
+      script: npm test
       stage: test
     - language: node_js
       name: build
       install: cd django_react_proj/users-fe/ && npm install
       script: npm run build
       stage: build
-    - language: node_js
-      name: eslint
-      install: cd django_react_proj/users-fe/ && npm install
-      script: npm run eslint
-      stage: eslint
     - language: node_js
       name: fix
       install: cd django_react_proj/users-fe/ && npm install
@@ -34,7 +29,6 @@ node_js:
 stages: 
   - build 
   - test 
-  - eslint 
   - fix
 
 
