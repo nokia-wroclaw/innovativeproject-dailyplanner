@@ -6,24 +6,24 @@ deploy:
   provider: pages
   true: 
     branch: main
-include: 
-  - 
-    name: test
-    script: npm test
-    stage: test
-  - 
-    name: build
-    script: npm run build
-    stage: build
-  - 
-    name: eslint
-    script: npm run eslint
-    stage: eslint
-  - 
-    name: fix
-    script: npm run fix
-    stage: fix
-jobs: ~
+jobs:
+  include:
+    - language: node_js
+      name: test
+      script: npm test
+      stage: test
+    - language: node_js
+      name: build
+      script: npm run build
+      stage: build
+    - language: node_js
+      name: eslint
+      script: npm run eslint
+      stage: eslint
+    - language: node_js
+      name: fix
+      script: npm run fix
+      stage: fix
 language: node_js
 node_js: "7.4.0"
 stages: 
