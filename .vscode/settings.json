@@ -1,13 +1,3 @@
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "python.pythonPath": "C:\\Users\\lganc\\AppData\\Local\\Programs\\Python\\Python38\\python.exe"
-=======
-    "python.pythonPath": "C:\\Users\\lganc\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
-    "git.ignoreLimitWarning": true
->>>>>>> 105a5a2 (delete unnecessary file)
-=======
-    "python.pythonPath": "C:\\Users\\lganc\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
-    "git.ignoreLimitWarning": true
->>>>>>> refs/remotes/origin/Adding-deadline-date
+    "python.pythonPath": "C:\\Python38\\python.exe"
 }
