@@ -22,6 +22,7 @@ const NewUserForm = ({
   const onDeadlineChange = event => {
     setDeadline(event.target.value)
   };
+
   const defaultIfEmpty = value => {
     return value === "" ? "" : value;
   };
