@@ -10,18 +10,22 @@ jobs:
   include:
     - language: node_js
       name: test
-      script: npm test
+      install: cd django_react_proj/django_react_proj/users-fe/ && npm install
+      script: cd django_react_proj/django_react_proj/users-fe/ && npm test
       stage: test
     - language: node_js
       name: build
+      install: cd django_react_proj/django_react_proj/users-fe/ && npm install
       script: npm run build
       stage: build
     - language: node_js
       name: eslint
+      install: cd django_react_proj/django_react_proj/users-fe/ && npm install
       script: npm run eslint
       stage: eslint
     - language: node_js
       name: fix
+      install: cd django_react_proj/django_react_proj/users-fe/ && npm install
       script: npm run fix
       stage: fix
 language: node_js
