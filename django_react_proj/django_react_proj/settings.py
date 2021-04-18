@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
 # Application definition
 
@@ -79,7 +80,7 @@ TEMPLATES = [
 
 REST_FRAMEWORK = {
 
-    'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
+    'TIME_FORMAT': "%H:%M",
 }
 
 WSGI_APPLICATION = 'django_react_proj.wsgi.application'

@@ -3,6 +3,8 @@ import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import axios from "axios";
 import { API_URL } from "../../constants";
 import styles from "./NewUserForm.module.css";
+import TimePicker from "react-time-picker"
+
 
 const NewUserForm = ({
   user,
@@ -18,9 +20,6 @@ const NewUserForm = ({
   };
   const onPasswordChange = event => {
     setPassword(event.target.value)
-  };
-  const onDeadlineChange = event => {
-    setDeadline(event.target.value)
   };
   const defaultIfEmpty = value => {
     return value === "" ? "" : value;
@@ -53,13 +52,16 @@ return (
       />
     </FormGroup>
     <FormGroup>
-      <Label for="password">Data wykonania:</Label>
-      <Input
-        type="datetime-local" 
+      <Label for="deadline">Data wykonania:</Label>
+      <FormGroup>
+      <TimePicker
+        format="H:m"
+        disableClock="true"
         name="deadline"
-        onChange={onDeadlineChange}
+        onChange={setDeadline}
         value={defaultIfEmpty(deadline)}
       />
+      </FormGroup>
     </FormGroup>
     <FormGroup>
       <Label for="password">Opis:</Label>
