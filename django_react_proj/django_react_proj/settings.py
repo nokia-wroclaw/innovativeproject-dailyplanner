@@ -78,6 +78,11 @@ TEMPLATES = [
     },
 ]
 
+REST_FRAMEWORK = {
+
+    'TIME_FORMAT': "%H:%M",
+}
+
 WSGI_APPLICATION = 'django_react_proj.wsgi.application'
 
 

@@ -2,7 +2,9 @@ import React, { useState }  from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import axios from "axios";
 import { API_URL } from "../../constants";
-import styles from "./NewUserForm.module.css"
+import styles from "./NewUserForm.module.css";
+import TimePicker from "react-time-picker"
+
 
 const NewUserForm = ({
   user,
@@ -18,7 +20,6 @@ const NewUserForm = ({
   const onPasswordChange = event => {
     setPassword(event.target.value)
   };
-
   const defaultIfEmpty = value => {
     return value === "" ? "" : value;
   };
@@ -48,6 +49,18 @@ return (
         onChange={onNameChange}
         value={defaultIfEmpty(name)}
       />
+    </FormGroup>
+    <FormGroup>
+      <Label for="deadline">Data wykonania:</Label>
+      <FormGroup>
+      <TimePicker
+        format="H:m"
+        disableClock="true"
+        name="deadline"
+        onChange={setDeadline}
+        value={defaultIfEmpty(deadline)}
+      />
+      </FormGroup>
     </FormGroup>
     <FormGroup>
       <Label for="password">Opis:</Label>
