@@ -13,6 +13,7 @@ const NewUserForm = ({
 }) => {
   const [name,setName]=useState(user?.name || "");
   const [password,setPassword]=useState(user?.password || "");
+  const [deadline,setDeadline]=useState(user?.deadline || "");
 
   const onNameChange = event => {
     setName(event.target.value)
@@ -26,7 +27,7 @@ const NewUserForm = ({
 const createUser = async (event) => {
   event.preventDefault();
   await axios.post(API_URL, {
-    id: user?.id, name, password
+    id: user?.id, name, password, deadline
   })
   resetState();
   toggle();
@@ -34,7 +35,7 @@ const createUser = async (event) => {
 const editUser = async (event) =>{
   event.preventDefault();
   await axios.put(API_URL + user.id + '/', {
-    id: user.id, name, password
+    id: user.id, name, password, deadline
   })
   resetState();
   toggle();

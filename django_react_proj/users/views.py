@@ -44,5 +44,3 @@ def users_detail(request, id):
         serializer = UserSerializer(data, context={'request': request}, many=True)
         
         return Response(serializer.data)
-
-

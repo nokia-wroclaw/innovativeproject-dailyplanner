@@ -26,7 +26,8 @@ return (
       <tr>
         <th>Nazwa zadania</th>
         <th>Opis</th>
-        <th>Data rejestracji</th>
+        <th>Data wykonania</th>
+        <th>Data utworzenia zadania</th>
         <th></th>
       </tr>
     </thead>
@@ -42,7 +43,8 @@ return (
           <tr key={user.id}>
             <td>{user.name}</td>
             <td className={styles.Svg}>{user.password}</td>
-            <td>{user.registrationDate}</td>
+            <td>{user.deadline}</td>
+            <td>{user.registrationDate}</td>           
             <td align="center">
               <TaskButton
                 id= {user.id}
