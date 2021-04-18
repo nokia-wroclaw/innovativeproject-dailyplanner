@@ -33,10 +33,23 @@ jobs:
       install: cd django_react_proj/users-fe/ && npm install
       script: npm run fix
       stage: fix
+
+    - language: python
+      cache:
+       directiories:
+          -  "./django_react_proj"
+      name: backend
+      install: pip install --user -r requirements.txt
+      script: python manage.py test
+      stage: backend
+language: python
+python:
+  - 3.8
 language: node_js
 node_js:
   - 15
 stages: 
+  - backend
   - build 
   - test 
   - fix
