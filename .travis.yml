@@ -35,12 +35,9 @@ jobs:
       stage: fix
 
     - language: python
-      cache:
-       directiories:
-          -  "./django_react_proj"
       name: backend
       install: pip install -r requirements.txt
-      script: 
+      before_script: 
         - cd django_react_proj
       script:
         - python manage.py test
