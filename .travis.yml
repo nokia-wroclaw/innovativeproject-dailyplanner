@@ -40,7 +40,10 @@ jobs:
           -  "./django_react_proj"
       name: backend
       install: pip install -r requirements.txt
-      script: python manage.py test
+      script: 
+        - cd django_react_proj
+      script:
+        - python manage.py test
       stage: backend
 language: python
 python:
