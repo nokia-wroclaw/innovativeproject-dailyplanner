@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Modal, ModalHeader, Button, ModalFooter } from "reactstrap";
+import React, { useState } from 'react';
+import { Modal, ModalHeader, Button, ModalFooter } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 const TaskButton = (props) => {

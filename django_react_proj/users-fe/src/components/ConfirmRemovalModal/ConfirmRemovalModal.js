@@ -19,16 +19,15 @@ const ConfirmRemovalModal = (props) => {
 
   return (
     <>
-        Usuń
-        <ModalFooter>
-          <Button type="button" onClick={() => toggle()}>
-            Anuluj
-          </Button>
-          <Button type="button" color="primary" onClick={() => handlerDeleteUser(props.id)}>
-            Tak
-          </Button>
-        </ModalFooter>
-      </Modal>
+      Usuń
+      <ModalFooter>
+        <Button type="button" onClick={() => toggle()}>
+          Anuluj
+        </Button>
+        <Button type="button" color="primary" onClick={() => handlerDeleteUser(props.id)}>
+          Tak
+        </Button>
+      </ModalFooter>
     </>
   );
 };

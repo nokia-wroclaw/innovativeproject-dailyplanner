@@ -1,14 +1,12 @@
-import React from "react";
-import Header from "./components/Header/Header";
-import Home from "./components/Home/Home";
+import React from 'react';
+import Header from './components/Header/Header';
+import Home from './components/Home/Home';
 
-const App = () => {
-  return (
-    <>
-      <Header />
-      <Home />
-    </>
-  );
-};
+const App = () => (
+  <>
+    <Header />
+    <Home />
+  </>
+);
 
 export default App;
