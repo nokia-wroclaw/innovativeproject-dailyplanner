@@ -19,13 +19,7 @@ const ConfirmRemovalModal = (props) => {
 
   return (
     <>
-      <Button color="danger" onClick={() => toggle()}>
         Usuń
-      </Button>
-
-      <Modal isOpen={modalFlag} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Czy chcesz usunąć zadanie?</ModalHeader>
-
         <ModalFooter>
           <Button type="button" onClick={() => toggle()}>
             Anuluj
