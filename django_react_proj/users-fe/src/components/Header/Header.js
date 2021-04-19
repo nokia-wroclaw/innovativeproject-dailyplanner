@@ -5,6 +5,7 @@ const Header = () => {
   return  (
     <div className={styles.Header}>
       <img className={styles.Image}
+        alt="Team chaos"
         src="https://media.discordapp.net/attachments/821426521859162192/821456504875646976/teams-chaos.png?width=800&height=450"
       />
       <hr />

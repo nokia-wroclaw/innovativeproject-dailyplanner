@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Modal, ModalHeader, Button, ModalFooter } from "reactstrap";
 import styles from './ConfirmRemovalModal.module.css';
 
-
 const ConfirmRemovalModal = (props) => {
   const [modalFlag, setModalFlag] = useState(
         false

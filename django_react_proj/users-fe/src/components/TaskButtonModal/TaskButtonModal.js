@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Modal, ModalHeader, Button, ModalFooter } from "reactstrap";
 
-
 const TaskButton = (props) => {
   const [modalFlag, setModalFlag] = useState(
         false
