@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
-import { Modal, ModalHeader, Button, ModalFooter } from 'reactstrap';
-import PropTypes from 'prop-types';
+import React, { useState } from "react";
+import { Modal, ModalHeader, Button, ModalFooter } from "reactstrap";
 
 const TaskButton = (props) => {
-  const [modalFlag, setModalFlag] = useState(false);
+  const [modalFlag, setModalFlag] = useState(
+        false
+  )
+
+  const [taskFlag, setTaskFlag] = useState(
+    false
+  )
 
   const toggle = () => {
     setModalFlag((previous) => !previous);
   };
-
-  const handlerDeleteUser = async (id) => {
+  
+  const handlerDeleteUser = async id => {
     try {
-      await props.deleteUser(id);
-      toggle();
+      await props.deleteUser(id)
+      toggle() 
     } catch (error) {
       console.log(error);
     }

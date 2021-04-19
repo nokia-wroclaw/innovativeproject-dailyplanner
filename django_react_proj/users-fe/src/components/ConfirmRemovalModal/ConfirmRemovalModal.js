@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Modal, ModalHeader, Button, ModalFooter } from 'reactstrap';
+import { Button, ModalFooter } from 'reactstrap';
 
 const ConfirmRemovalModal = (props) => {
   const [modalFlag, setModalFlag] = useState(false);

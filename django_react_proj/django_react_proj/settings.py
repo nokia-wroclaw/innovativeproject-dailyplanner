@@ -80,7 +80,7 @@ TEMPLATES = [
 
 REST_FRAMEWORK = {
 
-    'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
+    'TIME_FORMAT': "%H:%M",
 }
 
 WSGI_APPLICATION = 'django_react_proj.wsgi.application'
@@ -136,4 +136,5 @@ CORS_ORIGIN_ALLOW_ALL = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
 

@@ -1,0 +1,56 @@
+deploy: 
+  cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: build
+  provider: pages
+  true: 
+    branch: main
+jobs:
+  include:
+    - language: node_js
+      cache:
+        directories:
+          - "./django_react_proj/users-fe/node_modules"
+      name: test
+      install: cd django_react_proj/users-fe/ && npm install
+      script: npm test
+      stage: test
+    - language: node_js
+      cache:
+        directories:
+          - "./django_react_proj/users-fe/node_modules"
+        npm: true
+      name: build
+      install: cd django_react_proj/users-fe/ && npm install
+      script: npm run build
+      stage: build
+    - language: node_js
+      cache:
+        directories:
+          - "./django_react_proj/users-fe/node_modules"
+        npm: true
+      name: fix
+      install: cd django_react_proj/users-fe/ && npm install
+      script: npm run fix
+      stage: fix
+
+    - language: python
+      name: backend
+      install: pip install -r requirements.txt
+      before_script: 
+        - cd django_react_proj
+      script:
+        - python manage.py test
+      stage: backend
+language: python
+python:
+  - 3.8
+language: node_js
+node_js:
+  - 15
+stages: 
+  - build 
+  - test 
+  - fix
+
+
