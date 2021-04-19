@@ -1,34 +1,28 @@
-import React, {  useState } from "react";
-import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
-import NewUserForm from "../NewUserForm/NewUserForm";
+import React, { useState } from 'react';
+import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import PropTypes from 'prop-types';
+import NewUserForm from '../NewUserForm/NewUserForm';
 import styles from './NewUserModal.module.css';
 
-
-const NewUserModal =({ 
-  resetState,
-  user,
-  create
-}) => {
-  const [modal, setModal]=useState();
+const NewUserModal = ({ resetState, user, create }) => {
+  const [modal, setModal] = useState();
 
   const toggle = () => {
-    setModal(previous => !previous);
+    setModal((previous) => !previous);
   };
-  
-  var title = "Edycja zadania";
-  var button = <Button 
-    className = {styles.edit} 
-    onClick={toggle}>
-      Edit</Button>;
+
+  let title = 'Edycja zadania';
+  let button = (
+    <Button color="success" onClick={toggle}>
+      Edytuj
+    </Button>
+  );
 
   if (create) {
-    title = "Tworzenie nowego zadania";
+    title = 'Tworzenie nowego zadania';
 
     button = (
-      <button
-        className = {styles.button}
-        onClick={toggle}
-      >
+      <button className={styles.button} type="button" onClick={toggle}>
         Zaplanuj nowe zadanie
       </button>
     );
@@ -41,14 +35,15 @@ const NewUserModal =({
         <ModalHeader toggle={toggle}>{title} </ModalHeader>
 
         <ModalBody>
-          <NewUserForm
-            resetState={resetState}
-            toggle={toggle}
-            user={user}
-          />
+          <NewUserForm resetState={resetState} toggle={toggle} user={user} />
         </ModalBody>
       </Modal>
     </>
   );
+};
+NewUserModal.propTypes = {
+  user: PropTypes.object,
+  resetState: PropTypes.func,
+  create: PropTypes.bool,
 };
 export default NewUserModal;

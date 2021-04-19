@@ -13,11 +13,11 @@ const NewUserForm = ({
   const [password,setPassword]=useState(user?.password || "");
   const [deadline,setDeadline]=useState(user?.deadline || "");
 
-  const onNameChange = event => {
-    setName(event.target.value)
+  const onNameChange = (event) => {
+    setName(event.target.value);
   };
-  const onPasswordChange = event => {
-    setPassword(event.target.value)
+  const onPasswordChange = (event) => {
+    setPassword(event.target.value);
   };
   const onDeadlineChange = event => {
     setDeadline(event.target.value)

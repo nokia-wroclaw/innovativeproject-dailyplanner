@@ -1,26 +1,9 @@
-import React from "react";
-import { Table } from "reactstrap";
-import axios from "axios";
-import { API_URL } from "../../constants";
-import NewUserModal from "../NewUserModal/NewUserModal";
-import ConfirmRemovalModal from "../ConfirmRemovalModal/ConfirmRemovalModal";
-import TaskButton from "../TaskButtonModal/TaskButtonModal";
-import styles from "./UserList.module.css"
+import React from 'react';
+import { Table } from 'reactstrap';
+import PropTypes from 'prop-types';
+import UsersListRow from '../UsersListRow/UsersListRow';
 
-const UserList = ({
-  users = [],
-  resetState
-}) => {
-  const deleteUser = async(id) => {
-    try{
-      await axios.delete(`${API_URL}${id}/`)
-      resetState()
-    } catch (error){
-      console.log(error)
-    }
-  };
-
-return (
+const UserList = ({ users = [], resetState }) => (
   <Table dark>
     <thead>
       <tr>
@@ -68,5 +51,8 @@ return (
     </tbody>
   </Table>
 );
+UserList.propTypes = {
+  users: PropTypes.array,
+  resetState: PropTypes.func,
 };
 export default UserList;
