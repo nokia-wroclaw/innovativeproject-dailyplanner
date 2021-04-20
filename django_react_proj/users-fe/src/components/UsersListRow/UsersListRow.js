@@ -8,7 +8,7 @@ import TaskButton from '../TaskButtonModal/TaskButtonModal';
 import styles from '../UserList/UserList.module.css';
 
 const UsersListRow = ({ user, resetState }) => {
-  const [taskFlag, setTaskFlag] = useState(false);
+  const [taskFlag, setTaskFlag] = useState(user.done);
 
   const setDoneState = async () => {
     await axios.patch(`${API_URL + user.id}/`, {
