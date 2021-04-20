@@ -10,6 +10,12 @@ import styles from '../UserList/UserList.module.css';
 const UsersListRow = ({ user, resetState }) => {
   const [taskFlag, setTaskFlag] = useState(false);
 
+  const setDoneState = async () => {
+    await axios.patch(`${API_URL + user.id}/`, {
+      done: !taskFlag,
+    });
+  };
+
   const onToggleTaskFlag = () => {
     setTaskFlag((previous) => !previous);
   };
@@ -35,6 +41,7 @@ const UsersListRow = ({ user, resetState }) => {
           deleteUser={deleteUser}
           taskFlag={taskFlag}
           onToggleTaskFlag={onToggleTaskFlag}
+          setDoneState={setDoneState}
         />
         <NewUserModal create={false} user={user} resetState={resetState} />
         <ConfirmRemovalModal id={user.id} deleteUser={deleteUser} />

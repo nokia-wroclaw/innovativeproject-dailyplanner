@@ -22,7 +22,7 @@ const UserList = ({ users = [], resetState }) => (
           </td>
         </tr>
       ) : (
-        users.map((user) => <UsersListRow user={user} resetState={resetState} />)
+        users.map((user) => <UsersListRow key={user.id} user={user} resetState={resetState} />)
       )}
     </tbody>
   </Table>
