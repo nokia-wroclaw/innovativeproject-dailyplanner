@@ -9,8 +9,8 @@ const UserList = ({ users = [], resetState }) => (
       <tr>
         <th>Nazwa zadania</th>
         <th>Opis</th>
-        <th>Data wykonania</th>
-        <th>Data utworzenia zadania</th>
+        <th>Deadline</th>
+        <th>Data rejestracji</th>
         <th />
       </tr>
     </thead>
@@ -22,21 +22,7 @@ const UserList = ({ users = [], resetState }) => (
           </td>
         </tr>
       ) : (
-        users.map((user) => (
-          <tr key={user.id}>
-            <td>{user.name}</td>
-            <td className={styles.Svg}>{user.password}</td>
-            <td>{user.deadline}</td>
-            <td>{user.registrationDate}</td>
-            <td align="center">
-              <TaskButton id={user.id} deleteUser={deleteUser} />
-              &nbsp;&nbsp;
-              <NewUserModal create={false} user={user} resetState={resetState} />
-              &nbsp;&nbsp;
-              <ConfirmRemovalModal id={user.id} deleteUser={deleteUser} />
-            </td>
-          </tr>
-        ))
+        users.map((user) => <UsersListRow user={user} resetState={resetState} />)
       )}
     </tbody>
   </Table>

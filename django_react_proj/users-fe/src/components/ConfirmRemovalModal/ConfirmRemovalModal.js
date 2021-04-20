@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Button, ModalFooter } from 'reactstrap';
+import { Modal, ModalHeader, Button, ModalFooter } from 'reactstrap';
 
 const ConfirmRemovalModal = (props) => {
   const [modalFlag, setModalFlag] = useState(false);
@@ -19,15 +19,22 @@ const ConfirmRemovalModal = (props) => {
 
   return (
     <>
-      Usuń
-      <ModalFooter>
-        <Button type="button" onClick={() => toggle()}>
-          Anuluj
-        </Button>
-        <Button type="button" color="primary" onClick={() => handlerDeleteUser(props.id)}>
-          Tak
-        </Button>
-      </ModalFooter>
+      <Button color="danger" onClick={() => toggle()}>
+        Usuń
+      </Button>
+
+      <Modal isOpen={modalFlag} toggle={toggle}>
+        <ModalHeader toggle={toggle}>Czy chcesz usunąć zadanie?</ModalHeader>
+
+        <ModalFooter>
+          <Button type="button" onClick={() => toggle()}>
+            Anuluj
+          </Button>
+          <Button type="button" color="primary" onClick={() => handlerDeleteUser(props.id)}>
+            Tak
+          </Button>
+        </ModalFooter>
+      </Modal>
     </>
   );
 };

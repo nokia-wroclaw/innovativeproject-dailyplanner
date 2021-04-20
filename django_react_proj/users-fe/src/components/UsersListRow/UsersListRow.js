@@ -27,6 +27,7 @@ const UsersListRow = ({ user, resetState }) => {
     <tr className={taskFlag ? styles.ButtonTrue : styles.ButtonFalse} key={user.id}>
       <td>{user.name}</td>
       <td className={styles.Svg}>{user.password}</td>
+      <td>{user.deadline}</td>
       <td>{user.registrationDate}</td>
       <td align="center">
         <TaskButton
@@ -42,7 +43,7 @@ const UsersListRow = ({ user, resetState }) => {
   );
 };
 UsersListRow.propTypes = {
-  user: PropTypes.array,
+  user: PropTypes.object,
   resetState: PropTypes.func,
 };
 export default UsersListRow;
