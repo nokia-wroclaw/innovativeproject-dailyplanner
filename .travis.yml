@@ -34,6 +34,16 @@ jobs:
       script: npm run fix
       stage: fix
 
+    - language: node_js
+      cache:
+        directories:
+          - "./django_react_proj/users-fe/node_modules"
+        npm: true
+      name: eslint
+      install: cd django_react_proj/users-fe/ && npm install
+      script: npm run eslint
+      stage: eslint
+
     - language: python
       name: backend
       install: pip install -r requirements.txt
@@ -51,6 +61,7 @@ node_js:
 stages: 
   - build 
   - test 
+  - eslint
   - fix
 
 
