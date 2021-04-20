@@ -1,27 +1,20 @@
 import React from 'react';
-import moment from 'moment'
 import styles from "./RealTime.module.css"
-
-const useCurrentCallback = (callback) => {
-    const reference = React.useRef();
-    reference.current = callback;
-    return (...args) => {
-      return reference.current?.(...args);
-    };
-  };
+import { format } from 'date-fns'
   
 const Time = () => {
     const [time, setTime] = React.useState(0);
-    const currentCallback = useCurrentCallback(() => {
+    const currentCallback = () => {
     const date = new Date();
-    setTime(date.toISOString());
-    });
+    const dateformat = format(date, "HH:mm:ss");
+    setTime(dateformat);
+    };
     React.useEffect(() => {
-    const handle = setInterval(currentCallback, 100);
+    const handle = setInterval(currentCallback, 1000);
     return () => clearInterval(handle);
     }, []);
     return (
-    <div className={styles.Time}>{moment(time).format('HH:mm:ss')}</div>
+    <div className={styles.Time}>{time}</div>
     );
 };
   
