@@ -1,48 +1,36 @@
-import React, { useState } from "react";
-import { Modal, ModalHeader, Button, ModalFooter } from "reactstrap";
-import styles from './ConfirmRemovalModal.module.css';
+import React, { useState, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { Modal, ModalHeader, Button, ModalFooter } from 'reactstrap';
 
 const ConfirmRemovalModal = (props) => {
-  const [modalFlag, setModalFlag] = useState(
-        false
-  )
+  const [modalFlag, setModalFlag] = useState(false);
   const toggle = () => {
-    setModalFlag(previous => (
-       !previous
-     ));
+    setModalFlag((previous) => !previous);
   };
-  
-  const handlerDeleteUser = async id => {
+
+  const handlerDeleteUser = async (id) => {
     try {
-      await props.deleteUser(id)
-      toggle() 
+      await props.deleteUser(id);
+      toggle();
     } catch (error) {
-      console.log(error)
-    } 
+      console.log(error);
+    }
   };
 
   return (
     <>
-      <Button 
-      className = {styles.delete} 
-      onClick={() => toggle()}>
+      <Button color="danger" onClick={() => toggle()}>
         Usuń
       </Button>
 
       <Modal isOpen={modalFlag} toggle={toggle}>
-        <ModalHeader toggle={toggle}>
-          Czy chcesz usunąć zadanie?
-        </ModalHeader>
+        <ModalHeader toggle={toggle}>Czy chcesz usunąć zadanie?</ModalHeader>
 
         <ModalFooter>
           <Button type="button" onClick={() => toggle()}>
             Anuluj
           </Button>
-          <Button
-            type="button"
-            color="primary"
-            onClick={() => handlerDeleteUser(props.id)}
-          >
+          <Button type="button" color="primary" onClick={() => handlerDeleteUser(props.id)}>
             Tak
           </Button>
         </ModalFooter>
@@ -50,6 +38,8 @@ const ConfirmRemovalModal = (props) => {
     </>
   );
 };
-
+ConfirmRemovalModal.propTypes = {
+  id: PropTypes.number,
+  deleteUser: PropTypes.func,
+};
 export default ConfirmRemovalModal;
-

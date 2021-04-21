@@ -11,31 +11,23 @@ const Home = () => {
   const [users, setUsers] = useState();
 
   const getUsers = () => {
-    axios.get(API_URL)
-      .then(res => setUsers(res.data));
+    axios.get(API_URL).then((res) => setUsers(res.data));
   };
 
   useEffect(() => {
     getUsers();
   }, []);
 
-
   return (
     <Container className={styles.Container}>
       <Row>
         <Col>
-          <UserList
-            users={users}
-            resetState={getUsers}
-          />
+          <UserList users={users} resetState={getUsers} />
         </Col>
       </Row>
       <Row>
         <Col>
-          <NewUserModal 
-            create={true} 
-            resetState={getUsers} 
-          />
+          <NewUserModal create resetState={getUsers} />
         </Col>
       </Row>
       <Row>

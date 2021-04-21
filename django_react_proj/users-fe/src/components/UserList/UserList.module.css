@@ -17,8 +17,17 @@
     width: 300px;
     display: block;
     word-wrap: break-word;
+    float: left;
 }
 
 .RowDone{
     background-color: green;
+}
+
+.ButtonTrue{
+    background-color: lightgreen;
+}
+
+.ButtonFalse{
+
 }
