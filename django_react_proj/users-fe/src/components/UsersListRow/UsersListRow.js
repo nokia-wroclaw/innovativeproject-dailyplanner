@@ -27,7 +27,9 @@ const UsersListRow = ({ user, resetState }) => {
     <tr className={taskFlag ? styles.ButtonTrue : styles.ButtonFalse} key={user.id}>
       <td>{user.name}</td>
       <td className={styles.Svg}>{user.password}</td>
-      <td>{user.deadline}</td>
+      <td>
+        {user.deadline} - {user.deadlinev2}
+      </td>
       <td>{user.registrationDate}</td>
       <td align="center">
         <TaskButton

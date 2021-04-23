@@ -25,14 +25,14 @@ const TaskButton = ({ onToggleTaskFlag, id, deleteUser }) => {
       </Button>
 
       <Modal isOpen={modalFlag} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Czy chcesz usunąć zadanie?</ModalHeader>
+        <ModalHeader toggle={toggle}>Do you want to delete task?</ModalHeader>
 
         <ModalFooter>
           <Button type="button" onClick={() => toggle()}>
-            Anuluj
+            No
           </Button>
           <Button type="button" color="primary" onClick={() => handlerDeleteUser(id)}>
-            Tak
+            Yes
           </Button>
         </ModalFooter>
       </Modal>

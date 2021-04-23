@@ -14,7 +14,7 @@ const NewUserModal = ({ resetState, user, create }) => {
   let title = 'Edycja zadania';
   let button = (
     <Button color="success" onClick={toggle}>
-      Edytuj
+      Edit
     </Button>
   );
 
@@ -23,7 +23,7 @@ const NewUserModal = ({ resetState, user, create }) => {
 
     button = (
       <button className={styles.button} type="button" onClick={toggle}>
-        Zaplanuj nowe zadanie
+        Create new task
       </button>
     );
   }
