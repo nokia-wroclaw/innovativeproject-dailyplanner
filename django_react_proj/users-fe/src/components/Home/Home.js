@@ -16,20 +16,18 @@ const getUserForView = (users = [], date = new Date()) => {
     .sort((userA, userB) => userA.deadline.localeCompare(userB.deadline));
 };
 
-const getUsers = (setUsers) => {
-  axios.get(API_URL).then((res) => setUsers(res.data));
-};
-
 const getPreviousDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1);
-
 const getNextDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
 
 const Home = () => {
   const [users, setUsers] = useState();
   const [currentDate, setCurrentDate] = useState(new Date());
 
+  const getUsers = () => {
+    axios.get(API_URL).then((res) => setUsers(res.data));
+  };
   useEffect(() => {
-    getUsers(setUsers);
+    getUsers();
   }, []);
 
   return (
@@ -38,6 +36,11 @@ const Home = () => {
         <Col>
           <button type="button" onClick={() => setCurrentDate(getPreviousDay)}>
             Poprzedni dzień
+          </button>
+        </Col>
+        <Col>
+          <button type="button" onClick={() => setCurrentDate(new Date())}>
+            Aktualny dzień
           </button>
         </Col>
         <Col>
