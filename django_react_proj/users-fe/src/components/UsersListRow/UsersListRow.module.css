@@ -5,3 +5,15 @@
 .ButtonFalse{
 
 }
+
+.Meeting{
+    background-color: blue;
+}
+
+.Email{
+    background-color: yellow;
+}
+
+.Housework{
+    background-color: rgb(0, 228, 245);
+}

@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
 import TimePicker from 'react-time-picker';
 import PropTypes from 'prop-types';
@@ -10,12 +10,31 @@ const NewUserForm = ({ user, resetState, toggle }) => {
   const [name, setName] = useState(user?.name || '');
   const [password, setPassword] = useState(user?.password || '');
   const [deadline, setDeadline] = useState(user?.deadline || '');
+  const [taskType, setTaskType] = useState(user?.taskType || '');
+
+  const types = [
+    {
+      type: '',
+    },
+    {
+      type: 'Meeting',
+    },
+    {
+      type: 'Email',
+    },
+    {
+      type: 'Housework',
+    },
+  ];
 
   const onNameChange = (event) => {
     setName(event.target.value);
   };
   const onPasswordChange = (event) => {
     setPassword(event.target.value);
+  };
+  const onTaskTypeChange = (event) => {
+    setTaskType(event.target.value);
   };
   const defaultIfEmpty = (value) => (value === '' ? '' : value);
   const createUser = async (event) => {
@@ -25,6 +44,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
       name,
       password,
       deadline,
+      taskType,
     });
     resetState();
     toggle();
@@ -36,6 +56,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
       name,
       password,
       deadline,
+      taskType,
     });
     resetState();
     toggle();
@@ -47,15 +68,33 @@ const NewUserForm = ({ user, resetState, toggle }) => {
         <Input type="text" name="name" onChange={onNameChange} value={defaultIfEmpty(name)} />
       </FormGroup>
       <FormGroup>
-        <Label for="deadline">Data wykonania:</Label>
+        <Row form>
+          <Col>
+            <Label for="deadline">Data wykonania:</Label>
+          </Col>
+          <Col>
+            <Label for="deadline">Task type</Label>
+          </Col>
+        </Row>
         <FormGroup>
-          <TimePicker
-            format="H:m"
-            disableClock="true"
-            name="deadline"
-            onChange={setDeadline}
-            value={defaultIfEmpty(deadline)}
-          />
+          <Row>
+            <Col>
+              <TimePicker
+                format="H:m"
+                disableClock="true"
+                name="deadline"
+                onChange={setDeadline}
+                value={defaultIfEmpty(deadline)}
+              />
+            </Col>
+            <Col sm={7}>
+              <Input type="select" onChange={onTaskTypeChange} value={defaultIfEmpty(taskType)}>
+                {types.map((type) => (
+                  <option name="taskType">{type.type}</option>
+                ))}
+              </Input>
+            </Col>
+          </Row>
         </FormGroup>
       </FormGroup>
       <FormGroup>

@@ -5,6 +5,7 @@ class User(models.Model):
     password = models.CharField("Password", max_length=500)
     deadline = models.TimeField('Deadline', auto_now=False, auto_now_add=False, default='15:30')
     done = models.BooleanField('Done', default=False)
+    taskType = models.CharField('Done', max_length=100, default='Meeting')
     registrationDate = models.DateField("Registration Date", auto_now_add=True)
     email = models.CharField("Email", max_length= 254, null = True)
 

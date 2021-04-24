@@ -6,6 +6,7 @@ import UserList from '../UserList/UserList';
 import NewUserModal from '../NewUserModal/NewUserModal';
 import { API_URL } from '../../constants';
 import Time from '../RealTime/RealTime';
+import TaskLegend from '../TaskLegend/TypesLegend';
 
 const Home = () => {
   const [users, setUsers] = useState();
@@ -33,6 +34,7 @@ const Home = () => {
       <Row>
         <Time />
       </Row>
+      <TaskLegend />
     </Container>
   );
 };
