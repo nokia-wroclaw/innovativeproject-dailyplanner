@@ -10,6 +10,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
   const [name, setName] = useState(user?.name || '');
   const [password, setPassword] = useState(user?.password || '');
   const [deadline, setDeadline] = useState(user?.deadline || '');
+  const [importanceoftask, setImportanceoftask] = useState(user?.importanceoftask || '');
 
   const onNameChange = (event) => {
     setName(event.target.value);
@@ -25,6 +26,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
       name,
       password,
       deadline,
+      importanceoftask,
     });
     resetState();
     toggle();
@@ -36,6 +38,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
       name,
       password,
       deadline,
+      importanceoftask,
     });
     resetState();
     toggle();
@@ -50,7 +53,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
         <Label for="deadline">Data wykonania:</Label>
         <FormGroup>
           <TimePicker
-            format="H:m"
+            format=" H:m"
             disableClock="true"
             name="deadline"
             onChange={setDeadline}

@@ -24,7 +24,7 @@ def users_list(request):
 @api_view(['PUT', 'DELETE', 'GET'])
 def users_detail(request, id):
     try:
-        user = User.objects.get(id=id)
+        user = User.objects.get(id=-id)
     except:
         return Response(status=status.HTTP_404_NOT_FOUND)
     
@@ -40,7 +40,7 @@ def users_detail(request, id):
         return Response(status=status.HTTP_204_NO_CONTENT)
     
     elif request.method == 'GET':
-        data = User.objects.filter(id=id)
+        data = User.objects.filter(id=-id)
         serializer = UserSerializer(data, context={'request': request}, many=True)
         
         return Response(serializer.data)
