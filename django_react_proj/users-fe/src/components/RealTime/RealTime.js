@@ -6,7 +6,7 @@ const Time = () => {
   const [time, setTime] = React.useState(0);
   const currentCallback = () => {
     const date = new Date();
-    const dateformat = format(date, 'HH:mm:ss');
+    const dateformat = format(date, 'HH:mm');
     setTime(dateformat);
   };
   React.useEffect(() => {

@@ -6,6 +6,7 @@ import UserList from '../UserList/UserList';
 import NewUserModal from '../NewUserModal/NewUserModal';
 import { API_URL } from '../../constants';
 import Time from '../RealTime/RealTime';
+import Subtract from '../SummingTime/SummingTime';
 
 const Home = () => {
   const [users, setUsers] = useState();
@@ -20,6 +21,9 @@ const Home = () => {
 
   return (
     <Container className={styles.Container}>
+      <Col md={{ span: 8, offset: 8 }}>
+        <Subtract />
+      </Col>
       <Row>
         <Col>
           <UserList users={users} resetState={getUsers} />
