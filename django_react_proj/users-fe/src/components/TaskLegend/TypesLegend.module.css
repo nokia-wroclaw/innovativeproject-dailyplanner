@@ -20,7 +20,7 @@
     font-size:20px;
     color:#fff;
     line-height:100px;
-    background: yellow;
+    background: rgb(255, 0, 242);
 }
 
 .Housework {
@@ -30,7 +30,7 @@
     font-size:20px;
     color:#fff;
     line-height:100px;
-    background: green;
+    background-color: rgb(0, 228, 245);
 }
 .col-sm-2 > span, .col-sm-2 > p {
   display: inline-block;

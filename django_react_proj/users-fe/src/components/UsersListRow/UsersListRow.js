@@ -5,7 +5,7 @@ import { API_URL } from '../../constants';
 import NewUserModal from '../NewUserModal/NewUserModal';
 import ConfirmRemovalModal from '../ConfirmRemovalModal/ConfirmRemovalModal';
 import TaskButton from '../TaskButtonModal/TaskButtonModal';
-import styles from '../UserList/UserList.module.css';
+import styles from './UsersListRow.module.css';
 
 const UsersListRow = ({ user, resetState }) => {
   const [taskFlag, setTaskFlag] = useState(false);
@@ -43,7 +43,6 @@ const UsersListRow = ({ user, resetState }) => {
       <td>{user.name}</td>
       <td className={styles.Svg}>{user.password}</td>
       <td>{user.deadline}</td>
-      <td>{user.taskType}</td>
       <td align="center">
         <TaskButton
           id={user.id}
