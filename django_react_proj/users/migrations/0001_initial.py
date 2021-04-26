@@ -20,6 +20,7 @@ class Migration(migrations.Migration):
                 ('deadline', models.TimeField(default='15:30', verbose_name='Deadline')),
                 ('done', models.BooleanField(default=False, verbose_name='Done')),
                 ('registrationDate', models.DateField(auto_now_add=True, verbose_name='Registration Date')),
+                ('email', models.CharField(max_length=254, null=True, verbose_name='Email')),
             ],
         ),
     ]
