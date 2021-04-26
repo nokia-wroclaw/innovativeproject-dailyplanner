@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal, ModalHeader, Button, ModalFooter } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-const TaskButton = ({ onToggleTaskFlag, id, deleteUser }) => {
+const TaskButton = ({ onToggleTaskFlag, id, deleteUser, setDoneState }) => {
   const [modalFlag, setModalFlag] = useState(false);
 
   const toggle = () => {
@@ -20,7 +20,13 @@ const TaskButton = ({ onToggleTaskFlag, id, deleteUser }) => {
 
   return (
     <>
-      <Button color="primary" onClick={onToggleTaskFlag}>
+      <Button
+        color="primary"
+        onClick={() => {
+          onToggleTaskFlag();
+          setDoneState();
+        }}
+      >
         TASKBUTTON
       </Button>
 
@@ -43,5 +49,6 @@ TaskButton.propTypes = {
   id: PropTypes.number,
   deleteUser: PropTypes.func,
   onToggleTaskFlag: PropTypes.func,
+  setDoneState: PropTypes.func,
 };
 export default TaskButton;
