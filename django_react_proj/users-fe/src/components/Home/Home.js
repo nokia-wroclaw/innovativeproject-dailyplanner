@@ -20,12 +20,14 @@ const getUserForView = (users = [], date = new Date()) => {
 const getPreviousDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1);
 const getNextDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
 
-const Home = (modalFlag, modal) => {
+const Home = () => {
   const [users, setUsers] = useState();
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [modalFlag, setModalFlag] = useState(false);
   const toggle = () => {
-    setUsers((previous) => !previous);
+    setModalFlag((previous) => !previous);
   };
+  const button = <Button onClick={toggle}>Kalendarz</Button>;
   const getUsers = () => {
     axios.get(API_URL).then((res) => setUsers(res.data));
   };
@@ -52,16 +54,10 @@ const Home = (modalFlag, modal) => {
           </Button>
         </Col>
         <Col>
-          <Button
-            type="button"
-            onChange={() => (
-              <Modal isOpen={modalFlag} toggle={toggle}>
-                <Calendar onChange={setCurrentDate} currentDate={currentDate} />
-              </Modal>
-            )}
-          >
-            Kalendarz
-          </Button>
+          {button}
+          <Modal isOpen={modalFlag} toggle={toggle}>
+            <Calendar onChange={setCurrentDate} currentDate={currentDate} />
+          </Modal>
         </Col>
       </Row>
       <Row>
