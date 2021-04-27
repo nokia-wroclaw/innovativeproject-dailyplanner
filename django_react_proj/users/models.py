@@ -8,6 +8,5 @@ class User(models.Model):
     registrationDate = models.DateField("Registration Date", auto_now_add=True)
     email = models.CharField("Email", max_length= 254, null = True)
 
-
     def __str__(self):
         return self.name
