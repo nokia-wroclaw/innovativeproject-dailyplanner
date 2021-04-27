@@ -10,7 +10,7 @@ const Subtract = () => {
     axios.get(API_URL).then((res) => setUsers(res.data));
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handle = setInterval(getUsers, 1000);
     return () => clearInterval(handle);
   }, []);
@@ -27,7 +27,6 @@ const Subtract = () => {
       const minute2 = uptimesplit2[1] * 1 + hour2;
       const subm = minute - minute2;
       timevalue += subm;
-      return <tr>subm</tr>;
     });
   }
   const taskhours = Math.floor(timevalue / 60);
