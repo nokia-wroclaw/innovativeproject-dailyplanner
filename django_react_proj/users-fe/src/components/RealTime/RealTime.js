@@ -13,7 +13,7 @@ const Time = () => {
     const handle = setInterval(currentCallback, 1000);
     return () => clearInterval(handle);
   }, []);
-  return <div className={styles.Time}>{time}</div>;
+  return time;
 };
 
 export default Time;

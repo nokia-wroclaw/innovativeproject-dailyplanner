@@ -34,9 +34,6 @@ const Home = () => {
           <NewUserModal create resetState={getUsers} />
         </Col>
       </Row>
-      <Row>
-        <Time />
-      </Row>
     </Container>
   );
 };
