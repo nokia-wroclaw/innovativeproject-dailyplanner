@@ -10,6 +10,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
   const [name, setName] = useState(user?.name || '');
   const [password, setPassword] = useState(user?.password || '');
   const [deadline, setDeadline] = useState(user?.deadline || '');
+  const [deadlinev2, setDeadlinev2] = useState(user?.deadlinev2 || '');
 
   const onNameChange = (event) => {
     setName(event.target.value);
@@ -25,6 +26,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
       name,
       password,
       deadline,
+      deadlinev2,
     });
     resetState();
     toggle();
@@ -36,6 +38,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
       name,
       password,
       deadline,
+      deadlinev2,
     });
     resetState();
     toggle();
@@ -43,23 +46,36 @@ const NewUserForm = ({ user, resetState, toggle }) => {
   return (
     <Form onSubmit={user ? editUser : createUser}>
       <FormGroup>
-        <Label for="name">Nazwa zadania:</Label>
+        <Label for="name">Task name:</Label>
         <Input type="text" name="name" onChange={onNameChange} value={defaultIfEmpty(name)} />
       </FormGroup>
       <FormGroup>
-        <Label for="deadline">Data wykonania:</Label>
+        <Label for="deadline">Time interval:</Label>
         <FormGroup>
-          <TimePicker
-            format="H:m"
-            disableClock="true"
-            name="deadline"
-            onChange={setDeadline}
-            value={defaultIfEmpty(deadline)}
-          />
+          <Label>Od:</Label>
+          <FormGroup>
+            <TimePicker
+              format="H:m"
+              disableClock="true"
+              name="deadline"
+              onChange={setDeadline}
+              value={defaultIfEmpty(deadline)}
+            />
+          </FormGroup>
+          <Label>Do:</Label>
+          <FormGroup>
+            <TimePicker
+              format="H:m"
+              disableClock="true"
+              name="deadlinev2"
+              onChange={setDeadlinev2}
+              value={defaultIfEmpty(deadline)}
+            />
+          </FormGroup>
         </FormGroup>
       </FormGroup>
       <FormGroup>
-        <Label for="password">Opis:</Label>
+        <Label for="password">Description:</Label>
         <textarea
           className={styles.Svg}
           type="text"

@@ -1,6 +1,5 @@
 import React from 'react';
 import { format } from 'date-fns';
-import styles from './RealTime.module.css';
 
 const Time = () => {
   const [time, setTime] = React.useState(0);
@@ -13,7 +12,7 @@ const Time = () => {
     const handle = setInterval(currentCallback, 1000);
     return () => clearInterval(handle);
   }, []);
-  return <div className={styles.Time}>{time}</div>;
+  return time;
 };
 
 export default Time;
