@@ -1,6 +1,5 @@
 import React from 'react';
 import { format } from 'date-fns';
-import styles from './RealTime.module.css';
 
 const Time = () => {
   const [time, setTime] = React.useState(0);
