@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 import axios from 'axios';
-import TimePicker from 'react-time-picker';
+import DateTimePicker from 'react-datetime-picker';
 import PropTypes from 'prop-types';
 import { API_URL } from '../../constants';
 import styles from './NewUserForm.module.css';
@@ -19,6 +19,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
     setPassword(event.target.value);
   };
   const defaultIfEmpty = (value) => (value === '' ? '' : value);
+  const dateValue = (value) => (typeof value === 'string' ? new Date(value) : value);
   const createUser = async (event) => {
     event.preventDefault();
     await axios.post(API_URL, {
@@ -52,24 +53,25 @@ const NewUserForm = ({ user, resetState, toggle }) => {
       <FormGroup>
         <Label for="deadline">Time interval:</Label>
         <FormGroup>
-          <Label>Od:</Label>
+          <Label>From:</Label>
           <FormGroup>
-            <TimePicker
-              format="H:m"
-              disableClock="true"
+            <DateTimePicker
               name="deadline"
+              disableClock="true"
+              format="y-M-d HH:mm"
+              validateOnBlur="false"
               onChange={setDeadline}
-              value={defaultIfEmpty(deadline)}
+              value={user ? dateValue(deadline) : defaultIfEmpty(deadline)}
             />
           </FormGroup>
-          <Label>Do:</Label>
+          <Label>To:</Label>
           <FormGroup>
-            <TimePicker
-              format="H:m"
-              disableClock="true"
+            <DateTimePicker
               name="deadlinev2"
+              disableClock="true"
+              format="y-M-d HH:mm"
               onChange={setDeadlinev2}
-              value={defaultIfEmpty(deadline)}
+              value={user ? dateValue(deadlinev2) : defaultIfEmpty(deadlinev2)}
             />
           </FormGroup>
         </FormGroup>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import Moment from 'moment';
 import { API_URL } from '../../constants';
 import NewUserModal from '../NewUserModal/NewUserModal';
 import ConfirmRemovalModal from '../ConfirmRemovalModal/ConfirmRemovalModal';
@@ -34,7 +35,7 @@ const UsersListRow = ({ user, resetState }) => {
       <td>{user.name}</td>
       <td className={styles.Svg}>{user.password}</td>
       <td>
-        {user.deadline} - {user.deadlinev2}
+        {Moment(user.deadline).format('HH:mm')} - {Moment(user.deadlinev2).format('HH:mm')}
       </td>
       <td>{user.registrationDate}</td>
       <td align="center">

@@ -17,16 +17,11 @@ const Subtract = () => {
 
   if (users) {
     users.forEach((user) => {
-      const uptime = user.deadlinev2;
-      const uptimesplit = uptime.split(':');
-      const hour = uptimesplit[0] * 60;
-      const minute = uptimesplit[1] * 1 + hour;
-      const lowtime = user.deadline;
-      const uptimesplit2 = lowtime.split(':');
-      const hour2 = uptimesplit2[0] * 60;
-      const minute2 = uptimesplit2[1] * 1 + hour2;
-      const subm = minute - minute2;
-      timevalue += subm;
+      const uptimes = new Date(user.deadlinev2).getTime();
+      const lowtimes = new Date(user.deadline).getTime();
+      const sub = uptimes - lowtimes;
+      const minutes = sub / 60000;
+      timevalue += minutes;
     });
   }
   const taskhours = Math.floor(timevalue / 60);
