@@ -3,33 +3,24 @@
     width: 20%;
 }
 
-.Meeting {
+.TaskTypeCircle{
     width:10px;
     height:10px;
     border-radius:50px;
     font-size:20px;
     color:#fff;
     line-height:100px;
+}
+
+.Meeting {
     background: blue;
 }
 
 .Email {
-    width:10px;
-    height:10px;
-    border-radius:50px;
-    font-size:20px;
-    color:#fff;
-    line-height:100px;
     background: rgb(255, 0, 242);
 }
 
 .Housework {
-    width:10px;
-    height:10px;
-    border-radius:50px;
-    font-size:20px;
-    color:#fff;
-    line-height:100px;
     background-color: rgb(0, 228, 245);
 }
 .col-sm-2 > span, .col-sm-2 > p {

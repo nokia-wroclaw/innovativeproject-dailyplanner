@@ -24,9 +24,9 @@ const UsersListRow = ({ user, resetState }) => {
   };
 
   let rowColor = '';
-  if (taskFlag === true) {
+  if (taskFlag) {
     rowColor = styles.ButtonTrue;
-  } else if (taskFlag === false) {
+  } else {
     if (user.taskType === 'Meeting') {
       rowColor = styles.Meeting;
     }
@@ -39,10 +39,11 @@ const UsersListRow = ({ user, resetState }) => {
   }
 
   return (
-    <tr className={rowColor} key={user.id}>
+    <tr key={user.id}>
       <td>{user.name}</td>
       <td className={styles.Svg}>{user.password}</td>
       <td>{user.deadline}</td>
+      <td className={rowColor} />
       <td align="center">
         <TaskButton
           id={user.id}

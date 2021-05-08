@@ -7,36 +7,23 @@ import { API_URL } from '../../constants';
 import styles from './NewUserForm.module.css';
 
 const NewUserForm = ({ user, resetState, toggle }) => {
-  const [name, setName] = useState(user?.name || '');
-  const [password, setPassword] = useState(user?.password || '');
-  const [deadline, setDeadline] = useState(user?.deadline || '');
-  const [taskType, setTaskType] = useState(user?.taskType || '');
+  const [name, setName] = useState(user.name ?? '');
+  const [password, setPassword] = useState(user.password ?? '');
+  const [deadline, setDeadline] = useState(user.deadline ?? '');
+  const [taskType, setTaskType] = useState(user.taskType ?? '');
 
-  const types = [
-    {
-      type: '',
-    },
-    {
-      type: 'Meeting',
-    },
-    {
-      type: 'Email',
-    },
-    {
-      type: 'Housework',
-    },
-  ];
+  const types = ['', 'Meeting', 'Email', 'Housework'];
 
-  const onNameChange = (event) => {
+  function onNameChange(event) {
     setName(event.target.value);
-  };
+  }
   const onPasswordChange = (event) => {
     setPassword(event.target.value);
   };
   const onTaskTypeChange = (event) => {
     setTaskType(event.target.value);
   };
-  const defaultIfEmpty = (value) => (value === '' ? '' : value);
+  const defaultIfEmpty = (value) => value;
   const createUser = async (event) => {
     event.preventDefault();
     await axios.post(API_URL, {
@@ -90,7 +77,9 @@ const NewUserForm = ({ user, resetState, toggle }) => {
             <Col sm={7}>
               <Input type="select" onChange={onTaskTypeChange} value={defaultIfEmpty(taskType)}>
                 {types.map((type) => (
-                  <option name="taskType">{type.type}</option>
+                  <option id={type} name="taskType">
+                    {type}
+                  </option>
                 ))}
               </Input>
             </Col>
