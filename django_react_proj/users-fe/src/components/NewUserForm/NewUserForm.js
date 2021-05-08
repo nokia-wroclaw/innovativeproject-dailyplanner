@@ -9,8 +9,8 @@ import styles from './NewUserForm.module.css';
 const NewUserForm = ({ user, resetState, toggle }) => {
   const [name, setName] = useState(user?.name || '');
   const [password, setPassword] = useState(user?.password || '');
-  const [deadline, setDeadline] = useState(user?.deadline || '');
-  const [deadlinev2, setDeadlinev2] = useState(user?.deadlinev2 || '');
+  const [startTime, setStartTime] = useState(user?.startTime || '');
+  const [endTime, setEndTime] = useState(user?.endTime || '');
 
   const onNameChange = (event) => {
     setName(event.target.value);
@@ -26,8 +26,8 @@ const NewUserForm = ({ user, resetState, toggle }) => {
       id: user?.id,
       name,
       password,
-      deadline,
-      deadlinev2,
+      startTime,
+      endTime,
     });
     resetState();
     toggle();
@@ -38,8 +38,8 @@ const NewUserForm = ({ user, resetState, toggle }) => {
       id: user.id,
       name,
       password,
-      deadline,
-      deadlinev2,
+      startTime,
+      endTime,
     });
     resetState();
     toggle();
@@ -51,27 +51,27 @@ const NewUserForm = ({ user, resetState, toggle }) => {
         <Input type="text" name="name" onChange={onNameChange} value={defaultIfEmpty(name)} />
       </FormGroup>
       <FormGroup>
-        <Label for="deadline">Time interval:</Label>
+        <Label for="startTime">Time interval:</Label>
         <FormGroup>
           <Label>From:</Label>
           <FormGroup>
             <DateTimePicker
-              name="deadline"
+              name="startTime"
               disableClock="true"
               format="y-M-d HH:mm"
               validateOnBlur="false"
-              onChange={setDeadline}
-              value={user ? dateValue(deadline) : defaultIfEmpty(deadline)}
+              onChange={setStartTime}
+              value={user ? dateValue(startTime) : defaultIfEmpty(startTime)}
             />
           </FormGroup>
           <Label>To:</Label>
           <FormGroup>
             <DateTimePicker
-              name="deadlinev2"
+              name="endTime"
               disableClock="true"
               format="y-M-d HH:mm"
-              onChange={setDeadlinev2}
-              value={user ? dateValue(deadlinev2) : defaultIfEmpty(deadlinev2)}
+              onChange={setEndTime}
+              value={user ? dateValue(endTime) : defaultIfEmpty(endTime)}
             />
           </FormGroup>
         </FormGroup>

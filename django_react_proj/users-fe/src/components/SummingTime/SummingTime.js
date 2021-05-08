@@ -17,8 +17,8 @@ const Subtract = () => {
 
   if (users) {
     users.forEach((user) => {
-      const uptimes = new Date(user.deadlinev2).getTime();
-      const lowtimes = new Date(user.deadline).getTime();
+      const uptimes = new Date(user.endTime).getTime();
+      const lowtimes = new Date(user.startTime).getTime();
       const sub = uptimes - lowtimes;
       const minutes = sub / 60000;
       timevalue += minutes;
