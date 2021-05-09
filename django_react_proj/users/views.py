@@ -21,7 +21,7 @@ def users_list(request):
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['PUT', 'DELETE', 'GET'])
+@api_view(['PUT', 'DELETE', 'GET', 'PATCH'])
 def users_detail(request, id):
     try:
         user = User.objects.get(id=id)
@@ -33,6 +33,13 @@ def users_detail(request, id):
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'PATCH':
+        serializer = UserSerializer(user, data=request.data, partial=True) # set partial=True to update a data partially
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':

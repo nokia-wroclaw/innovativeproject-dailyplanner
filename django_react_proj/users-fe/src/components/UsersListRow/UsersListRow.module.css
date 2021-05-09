@@ -2,9 +2,9 @@
     background-color: lightgreen;
 }
 
-.ButtonFalse{
+/* .ButtonFalse{
 
-}
+} */
 
 .Meeting{
     background-color: blue;
@@ -16,4 +16,12 @@
 
 .Housework{
     background-color: rgb(0, 228, 245);
+}
+.Svg{
+    flex-direction: row;
+    height: auto;
+    width: 300px;
+    display: block;
+    word-wrap: break-word;
+    float: left;
 }

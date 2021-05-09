@@ -1,0 +1,36 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { API_URL } from '../../constants';
+import styles from './SummingTime.module.css';
+
+const Subtract = () => {
+  const [users, setUsers] = useState();
+  let timevalue = 0;
+  const getUsers = () => {
+    axios.get(API_URL).then((res) => setUsers(res.data));
+  };
+
+  useEffect(() => {
+    const handle = setInterval(getUsers, 1000);
+    return () => clearInterval(handle);
+  }, []);
+
+  if (users) {
+    users.forEach((user) => {
+      const uptimes = new Date(user.endTime).getTime();
+      const lowtimes = new Date(user.startTime).getTime();
+      const sub = uptimes - lowtimes;
+      const minutes = sub / 60000;
+      timevalue += minutes;
+    });
+  }
+  const taskhours = Math.floor(timevalue / 60);
+  const taskminutes = timevalue % 60;
+  return (
+    <div className={styles.SumTim}>
+      Total time of tasks on this day: {taskhours} hours {taskminutes} minutes
+    </div>
+  );
+};
+
+export default Subtract;
