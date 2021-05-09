@@ -6,7 +6,7 @@ import { API_URL } from '../../constants';
 import NewUserModal from '../NewUserModal/NewUserModal';
 import ConfirmRemovalModal from '../ConfirmRemovalModal/ConfirmRemovalModal';
 import TaskButton from '../TaskButtonModal/TaskButtonModal';
-import styles from '../UserList/UserList.module.css';
+import styles from './UsersListRow.module.css';
 
 const UsersListRow = ({ user, resetState }) => {
   const [taskFlag, setTaskFlag] = useState(user.done);
@@ -30,14 +30,29 @@ const UsersListRow = ({ user, resetState }) => {
     }
   };
 
+  let rowColor = '';
+  if (taskFlag) {
+    rowColor = styles.ButtonTrue;
+  } else {
+    if (user.taskType === 'Meeting') {
+      rowColor = styles.Meeting;
+    }
+    if (user.taskType === 'Email') {
+      rowColor = styles.Email;
+    }
+    if (user.taskType === 'Housework') {
+      rowColor = styles.Housework;
+    }
+  }
+
   return (
-    <tr className={taskFlag ? styles.ButtonTrue : styles.ButtonFalse} key={user.id}>
+    <tr key={user.id}>
       <td>{user.name}</td>
       <td className={styles.Svg}>{user.password}</td>
       <td>
         {format(new Date(user.startTime), 'HH:mm')} - {format(new Date(user.endTime), 'HH:mm')}
       </td>
-      <td>{user.registrationDate}</td>
+      <td className={rowColor} />
       <td align="center">
         <TaskButton
           id={user.id}

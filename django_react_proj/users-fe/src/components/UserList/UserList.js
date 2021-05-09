@@ -10,7 +10,7 @@ const UserList = ({ users = [], resetState }) => (
         <th>Task name</th>
         <th>Description</th>
         <th>Task Time</th>
-        <th>Rejestration date</th>
+        <th>Task Type</th>
         <th />
       </tr>
     </thead>

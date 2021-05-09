@@ -6,6 +6,7 @@ import styles from './Home.module.css';
 import UserList from '../UserList/UserList';
 import NewUserModal from '../NewUserModal/NewUserModal';
 import { API_URL } from '../../constants';
+import TaskLegend from '../TaskLegend/TypesLegend';
 import 'react-calendar/dist/Calendar.css';
 import Subtract from '../SummingTime/SummingTime';
 
@@ -15,7 +16,7 @@ const getUserForView = (users = [], date = new Date()) => {
   const d = date.getDate().toString().padStart(2, '0');
   return users
     .filter((user) => user.registrationDate === `${y}-${m}-${d}`)
-    .sort((userA, userB) => userA.deadline.localeCompare(userB.deadline));
+    .sort((userA, userB) => userA.startTime.localeCompare(userB.startTime));
 };
 const getPreviousDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1);
 const getNextDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
@@ -73,6 +74,7 @@ const Home = () => {
           <NewUserModal create resetState={getUsers} />
         </Col>
       </Row>
+      <TaskLegend />
     </Container>
   );
 };
