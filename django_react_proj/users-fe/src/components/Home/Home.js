@@ -6,8 +6,8 @@ import styles from './Home.module.css';
 import UserList from '../UserList/UserList';
 import NewUserModal from '../NewUserModal/NewUserModal';
 import { API_URL } from '../../constants';
-import Time from '../RealTime/RealTime';
 import 'react-calendar/dist/Calendar.css';
+import Subtract from '../SummingTime/SummingTime';
 
 const getUserForView = (users = [], date = new Date()) => {
   const m = (date.getMonth() + 1).toString().padStart(2, '0');
@@ -37,6 +37,9 @@ const Home = () => {
 
   return (
     <Container className={styles.Container}>
+      <Col md={{ span: 8, offset: 8 }}>
+        <Subtract />
+      </Col>
       <Row>
         <Col>
           <Button type="button" onClick={() => setCurrentDate(getPreviousDay)}>
@@ -69,9 +72,6 @@ const Home = () => {
         <Col>
           <NewUserModal create resetState={getUsers} />
         </Col>
-      </Row>
-      <Row>
-        <Time />
       </Row>
     </Container>
   );

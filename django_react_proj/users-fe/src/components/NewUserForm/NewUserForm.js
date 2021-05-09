@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 import axios from 'axios';
-import TimePicker from 'react-time-picker';
+import DateTimePicker from 'react-datetime-picker';
 import PropTypes from 'prop-types';
 import { API_URL } from '../../constants';
 import styles from './NewUserForm.module.css';
@@ -9,7 +9,8 @@ import styles from './NewUserForm.module.css';
 const NewUserForm = ({ user, resetState, toggle }) => {
   const [name, setName] = useState(user?.name || '');
   const [password, setPassword] = useState(user?.password || '');
-  const [deadline, setDeadline] = useState(user?.deadline || '');
+  const [startTime, setStartTime] = useState(user?.startTime || '');
+  const [endTime, setEndTime] = useState(user?.endTime || '');
 
   const onNameChange = (event) => {
     setName(event.target.value);
@@ -18,13 +19,15 @@ const NewUserForm = ({ user, resetState, toggle }) => {
     setPassword(event.target.value);
   };
   const defaultIfEmpty = (value) => (value === '' ? '' : value);
+  const dateValue = (value) => (typeof value === 'string' ? new Date(value) : value);
   const createUser = async (event) => {
     event.preventDefault();
     await axios.post(API_URL, {
       id: user?.id,
       name,
       password,
-      deadline,
+      startTime,
+      endTime,
     });
     resetState();
     toggle();
@@ -35,7 +38,8 @@ const NewUserForm = ({ user, resetState, toggle }) => {
       id: user.id,
       name,
       password,
-      deadline,
+      startTime,
+      endTime,
     });
     resetState();
     toggle();
@@ -43,23 +47,37 @@ const NewUserForm = ({ user, resetState, toggle }) => {
   return (
     <Form onSubmit={user ? editUser : createUser}>
       <FormGroup>
-        <Label for="name">Nazwa zadania:</Label>
+        <Label for="name">Task name:</Label>
         <Input type="text" name="name" onChange={onNameChange} value={defaultIfEmpty(name)} />
       </FormGroup>
       <FormGroup>
-        <Label for="deadline">Data wykonania:</Label>
+        <Label for="startTime">Time interval:</Label>
         <FormGroup>
-          <TimePicker
-            format="H:m"
-            disableClock="true"
-            name="deadline"
-            onChange={setDeadline}
-            value={defaultIfEmpty(deadline)}
-          />
+          <Label>From:</Label>
+          <FormGroup>
+            <DateTimePicker
+              name="startTime"
+              disableClock="true"
+              format="y-M-d HH:mm"
+              validateOnBlur="false"
+              onChange={setStartTime}
+              value={user ? dateValue(startTime) : defaultIfEmpty(startTime)}
+            />
+          </FormGroup>
+          <Label>To:</Label>
+          <FormGroup>
+            <DateTimePicker
+              name="endTime"
+              disableClock="true"
+              format="y-M-d HH:mm"
+              onChange={setEndTime}
+              value={user ? dateValue(endTime) : defaultIfEmpty(endTime)}
+            />
+          </FormGroup>
         </FormGroup>
       </FormGroup>
       <FormGroup>
-        <Label for="password">Opis:</Label>
+        <Label for="password">Description:</Label>
         <textarea
           className={styles.Svg}
           type="text"

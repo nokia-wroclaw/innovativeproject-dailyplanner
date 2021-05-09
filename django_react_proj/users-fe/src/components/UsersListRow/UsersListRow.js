@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { format } from 'date-fns';
 import { API_URL } from '../../constants';
 import NewUserModal from '../NewUserModal/NewUserModal';
 import ConfirmRemovalModal from '../ConfirmRemovalModal/ConfirmRemovalModal';
@@ -8,7 +9,13 @@ import TaskButton from '../TaskButtonModal/TaskButtonModal';
 import styles from '../UserList/UserList.module.css';
 
 const UsersListRow = ({ user, resetState }) => {
-  const [taskFlag, setTaskFlag] = useState(false);
+  const [taskFlag, setTaskFlag] = useState(user.done);
+
+  const setDoneState = async () => {
+    await axios.patch(`${API_URL + user.id}/`, {
+      done: !taskFlag,
+    });
+  };
 
   const onToggleTaskFlag = () => {
     setTaskFlag((previous) => !previous);
@@ -27,7 +34,9 @@ const UsersListRow = ({ user, resetState }) => {
     <tr className={taskFlag ? styles.ButtonTrue : styles.ButtonFalse} key={user.id}>
       <td>{user.name}</td>
       <td className={styles.Svg}>{user.password}</td>
-      <td>{user.deadline}</td>
+      <td>
+        {format(new Date(user.startTime), 'HH:mm')} - {format(new Date(user.endTime), 'HH:mm')}
+      </td>
       <td>{user.registrationDate}</td>
       <td align="center">
         <TaskButton
@@ -35,6 +44,7 @@ const UsersListRow = ({ user, resetState }) => {
           deleteUser={deleteUser}
           taskFlag={taskFlag}
           onToggleTaskFlag={onToggleTaskFlag}
+          setDoneState={setDoneState}
         />
         <NewUserModal create={false} user={user} resetState={resetState} />
         <ConfirmRemovalModal id={user.id} deleteUser={deleteUser} />
