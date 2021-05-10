@@ -1,10 +1,10 @@
 import React from 'react';
-import PageHeader from './components/Header/PageHeader';
+import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 
 const App = () => (
   <>
-    <PageHeader />
+    <Header />
     <Home />
   </>
 );
