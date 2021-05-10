@@ -1,10 +1,16 @@
 import React from 'react';
+import { Card } from 'antd';
 import classNames from 'classnames';
 import TaskType from './TaskType/TaskType';
 import styles from './TypesLegend.module.css';
+import 'antd/dist/antd.css';
 
 const TaskLegend = () => {
   const types = [
+    {
+      type: 'Done',
+      style: styles.Done,
+    },
     {
       type: 'Meeting',
       style: styles.Meeting,
@@ -19,16 +25,17 @@ const TaskLegend = () => {
     },
   ];
   return (
-    <div className={styles.TypesLegend}>
-      <div>Legenda: </div>
-      {types.map((type) => (
-        <TaskType
-          key={type.type}
-          type={type.type}
-          className={classNames(styles.TaskTypeCircle, type.style)}
-        />
-      ))}
-    </div>
+    <>
+      <Card title="Legend" style={{ width: 300, backgroundColor: '#bfbfbf' }}>
+        {types.map((type) => (
+          <TaskType
+            key={type.type}
+            type={type.type}
+            className={classNames(styles.TaskTypeCircle, type.style)}
+          />
+        ))}
+      </Card>
+    </>
   );
 };
 
