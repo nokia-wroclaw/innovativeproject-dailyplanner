@@ -28,7 +28,7 @@ const Home = () => {
   const toggle = () => {
     setModalFlag((previous) => !previous);
   };
-  const button = <Button onClick={toggle}>Kalendarz</Button>;
+  const button = <Button onClick={toggle}>Calendar</Button>;
   const getUsers = () => {
     axios.get(API_URL).then((res) => setUsers(res.data));
   };
@@ -44,17 +44,17 @@ const Home = () => {
       <Row>
         <Col>
           <Button type="button" onClick={() => setCurrentDate(getPreviousDay)}>
-            Poprzedni dzień
+            Previous day
           </Button>
         </Col>
         <Col>
           <Button type="button" onClick={() => setCurrentDate(new Date())}>
-            Aktualny dzień
+            Current day
           </Button>
         </Col>
         <Col>
           <Button type="button" onClick={() => setCurrentDate(getNextDay)}>
-            Następny dzień
+            Next day
           </Button>
         </Col>
         <Col>
