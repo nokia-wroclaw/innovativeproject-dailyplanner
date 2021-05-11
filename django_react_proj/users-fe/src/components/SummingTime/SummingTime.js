@@ -1,7 +1,6 @@
 import { Pie } from '@ant-design/charts';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Col, Row } from 'reactstrap';
 import { API_URL } from '../../constants';
 import styles from './SummingTime.module.css';
 

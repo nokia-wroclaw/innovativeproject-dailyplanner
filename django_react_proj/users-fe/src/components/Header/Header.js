@@ -2,7 +2,6 @@ import React from 'react';
 import { Col, FormGroup, Row } from 'reactstrap';
 import styles from './Header.module.css';
 import Time from '../RealTime/RealTime';
-import Subtract from '../SummingTime/SummingTime';
 
 const Header = () => (
   <FormGroup>
