@@ -86,7 +86,7 @@ const Subtract = () => {
   return (
     <div>
       <div className={styles.SumTim}>
-        Total time of tasks on this day.: {taskhours} hours {taskminutes} minutes
+        Total time of tasks on this day: {taskhours} hours {taskminutes} minutes
       </div>
       <Pie {...configtasktime} />
       <Pie {...config} />

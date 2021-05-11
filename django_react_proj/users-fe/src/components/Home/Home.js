@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Modal, Col, Container, Row } from 'reactstrap';
 import axios from 'axios';
 import Calendar from 'react-calendar';
+import { format } from 'date-fns';
 import styles from './Home.module.css';
 import UserList from '../UserList/UserList';
 import NewUserModal from '../NewUserModal/NewUserModal';
@@ -15,7 +16,7 @@ const getUserForView = (users = [], date = new Date()) => {
   const y = date.getFullYear();
   const d = date.getDate().toString().padStart(2, '0');
   return users
-    .filter((user) => user.startTime === `${y}-${m}-${d}`)
+    .filter((user) => format(new Date(user.startTime), 'yyyy-MM-dd') === `${y}-${m}-${d}`)
     .sort((userA, userB) => userA.startTime.localeCompare(userB.startTime));
 };
 const getPreviousDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1);
