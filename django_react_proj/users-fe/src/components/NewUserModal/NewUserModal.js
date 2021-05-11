@@ -14,9 +14,6 @@ const NewUserModal = ({ resetState, user, create }) => {
     setIsModalVisible(true);
   };
 
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
   let title = 'Edit task';
   let button = (
     <Button type="success" onClick={showModal}>
@@ -37,16 +34,7 @@ const NewUserModal = ({ resetState, user, create }) => {
   return (
     <>
       {button}
-      <Modal
-        title={title}
-        visible={isModalVisible}
-        onOk={handleCancel}
-        onCancel={handleCancel}
-        cancelText="Cancel"
-        okText="Save"
-        okType="primary"
-        toggle={toggle}
-      >
+      <Modal title={title} visible={isModalVisible} footer={null} toggle={toggle}>
         <NewUserForm resetState={resetState} toggle={toggle} user={user} />
       </Modal>
     </>
