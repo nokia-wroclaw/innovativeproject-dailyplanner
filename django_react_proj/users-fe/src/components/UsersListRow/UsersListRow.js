@@ -47,8 +47,8 @@ const UsersListRow = ({ user, resetState }) => {
 
   return (
     <tr key={user.id}>
-      <td>{user.name}</td>
-      <td className={styles.Svg}>{user.password}</td>
+      <td>{user.taskName}</td>
+      <td className={styles.Svg}>{user.taskDescription}</td>
       <td>
         {format(new Date(user.startTime), 'HH:mm')} - {format(new Date(user.endTime), 'HH:mm')}
       </td>
