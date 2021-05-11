@@ -1,47 +1,50 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Modal, ModalHeader, Button, ModalFooter } from 'reactstrap';
-import { ToastContainer, toast } from 'react-toastify';
+import { Modal, Button } from 'antd';
+import { DeleteFilled } from '@ant-design/icons';
+import 'antd/dist/antd.css';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const ConfirmRemovalModal = (props) => {
-  const [modalFlag, setModalFlag] = useState(false);
+const ConfirmRemovalModal = ({ id, deleteUser }) => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
+  // const toggle = () => {
+  //   setIsModalVisible((previous) => !previous);
+  // };
   const toastifyDelete = () => toast.error('YOU DELETED TASK!');
-  const toggle = () => {
-    setModalFlag((previous) => !previous);
-  };
   const toggleT = () => {
-    setModalFlag((previous) => !previous);
+    setIsModalVisible((previous) => !previous);
     toastifyDelete();
   };
   const handlerDeleteUser = async (id) => {
     try {
-      await props.deleteUser(id);
+      await deleteUser(id);
       toggleT();
     } catch (error) {
       console.log(error);
     }
   };
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   return (
     <>
-      <Button color="danger" onClick={() => toggle()}>
-        Delete
-      </Button>
-
-      <Modal isOpen={modalFlag} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Do you want to delete task?</ModalHeader>
-
-        <ModalFooter>
-          <Button type="button" onClick={() => toggle()}>
-            No
-          </Button>
-          <Button type="button" color="primary" onClick={() => handlerDeleteUser(props.id)}>
-            Yes
-            <ToastContainer />
-          </Button>
-        </ModalFooter>
-      </Modal>
+      <Button type="danger" icon={<DeleteFilled />} onClick={() => showModal()} />
+      <Modal
+        title="Do you want to delete task?"
+        visible={isModalVisible}
+        onOk={() => handlerDeleteUser(id)}
+        onCancel={handleCancel}
+        cancelText="No"
+        okText="Yes"
+        okType="danger"
+      />
     </>
   );
 };

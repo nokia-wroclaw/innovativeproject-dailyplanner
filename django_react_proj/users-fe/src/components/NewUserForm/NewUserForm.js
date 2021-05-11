@@ -9,18 +9,18 @@ import styles from './NewUserForm.module.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 const NewUserForm = ({ user, resetState, toggle }) => {
-  const [name, setName] = useState(user?.name || '');
-  const [password, setPassword] = useState(user?.password || '');
+  const [taskName, setTaskName] = useState(user?.taskName || '');
+  const [taskDescription, setTaskDescription] = useState(user?.taskDescription || '');
   const [taskType, setTaskType] = useState(user?.taskType || '');
   const [startTime, setStartTime] = useState(user?.startTime || '');
   const [endTime, setEndTime] = useState(user?.endTime || '');
-  const toastifyEdit = () => toast.success('YOU EDITED TASK!');
   const types = ['', 'Meeting', 'Email', 'Housework'];
-  const onNameChange = (event) => {
-    setName(event.target.value);
+  const toastifyEdit = () => toast.success('YOU EDITED TASK!');
+  const onTaskNameChange = (event) => {
+    setTaskName(event.target.value);
   };
-  const onPasswordChange = (event) => {
-    setPassword(event.target.value);
+  const onTaskDescriptionChange = (event) => {
+    setTaskDescription(event.target.value);
   };
   const onTaskTypeChange = (event) => {
     setTaskType(event.target.value);
@@ -31,8 +31,8 @@ const NewUserForm = ({ user, resetState, toggle }) => {
     event.preventDefault();
     await axios.post(API_URL, {
       id: user?.id,
-      name,
-      password,
+      taskName,
+      taskDescription,
       taskType,
       startTime,
       endTime,
@@ -44,8 +44,8 @@ const NewUserForm = ({ user, resetState, toggle }) => {
     event.preventDefault();
     await axios.put(`${API_URL + user.id}/`, {
       id: user.id,
-      name,
-      password,
+      taskName,
+      taskDescription,
       taskType,
       startTime,
       endTime,
@@ -57,8 +57,8 @@ const NewUserForm = ({ user, resetState, toggle }) => {
   return (
     <Form onSubmit={user ? editUser : createUser}>
       <FormGroup>
-        <Label for="name">Task name:</Label>
-        <Input type="text" name="name" onChange={onNameChange} value={name} />
+        <Label for="taskName">Task name:</Label>
+        <Input type="text" name="taskName" onChange={onTaskNameChange} value={taskName} />
       </FormGroup>
       <FormGroup>
         <Label for="startTime">Time interval:</Label>
@@ -104,9 +104,9 @@ const NewUserForm = ({ user, resetState, toggle }) => {
         <textarea
           className={styles.Svg}
           type="text"
-          name="password"
-          onChange={onPasswordChange}
-          value={password}
+          name="taskDescription"
+          onChange={onTaskDescriptionChange}
+          value={taskDescription}
         />
       </FormGroup>
       <Button>
