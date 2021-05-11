@@ -15,7 +15,7 @@ const getUserForView = (users = [], date = new Date()) => {
   const y = date.getFullYear();
   const d = date.getDate().toString().padStart(2, '0');
   return users
-    .filter((user) => user.registrationDate === `${y}-${m}-${d}`)
+    .filter((user) => user.startTime === `${y}-${m}-${d}`)
     .sort((userA, userB) => userA.startTime.localeCompare(userB.startTime));
 };
 const getPreviousDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1);
@@ -38,9 +38,6 @@ const Home = () => {
 
   return (
     <Container className={styles.Container}>
-      <Col md={{ span: 8, offset: 8 }}>
-        <Subtract />
-      </Col>
       <Row>
         <Col>
           <Button type="button" onClick={() => setCurrentDate(getPreviousDay)}>
@@ -74,7 +71,12 @@ const Home = () => {
           <NewUserModal create resetState={getUsers} />
         </Col>
       </Row>
-      <TaskLegend />
+      <Row>
+        <Col>
+          <Subtract />
+          <TaskLegend />
+        </Col>
+      </Row>
     </Container>
   );
 };
