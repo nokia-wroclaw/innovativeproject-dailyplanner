@@ -4,10 +4,8 @@ import { Row } from 'reactstrap';
 
 const TaskType = ({ type, className }) => (
   <Row>
-    <div className="col-sm-2">
-      <div className={className} />
-      <tr>{type}</tr>
-    </div>
+    <div className={className} />
+    <tr>{type}</tr>
   </Row>
 );
 
