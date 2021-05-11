@@ -1,10 +1,22 @@
 import { React, useState } from 'react';
-import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import 'antd/dist/antd.css';
+import { Form, Input, Radio, Select, TimePicker } from 'antd';
 import axios from 'axios';
-import DateTimePicker from 'react-datetime-picker';
 import PropTypes from 'prop-types';
 import { API_URL } from '../../constants';
 import styles from './NewUserForm.module.css';
+
+const config = {
+  rules: [
+    {
+      type: 'object',
+      required: true,
+      message: 'Please select time!',
+    },
+  ],
+};
+
+const { TextArea } = Input;
 
 const NewUserForm = ({ user, resetState, toggle }) => {
   const [name, setName] = useState(user?.name || '');
@@ -14,6 +26,12 @@ const NewUserForm = ({ user, resetState, toggle }) => {
   const [endTime, setEndTime] = useState(user?.endTime || '');
 
   const types = ['', 'Meeting', 'Email', 'Housework'];
+
+  const [componentSize, setComponentSize] = useState('default');
+
+  const onFormLayoutChange = ({ size }) => {
+    setComponentSize(size);
+  };
 
   function onNameChange(event) {
     setName(event.target.value);
@@ -53,62 +71,52 @@ const NewUserForm = ({ user, resetState, toggle }) => {
     toggle();
   };
   return (
-    <Form onSubmit={user ? editUser : createUser}>
-      <FormGroup>
-        <Label for="name">Task name:</Label>
-        <Input type="text" name="name" onChange={onNameChange} value={name} />
-      </FormGroup>
-      <FormGroup>
-        <Label for="startTime">Time interval:</Label>
-        <FormGroup>
-          <Row>
-            <Col>
-              <Label>From:</Label>
-              <FormGroup>
-                <DateTimePicker
-                  name="startTime"
-                  disableClock="true"
-                  format="y-M-d HH:mm"
-                  validateOnBlur="false"
-                  onChange={setStartTime}
-                  value={user ? dateValue(startTime) : startTime}
-                />
-              </FormGroup>
-              <Label>To:</Label>
-              <FormGroup>
-                <DateTimePicker
-                  name="endTime"
-                  disableClock="true"
-                  format="y-M-d HH:mm"
-                  onChange={setEndTime}
-                  value={user ? dateValue(endTime) : endTime}
-                />
-              </FormGroup>
-            </Col>
-            <Col sm={7}>
-              <Input type="select" onChange={onTaskTypeChange} value={taskType}>
-                {types.map((type) => (
-                  <option key={type} name="taskType">
-                    {type}
-                  </option>
-                ))}
-              </Input>
-            </Col>
-          </Row>
-        </FormGroup>
-      </FormGroup>
-      <FormGroup>
-        <Label for="password">Description:</Label>
-        <textarea
-          className={styles.Svg}
-          type="text"
-          name="password"
-          onChange={onPasswordChange}
-          value={password}
-        />
-      </FormGroup>
-      <Button>Zapisz</Button>
-    </Form>
+    <>
+      <Form
+        onFinish={user ? editUser : createUser}
+        labelCol={{
+          span: 4,
+        }}
+        wrapperCol={{
+          span: 14,
+        }}
+        layout="horizontal"
+        initialValues={{
+          size: componentSize,
+        }}
+        onChange={onFormLayoutChange}
+        size={componentSize}
+      >
+        <Form.Item label="Form Size" name="size">
+          <Radio.Group>
+            <Radio.Button value="small">Small</Radio.Button>
+            <Radio.Button value="default">Default</Radio.Button>
+            <Radio.Button value="large">Large</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+        <Form.Item label="Task name" onValuesChange={onNameChange} name="name">
+          <Input />
+        </Form.Item>
+        <Form.Item label="Task type" onValuesChange={onTaskTypeChange} name="taskType">
+          <Select>
+            {types.map((type) => (
+              <Select.Option key={type} value={type}>
+                {type}
+              </Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
+        <Form.Item label="Task start" {...config} onValuesChange={setStartTime} name="startTime">
+          <TimePicker />
+        </Form.Item>
+        <Form.Item label="Task end" {...config} onValuesChange={setEndTime} name="endTime">
+          <TimePicker />
+        </Form.Item>
+      </Form>
+      <Form.Item label="Description" onValuesChange={onPasswordChange} name="password">
+        <TextArea rows={4} />
+      </Form.Item>
+    </>
   );
 };
 
