@@ -1,22 +1,28 @@
 import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, ModalHeader, Button, ModalFooter } from 'reactstrap';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ConfirmRemovalModal = (props) => {
   const [modalFlag, setModalFlag] = useState(false);
+
+  const toastifyDelete = () => toast.error('YOU DELETED TASK!');
   const toggle = () => {
     setModalFlag((previous) => !previous);
   };
-
+  const toggleT = () => {
+    setModalFlag((previous) => !previous);
+    toastifyDelete();
+  };
   const handlerDeleteUser = async (id) => {
     try {
       await props.deleteUser(id);
-      toggle();
+      toggleT();
     } catch (error) {
       console.log(error);
     }
   };
-
   return (
     <>
       <Button color="danger" onClick={() => toggle()}>
@@ -32,6 +38,7 @@ const ConfirmRemovalModal = (props) => {
           </Button>
           <Button type="button" color="primary" onClick={() => handlerDeleteUser(props.id)}>
             Yes
+            <ToastContainer />
           </Button>
         </ModalFooter>
       </Modal>

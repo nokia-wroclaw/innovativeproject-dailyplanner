@@ -6,11 +6,9 @@ import styles from './NewUserModal.module.css';
 
 const NewUserModal = ({ resetState, user, create }) => {
   const [modal, setModal] = useState();
-
   const toggle = () => {
     setModal((previous) => !previous);
   };
-
   let title = 'Edit task';
   let button = (
     <Button color="success" onClick={toggle}>
@@ -22,7 +20,7 @@ const NewUserModal = ({ resetState, user, create }) => {
     title = 'Create new task';
 
     button = (
-      <button className={styles.button} type="button" onClick={toggle}>
+      <button className={styles.button} type="button" onClick={() => toggle()}>
         Create new task
       </button>
     );

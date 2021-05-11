@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { Modal, ModalHeader, Button, ModalFooter } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TaskButton = ({ onToggleTaskFlag, id, deleteUser, setDoneState }) => {
   const [modalFlag, setModalFlag] = useState(false);
+
+  const toastifyButton = () => toast.info('YOU SWITCHED STATE OF TASK!');
 
   const toggle = () => {
     setModalFlag((previous) => !previous);
@@ -25,8 +29,10 @@ const TaskButton = ({ onToggleTaskFlag, id, deleteUser, setDoneState }) => {
         onClick={() => {
           onToggleTaskFlag();
           setDoneState();
+          toastifyButton();
         }}
       >
+        <ToastContainer />
         TASKBUTTON
       </Button>
 
