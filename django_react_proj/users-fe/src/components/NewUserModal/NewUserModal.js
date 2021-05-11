@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Modal, Button } from 'antd';
+import 'antd/dist/antd.css';
 import PropTypes from 'prop-types';
 import NewUserForm from '../NewUserForm/NewUserForm';
 import styles from './NewUserModal.module.css';
 
 const NewUserModal = ({ resetState, user, create }) => {
-  const [modal, setModal] = useState();
-
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const toggle = () => {
-    setModal((previous) => !previous);
+    setIsModalVisible((previous) => !previous);
+  };
+  const showModal = () => {
+    setIsModalVisible(true);
   };
 
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   let title = 'Edit task';
   let button = (
-    <Button color="success" onClick={toggle}>
+    <Button type="success" onClick={showModal}>
       Edit
     </Button>
   );
@@ -31,12 +37,17 @@ const NewUserModal = ({ resetState, user, create }) => {
   return (
     <>
       {button}
-      <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>{title} </ModalHeader>
-
-        <ModalBody>
-          <NewUserForm resetState={resetState} toggle={toggle} user={user} />
-        </ModalBody>
+      <Modal
+        title={title}
+        visible={isModalVisible}
+        onOk={handleCancel}
+        onCancel={handleCancel}
+        cancelText="Cancel"
+        okText="Save"
+        okType="primary"
+        toggle={toggle}
+      >
+        <NewUserForm resetState={resetState} toggle={toggle} user={user} />
       </Modal>
     </>
   );

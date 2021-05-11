@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Modal, Col, Container, Row } from 'reactstrap';
+import { Button, Modal, Col, Row, Card } from 'antd';
+import 'antd/dist/antd.css';
+import 'antd-button-color/dist/css/style.css';
 import axios from 'axios';
 import Calendar from 'react-calendar';
-import styles from './Home.module.css';
 import UserList from '../UserList/UserList';
 import NewUserModal from '../NewUserModal/NewUserModal';
 import { API_URL } from '../../constants';
@@ -28,7 +29,11 @@ const Home = () => {
   const toggle = () => {
     setModalFlag((previous) => !previous);
   };
-  const button = <Button onClick={toggle}>Kalendarz</Button>;
+
+  const handleCancel = () => {
+    setModalFlag(false);
+  };
+  const button = <Button onClick={toggle}>Calendar</Button>;
   const getUsers = () => {
     axios.get(API_URL).then((res) => setUsers(res.data));
   };
@@ -37,45 +42,45 @@ const Home = () => {
   }, []);
 
   return (
-    <Container className={styles.Container}>
-      <Col md={{ span: 8, offset: 8 }}>
+    <Card>
+      <Col span={8} offset={15}>
         <Subtract />
       </Col>
       <Row>
-        <Col>
+        <Col span={5}>
           <Button type="button" onClick={() => setCurrentDate(getPreviousDay)}>
-            Poprzedni dzień
+            Previous day
           </Button>
         </Col>
-        <Col>
+        <Col span={5}>
           <Button type="button" onClick={() => setCurrentDate(new Date())}>
-            Aktualny dzień
+            Current day
           </Button>
         </Col>
-        <Col>
+        <Col span={5}>
           <Button type="button" onClick={() => setCurrentDate(getNextDay)}>
-            Następny dzień
+            Next day
           </Button>
         </Col>
-        <Col>
+        <Col span={5}>
           {button}
-          <Modal isOpen={modalFlag} toggle={toggle}>
+          <Modal visible={modalFlag} onCancel={handleCancel} footer={null} toggle={toggle}>
             <Calendar onChange={setCurrentDate} currentDate={currentDate} />
           </Modal>
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col flex="auto">
           <UserList users={getUserForView(users, currentDate)} resetState={getUsers} />
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col offset={18}>
           <NewUserModal create resetState={getUsers} />
         </Col>
       </Row>
       <TaskLegend />
-    </Container>
+    </Card>
   );
 };
 
