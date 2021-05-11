@@ -1,8 +1,8 @@
 from django.db import models
 
 class User(models.Model):
-    name = models.CharField("Name", max_length=100)
-    password = models.CharField("Password", max_length=500)
+    taskName = models.CharField("TaskName", max_length=100, default='')
+    taskDescription = models.CharField("TaskDescription", max_length=500, default='')
     startTime = models.DateTimeField('StartTime', auto_now=False, auto_now_add=False, default='')
     endTime = models.DateTimeField('EndTime', auto_now=False, auto_now_add=False, default='')
     done = models.BooleanField('Done', default=False)
