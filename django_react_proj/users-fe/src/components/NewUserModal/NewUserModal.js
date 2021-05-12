@@ -1,28 +1,32 @@
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { Button } from 'antd';
+import 'antd/dist/antd.css';
+import { EditOutlined } from '@ant-design/icons';
 import NewUserForm from '../NewUserForm/NewUserForm';
 import styles from './NewUserModal.module.css';
 
 const NewUserModal = ({ resetState, user, create }) => {
   const [modal, setModal] = useState();
-
   const toggle = () => {
     setModal((previous) => !previous);
   };
-
   let title = 'Edit task';
   let button = (
-    <Button color="success" onClick={toggle}>
-      Edit
-    </Button>
+    <Button
+      type="primary"
+      icon={<EditOutlined />}
+      style={{ background: 'green', borderColor: 'green' }}
+      onClick={toggle}
+    />
   );
 
   if (create) {
     title = 'Create new task';
 
     button = (
-      <button className={styles.button} type="button" onClick={toggle}>
+      <button className={styles.button} type="button" onClick={() => toggle()}>
         Create new task
       </button>
     );

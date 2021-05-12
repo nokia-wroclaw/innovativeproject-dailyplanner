@@ -3,8 +3,10 @@ import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
 import DateTimePicker from 'react-datetime-picker';
 import PropTypes from 'prop-types';
+import { ToastContainer, toast } from 'react-toastify';
 import { API_URL } from '../../constants';
 import styles from './NewUserForm.module.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 const NewUserForm = ({ user, resetState, toggle }) => {
   const [taskName, setTaskName] = useState(user?.taskName || '');
@@ -12,12 +14,11 @@ const NewUserForm = ({ user, resetState, toggle }) => {
   const [taskType, setTaskType] = useState(user?.taskType || '');
   const [startTime, setStartTime] = useState(user?.startTime || '');
   const [endTime, setEndTime] = useState(user?.endTime || '');
-
   const types = ['', 'Meeting', 'Email', 'Housework'];
-
-  function onTaskNameChange(event) {
+  const toastifyEdit = () => toast.success('YOU EDITED TASK!');
+  const onTaskNameChange = (event) => {
     setTaskName(event.target.value);
-  }
+  };
   const onTaskDescriptionChange = (event) => {
     setTaskDescription(event.target.value);
   };
@@ -51,6 +52,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
     });
     resetState();
     toggle();
+    toastifyEdit();
   };
   return (
     <Form onSubmit={user ? editUser : createUser}>
@@ -107,7 +109,10 @@ const NewUserForm = ({ user, resetState, toggle }) => {
           value={taskDescription}
         />
       </FormGroup>
-      <Button>Zapisz</Button>
+      <Button>
+        Zapisz
+        <ToastContainer />
+      </Button>
     </Form>
   );
 };
