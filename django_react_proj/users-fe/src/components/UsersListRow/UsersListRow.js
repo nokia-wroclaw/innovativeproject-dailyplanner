@@ -50,20 +50,11 @@ const UsersListRow = ({ user, resetState }) => {
       <td>{user.taskName}</td>
       <td className={styles.Svg}>{user.taskDescription}</td>
       <td>
-        {format(new Date(user.startTime), 'HH:mm')} - {format(new Date(user.endTime), 'HH:mm')}
+        {format(new Date(user.startTime), 'HH:mm')} -{' '}
+        {format(new Date(user.endTime), 'HH:mm')}
       </td>
       <td className={rowColor} />
-      <td align="center">
-        <TaskButton
-          id={user.id}
-          deleteUser={deleteUser}
-          taskFlag={taskFlag}
-          onToggleTaskFlag={onToggleTaskFlag}
-          setDoneState={setDoneState}
-        />
-        <NewUserModal create={false} user={user} resetState={resetState} />
-        <ConfirmRemovalModal id={user.id} deleteUser={deleteUser} />
-      </td>
+      <td align="center"></td>
     </tr>
   );
 };
