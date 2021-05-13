@@ -5,9 +5,9 @@ import Home from './components/Home/Home';
 import Subtract from './components/SummingTime/SummingTime';
 
 const App = () => {
-  const [noTitleKey, setState] = useState('1');
+  const [noTitleKey, setnoTitleKey] = useState('1');
   const handleClick = (event) => {
-    setState(event.key);
+    setnoTitleKey(event.key);
   };
   const contentList = {
     1: <Home />,
