@@ -9,6 +9,8 @@ import NewUserModal from '../NewUserModal/NewUserModal';
 import { API_URL } from '../../constants';
 import TaskLegend from '../TaskLegend/TypesLegend';
 import 'react-calendar/dist/Calendar.css';
+import Subtract from '../SummingTime/SummingTime';
+import Statistic from '../TaskStatistic/TaskStatistic';
 
 const getUserForView = (users = [], date = new Date()) => {
   const m = (date.getMonth() + 1).toString().padStart(2, '0');
@@ -35,7 +37,6 @@ const Home = () => {
   useEffect(() => {
     getUsers();
   }, []);
-
   return (
     <Container className={styles.Container}>
       <Row>
@@ -72,8 +73,17 @@ const Home = () => {
         </Col>
       </Row>
       <TaskLegend />
+      <Row>
+        <Col>
+          <Subtract users={getUserForView(users, currentDate)} resetState={getUsers} />
+        </Col>
+        <Row>
+          <Col>
+            <Statistic users={getUserForView(users, currentDate)} resetState={getUsers} />
+          </Col>
+        </Row>
+      </Row>
     </Container>
   );
 };
-
 export default Home;
