@@ -1,5 +1,5 @@
 import { Pie } from '@ant-design/charts';
-import { Card, Col } from 'antd';
+import { Card } from 'antd';
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './SummingTime.module.css';
