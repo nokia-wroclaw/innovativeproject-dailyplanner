@@ -36,7 +36,7 @@ const Home = () => {
   useEffect(() => {
     getUsers();
   }, []);
-
+  console.log(users);
   return (
     <Container className={styles.Container}>
       <Row>
@@ -74,10 +74,9 @@ const Home = () => {
       </Row>
       <TaskLegend />
       <Col>
-        <Subtract />
+        <Subtract users={getUserForView(users, currentDate)} resetState={getUsers} />
       </Col>
     </Container>
   );
 };
-
 export default Home;

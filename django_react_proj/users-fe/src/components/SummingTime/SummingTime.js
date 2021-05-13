@@ -1,29 +1,31 @@
 import { Pie } from '@ant-design/charts';
-import { Col, Row } from 'reactstrap';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { API_URL } from '../../constants';
+import { Card, Row, Col } from 'antd';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styles from './SummingTime.module.css';
 
-const Subtract = () => {
-  const [users, setUsers] = useState();
+const Subtract = ({ users }) => {
   let timevalue = 0;
-  const getUsers = () => {
-    axios.get(API_URL).then((res) => setUsers(res.data));
-  };
-
-  useEffect(() => {
-    const handle = setInterval(getUsers, 1000);
-    return () => clearInterval(handle);
-  }, []);
+  let done = 0;
+  let notdone = 0;
 
   if (users) {
-    users.forEach((user) => {
+    Array.prototype.forEach.call(users, (user) => {
       const uptimes = new Date(user.endTime).getTime();
       const lowtimes = new Date(user.startTime).getTime();
       const sub = uptimes - lowtimes;
       const minutes = sub / 60000;
       timevalue += minutes;
+    });
+  }
+  if (users) {
+    Array.prototype.forEach.call(users, (user) => {
+      const itisdone = String(user.done);
+      if (itisdone === 'true') {
+        done += 1;
+      } else {
+        notdone += 1;
+      }
     });
   }
   const taskhours = Math.floor(timevalue / 60);
@@ -32,28 +34,22 @@ const Subtract = () => {
   const datatask = [
     {
       type: 'Task Done',
-      value: 3,
+      value: done,
     },
     {
       type: 'Task Not Done',
-      value: 4,
+      value: notdone,
     },
   ];
   const config = {
     appendPadding: 10,
     data: datatask,
     angleField: 'value',
-    fontSize: 10,
     colorField: 'type',
-    radius: 1,
+    radius: 0.6,
     label: {
-      type: 'inner',
-      offset: '-40%',
+      type: 'spider',
       content: '{percentage}',
-      style: {
-        fontSize: 15,
-        textAlign: 'center',
-      },
     },
     interactions: [{ type: 'element-active' }],
   };
@@ -72,32 +68,30 @@ const Subtract = () => {
     data: datatasktime,
     angleField: 'value',
     colorField: 'type',
-    radius: 1,
+    radius: 0.6,
     label: {
-      type: 'inner',
-      offset: '-40%',
+      type: 'spider',
       content: '{percentage}',
-      style: {
-        fontSize: 15,
-        textAlign: 'center',
-      },
     },
     interactions: [{ type: 'element-active' }],
   };
   return (
-    <div>
-      <div className={styles.SumTim}>
+    <>
+      <Col span={12} offset={6} className={styles.SumTim}>
         Total time of tasks on this day: {taskhours} hours {taskminutes} minutes
-      </div>
+      </Col>
       <Row>
-        <Col>
+        <Card title="Pie chart of scheduled time to free time" style={{ width: 500 }}>
           <Pie {...configtasktime} />
-        </Col>
-        <Col>
+        </Card>
+        <Card title="Pie chart of task done to task not done" style={{ width: 500 }}>
           <Pie {...config} />
-        </Col>
+        </Card>
       </Row>
-    </div>
+    </>
   );
+};
+Subtract.propTypes = {
+  users: PropTypes.array,
 };
 export default Subtract;

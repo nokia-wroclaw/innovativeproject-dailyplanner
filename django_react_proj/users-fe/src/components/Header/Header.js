@@ -1,7 +1,9 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import './Header.css';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Col, Row, Image, Layout, Menu, Breadcrumb } from 'antd';
+import Time from '../RealTime/RealTime';
+import styles from '../RealTime/RealTime.module.css';
 
 const { Header, Content } = Layout;
 const PageHeader = () => (
@@ -20,13 +22,17 @@ const PageHeader = () => (
         <Breadcrumb.Item>List</Breadcrumb.Item>
         <Breadcrumb.Item>App</Breadcrumb.Item>
       </Breadcrumb>
-      <div className="Center">
-        <img
-          className="Image"
-          alt="Team chaos"
-          src="https://media.discordapp.net/attachments/821426521859162192/821456504875646976/teams-chaos.png?width=800&height=450"
-        />
-      </div>
+      <Row align="middle">
+        <Col span={10} offset={7} className="Center">
+          <Image
+            width={400}
+            src="https://media.discordapp.net/attachments/821426521859162192/821456504875646976/teams-chaos.png?width=800&height=450"
+          />
+        </Col>
+        <Col className={styles.Time} span={2} offset={1}>
+          <Time />
+        </Col>
+      </Row>
     </Content>
   </Layout>
 );
