@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Table } from 'antd';
@@ -7,20 +7,16 @@ import TaskButton from '../TaskButtonModal/TaskButtonModal';
 import NewUserModal from '../NewUserModal/NewUserModal';
 import ConfirmRemovalModal from '../ConfirmRemovalModal/ConfirmRemovalModal';
 import { API_URL } from '../../constants';
+import styles from '../UsersListRow/UsersListRow.module.css';
 
 const { Column } = Table;
 
 const Actions = ({ user, resetState }) => {
-  const [taskFlag, setTaskFlag] = useState(user.done);
-
   const setDoneState = async () => {
     await axios.patch(`${API_URL + user.id}/`, {
-      done: !taskFlag,
+      done: !user.done,
     });
-  };
-
-  const onToggleTaskFlag = () => {
-    setTaskFlag((previous) => !previous);
+    resetState();
   };
 
   const deleteUser = async (id) => {
@@ -34,13 +30,7 @@ const Actions = ({ user, resetState }) => {
 
   return (
     <>
-      <TaskButton
-        id={user.id}
-        deleteUser={deleteUser}
-        taskFlag={taskFlag}
-        onToggleTaskFlag={onToggleTaskFlag}
-        setDoneState={setDoneState}
-      />
+      <TaskButton setDoneState={setDoneState} />
       <NewUserModal create={false} user={user} resetState={resetState} />
       <ConfirmRemovalModal id={user.id} deleteUser={deleteUser} />
     </>
@@ -62,7 +52,29 @@ const UserList = ({ users = [], resetState }) => (
         `${format(new Date(user.startTime), 'HH:mm')} - ${format(new Date(user.endTime), 'HH:mm')}`
       }
     />
-    <Column title="Task type" />
+    <Column
+      title="Task type"
+      dataIndex="taskType"
+      render={(taskType, user) => {
+        let rowColor = '';
+
+        if (user.done) {
+          rowColor = styles.ButtonTrue;
+        } else {
+          if (taskType === 'Meeting') {
+            rowColor = styles.Meeting;
+          }
+          if (taskType === 'Email') {
+            rowColor = styles.Email;
+          }
+          if (taskType === 'Housework') {
+            rowColor = styles.Housework;
+          }
+        }
+
+        return <div style={{ height: '100px' }} className={rowColor} />;
+      }}
+    />
     <Column
       title="Actions"
       render={(value, user) => <Actions user={user} resetState={resetState} />}

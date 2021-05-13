@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const TaskButton = ({ onToggleTaskFlag, setDoneState }) => {
+const TaskButton = ({ setDoneState }) => {
   const toastifyButton = () => toast.info('YOU SWITCHED STATE OF TASK!');
 
   return (
@@ -16,7 +16,6 @@ const TaskButton = ({ onToggleTaskFlag, setDoneState }) => {
         size="middle"
         icon={<CheckSquareOutlined />}
         onClick={() => {
-          onToggleTaskFlag();
           setDoneState();
           toastifyButton();
         }}
@@ -27,7 +26,6 @@ const TaskButton = ({ onToggleTaskFlag, setDoneState }) => {
   );
 };
 TaskButton.propTypes = {
-  onToggleTaskFlag: PropTypes.func,
   setDoneState: PropTypes.func,
 };
 export default TaskButton;

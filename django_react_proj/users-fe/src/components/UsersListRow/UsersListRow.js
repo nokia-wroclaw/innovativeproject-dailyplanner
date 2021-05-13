@@ -30,28 +30,12 @@ const UsersListRow = ({ user, resetState }) => {
     }
   };
 
-  let rowColor = '';
-  if (taskFlag) {
-    rowColor = styles.ButtonTrue;
-  } else {
-    if (user.taskType === 'Meeting') {
-      rowColor = styles.Meeting;
-    }
-    if (user.taskType === 'Email') {
-      rowColor = styles.Email;
-    }
-    if (user.taskType === 'Housework') {
-      rowColor = styles.Housework;
-    }
-  }
-
   return (
     <tr key={user.id}>
       <td>{user.taskName}</td>
       <td className={styles.Svg}>{user.taskDescription}</td>
       <td>
-        {format(new Date(user.startTime), 'HH:mm')} -{' '}
-        {format(new Date(user.endTime), 'HH:mm')}
+        {format(new Date(user.startTime), 'HH:mm')} - {format(new Date(user.endTime), 'HH:mm')}
       </td>
       <td className={rowColor} />
       <td align="center"></td>
