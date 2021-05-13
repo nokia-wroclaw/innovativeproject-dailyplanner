@@ -9,7 +9,6 @@ import NewUserModal from '../NewUserModal/NewUserModal';
 import { API_URL } from '../../constants';
 import TaskLegend from '../TaskLegend/TypesLegend';
 import 'react-calendar/dist/Calendar.css';
-import Subtract from '../SummingTime/SummingTime';
 
 const getUserForView = (users = [], date = new Date()) => {
   const m = (date.getMonth() + 1).toString().padStart(2, '0');
@@ -73,9 +72,6 @@ const Home = () => {
         </Col>
       </Row>
       <TaskLegend />
-      <Col>
-        <Subtract />
-      </Col>
     </Container>
   );
 };
