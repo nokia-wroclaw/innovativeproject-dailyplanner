@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
-<<<<<<< HEAD
 import { Button, Modal, Col, Row, Card, Calendar } from 'antd';
 import 'antd/dist/antd.css';
-=======
-import Calendar from 'react-calendar';
-import { Button, Modal, Col, Container, Row } from 'reactstrap';
->>>>>>> origin/Develop
 import axios from 'axios';
 import { format } from 'date-fns';
 import UserList from '../UserList/UserList';
