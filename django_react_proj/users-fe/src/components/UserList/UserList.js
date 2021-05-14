@@ -38,46 +38,46 @@ const Actions = ({ user, resetState }) => {
 };
 
 const UserList = ({ users = [], resetState }) => (
-  <Table
-    selectedRowKeys="0"
-    backgroundcolor="Blue"
-    pagination={{ position: ['none', 'none'] }}
-    dataSource={users}
-  >
-    <Column title="Task name" dataIndex="taskName" />
-    <Column title="Description" dataIndex="taskDescription" />
-    <Column
-      title="Task Time"
-      dataIndex="taskName"
-      render={(value, user) =>
-        `${format(new Date(user.startTime), 'HH:mm')} - ${format(new Date(user.endTime), 'HH:mm')}`
-      }
-    />
-    <Column
-      title="Task type"
-      dataIndex="taskType"
-      render={(taskType, user) => {
-        let rowColor = '';
-
-        if (user.done) {
-          rowColor = styles.ButtonTrue;
-        } else {
-          if (taskType === 'Meeting') {
-            rowColor = styles.Meeting;
-          }
-          if (taskType === 'Email') {
-            rowColor = styles.Email;
-          }
-          if (taskType === 'Housework') {
-            rowColor = styles.Housework;
-          }
+  <div className={styles.Mytable}>
+    <Table pagination={{ position: ['none', 'none'] }} dataSource={users}>
+      <Column title="Task name" dataIndex="taskName" />
+      <Column title="Description" dataIndex="taskDescription" />
+      <Column
+        title="Task Time"
+        dataIndex="taskName"
+        render={(value, user) =>
+          `${format(new Date(user.startTime), 'HH:mm')} - ${format(
+            new Date(user.endTime),
+            'HH:mm'
+          )}`
         }
+      />
+      <Column
+        title="Task type"
+        dataIndex="taskType"
+        render={(taskType, user) => {
+          let rowColor = '';
 
-        return <div style={{ height: '30px', width: '30px' }} className={rowColor} />;
-      }}
-    />
-    <Column title="" render={(value, user) => <Actions user={user} resetState={resetState} />} />
-  </Table>
+          if (user.done) {
+            rowColor = styles.ButtonTrue;
+          } else {
+            if (taskType === 'Meeting') {
+              rowColor = styles.Meeting;
+            }
+            if (taskType === 'Email') {
+              rowColor = styles.Email;
+            }
+            if (taskType === 'Housework') {
+              rowColor = styles.Housework;
+            }
+          }
+
+          return <div style={{ height: '30px', width: '30px' }} className={rowColor} />;
+        }}
+      />
+      <Column title="" render={(value, user) => <Actions user={user} resetState={resetState} />} />
+    </Table>
+  </div>
 );
 
 Actions.propTypes = {

@@ -51,3 +51,6 @@
 .Housework{
     background-color: rgb(0, 228, 245);
 }
+.Mytable thead > tr > th{
+    background: #034f84 ;
+}
