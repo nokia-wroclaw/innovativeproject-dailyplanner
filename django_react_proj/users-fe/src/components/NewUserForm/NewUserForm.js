@@ -25,9 +25,24 @@ const NewUserForm = ({ user, resetState, toggle }) => {
   const [taskName, setTaskName] = useState(user?.taskName || '');
   const [taskDescription, setTaskDescription] = useState(user?.taskDescription || '');
   const [taskType, setTaskType] = useState(user?.taskType || '');
+  const [taskPriority, setTaskPriority] = useState(user?.taskPriority || '');
   const [startTime, setStartTime] = useState(user?.startTime || '');
   const [endTime, setEndTime] = useState(user?.endTime || '');
-  const types = ['', 'Meeting', 'Email', 'Housework'];
+  const types = ['Meeting', 'Email', 'Housework'];
+  const priority = [
+    {
+      p: 1,
+      pName: 'Low',
+    },
+    {
+      p: 2,
+      pName: 'Medium',
+    },
+    {
+      p: 3,
+      pName: 'High',
+    },
+  ];
 
   const formatStartTime = () => {
     const timeFormat = '12:00';
@@ -45,6 +60,10 @@ const NewUserForm = ({ user, resetState, toggle }) => {
     setTaskType(event.target.value);
   };
 
+  const onTaskPriorityChange = (event) => {
+    setTaskPriority(event.target.value);
+  };
+
   const dateValue = (value) => (typeof value === 'string' ? new Date(value) : value);
   const createUser = async () => {
     await axios.post(API_URL, {
@@ -52,6 +71,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
       taskName,
       taskDescription,
       taskType,
+      taskPriority,
       startTime,
       endTime,
     });
@@ -65,6 +85,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
       taskName,
       taskDescription,
       taskType,
+      taskPriority,
       startTime,
       endTime,
     });
@@ -79,8 +100,8 @@ const NewUserForm = ({ user, resetState, toggle }) => {
 
   return (
     <Form
-      // onFinish={user ? editUser : createUser}
-      onFinish={onFinish}
+      onFinish={user ? editUser : createUser}
+      // onFinish={onFinish}
       labelCol={{
         span: 4,
       }}
@@ -89,10 +110,10 @@ const NewUserForm = ({ user, resetState, toggle }) => {
       }}
       layout="horizontal"
     >
-      <Form.Item label="Task name" onValuesChange={onTaskDescriptionChange} name="taskName">
+      <Form.Item label="Task name" name="taskName">
         <Input />
       </Form.Item>
-      <Form.Item label="Task type" onValuesChange={onTaskTypeChange} name="taskType">
+      <Form.Item label="Task type" name="taskType">
         <Select>
           {types.map((type) => (
             <Select.Option key={type} value={type}>
@@ -101,17 +122,22 @@ const NewUserForm = ({ user, resetState, toggle }) => {
           ))}
         </Select>
       </Form.Item>
+      <Form.Item label="Task priority " name="taskPriority">
+        <Select>
+          {priority.map((p) => (
+            <Select.Option key={p.p} value={p.p}>
+              {p.pName}
+            </Select.Option>
+          ))}
+        </Select>
+      </Form.Item>
       <Form.Item label="Task start" {...config} name="startTime">
-        <TimePicker format="HH:mm" onSelect={formatStartTime} />
+        <TimePicker format="HH:mm" />
       </Form.Item>
       <Form.Item label="Task end" {...config} name="endTime">
         <TimePicker format="HH:mm" />
       </Form.Item>
-      <Form.Item
-        label="Description"
-        onValuesChange={onTaskDescriptionChange}
-        name="taskDescription"
-      >
+      <Form.Item label="Description" name="taskDescription">
         <TextArea rows={4} />
       </Form.Item>
       <Button type="primary" htmlType="submit" style={{ float: 'right' }}>
