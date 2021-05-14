@@ -1,12 +1,25 @@
 import { React, useState } from 'react';
-import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import 'antd/dist/antd.css';
+import { Button, Form, Input, Select, TimePicker } from 'antd';
 import axios from 'axios';
-import DateTimePicker from 'react-datetime-picker';
 import PropTypes from 'prop-types';
 import { ToastContainer, toast } from 'react-toastify';
+import moment from 'moment';
 import { API_URL } from '../../constants';
 import styles from './NewUserForm.module.css';
 import 'react-toastify/dist/ReactToastify.css';
+
+const config = {
+  rules: [
+    {
+      type: 'object',
+      required: true,
+      message: 'Please select time!',
+    },
+  ],
+};
+
+const { TextArea } = Input;
 
 const NewUserForm = ({ user, resetState, toggle }) => {
   const [taskName, setTaskName] = useState(user?.taskName || '');
@@ -15,6 +28,12 @@ const NewUserForm = ({ user, resetState, toggle }) => {
   const [startTime, setStartTime] = useState(user?.startTime || '');
   const [endTime, setEndTime] = useState(user?.endTime || '');
   const types = ['', 'Meeting', 'Email', 'Housework'];
+
+  const formatStartTime = () => {
+    const timeFormat = '12:00';
+    setStartTime(timeFormat);
+  };
+
   const toastifyEdit = () => toast.success('YOU EDITED TASK!');
   const onTaskNameChange = (event) => {
     setTaskName(event.target.value);
@@ -27,8 +46,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
   };
 
   const dateValue = (value) => (typeof value === 'string' ? new Date(value) : value);
-  const createUser = async (event) => {
-    event.preventDefault();
+  const createUser = async () => {
     await axios.post(API_URL, {
       id: user?.id,
       taskName,
@@ -54,64 +72,50 @@ const NewUserForm = ({ user, resetState, toggle }) => {
     toggle();
     toastifyEdit();
   };
+
+  const onFinish = (values) => {
+    console.log('recived values', values);
+  };
+
   return (
-    <Form onSubmit={user ? editUser : createUser}>
-      <FormGroup>
-        <Label for="taskName">Task name:</Label>
-        <Input type="text" name="taskName" onChange={onTaskNameChange} value={taskName} />
-      </FormGroup>
-      <FormGroup>
-        <Label for="startTime">Time interval:</Label>
-        <FormGroup>
-          <Row>
-            <Col>
-              <Label>From:</Label>
-              <FormGroup>
-                <DateTimePicker
-                  name="startTime"
-                  disableClock="true"
-                  format="y-M-d HH:mm"
-                  validateOnBlur="false"
-                  onChange={setStartTime}
-                  value={user ? dateValue(startTime) : startTime}
-                />
-              </FormGroup>
-              <Label>To:</Label>
-              <FormGroup>
-                <DateTimePicker
-                  name="endTime"
-                  disableClock="true"
-                  format="y-M-d HH:mm"
-                  onChange={setEndTime}
-                  value={user ? dateValue(endTime) : endTime}
-                />
-              </FormGroup>
-            </Col>
-            <Col sm={7}>
-              <Input type="select" onChange={onTaskTypeChange} value={taskType}>
-                {types.map((type) => (
-                  <option key={type} name="taskType">
-                    {type}
-                  </option>
-                ))}
-              </Input>
-            </Col>
-          </Row>
-        </FormGroup>
-      </FormGroup>
-      <FormGroup>
-        <Label for="password">Description:</Label>
-        <textarea
-          className={styles.Svg}
-          type="text"
-          name="taskDescription"
-          onChange={onTaskDescriptionChange}
-          value={taskDescription}
-        />
-      </FormGroup>
-      <Button>
-        Zapisz
-        <ToastContainer />
+    <Form
+      // onFinish={user ? editUser : createUser}
+      onFinish={onFinish}
+      labelCol={{
+        span: 4,
+      }}
+      wrapperCol={{
+        span: 14,
+      }}
+      layout="horizontal"
+    >
+      <Form.Item label="Task name" onValuesChange={onTaskDescriptionChange} name="taskName">
+        <Input />
+      </Form.Item>
+      <Form.Item label="Task type" onValuesChange={onTaskTypeChange} name="taskType">
+        <Select>
+          {types.map((type) => (
+            <Select.Option key={type} value={type}>
+              {type}
+            </Select.Option>
+          ))}
+        </Select>
+      </Form.Item>
+      <Form.Item label="Task start" {...config} name="startTime">
+        <TimePicker format="HH:mm" onSelect={formatStartTime} />
+      </Form.Item>
+      <Form.Item label="Task end" {...config} name="endTime">
+        <TimePicker format="HH:mm" />
+      </Form.Item>
+      <Form.Item
+        label="Description"
+        onValuesChange={onTaskDescriptionChange}
+        name="taskDescription"
+      >
+        <TextArea rows={4} />
+      </Form.Item>
+      <Button type="primary" htmlType="submit" style={{ float: 'right' }}>
+        Save
       </Button>
     </Form>
   );
