@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Card, Menu } from 'antd';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
+import 'react-toastify/dist/ReactToastify.css';
 import Subtract from './components/SummingTime/SummingTime';
 
 const App = () => {
