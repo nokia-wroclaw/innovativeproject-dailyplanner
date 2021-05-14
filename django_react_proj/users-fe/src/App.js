@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Menu, Row, Col } from 'antd';
+import { Card, Menu } from 'antd';
 import { format } from 'date-fns';
 import axios from 'axios';
 import { API_URL } from './constants';
