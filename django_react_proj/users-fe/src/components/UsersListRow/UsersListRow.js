@@ -15,6 +15,7 @@ const UsersListRow = ({ user, resetState }) => {
     await axios.patch(`${API_URL + user.id}/`, {
       done: !taskFlag,
     });
+    resetState();
   };
 
   const onToggleTaskFlag = () => {
