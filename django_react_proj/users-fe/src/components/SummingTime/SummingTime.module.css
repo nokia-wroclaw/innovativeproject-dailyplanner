@@ -1,9 +1,4 @@
 .SumTime{
-    border-style:dotted;
-    border-color:lightgoldenrodyellow;
-    padding: 12px;
-    text-shadow: 2px 2px lightgrey;
     font-size: 20px;
-    background-color: white;
-    text-align: right;
+    align-items: center;
 }

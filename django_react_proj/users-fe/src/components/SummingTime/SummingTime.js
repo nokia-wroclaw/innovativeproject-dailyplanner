@@ -1,22 +1,11 @@
 import { Pie } from '@ant-design/charts';
-import { Col, Row } from 'reactstrap';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { API_URL } from '../../constants';
+import { Card } from 'antd';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './SummingTime.module.css';
 
-const Subtract = () => {
-  const [users, setUsers] = useState();
+const Subtract = ({ users }) => {
   let timevalue = 0;
-  const getUsers = () => {
-    axios.get(API_URL).then((res) => setUsers(res.data));
-  };
-
-  useEffect(() => {
-    const handle = setInterval(getUsers, 1000);
-    return () => clearInterval(handle);
-  }, []);
-
   if (users) {
     users.forEach((user) => {
       const uptimes = new Date(user.endTime).getTime();
@@ -29,34 +18,6 @@ const Subtract = () => {
   const taskhours = Math.floor(timevalue / 60);
   const taskminutes = timevalue % 60;
   const substrpiechart = 480 - timevalue;
-  const datatask = [
-    {
-      type: 'Task Done',
-      value: 3,
-    },
-    {
-      type: 'Task Not Done',
-      value: 4,
-    },
-  ];
-  const config = {
-    appendPadding: 10,
-    data: datatask,
-    angleField: 'value',
-    fontSize: 10,
-    colorField: 'type',
-    radius: 1,
-    label: {
-      type: 'inner',
-      offset: '-40%',
-      content: '{percentage}',
-      style: {
-        fontSize: 15,
-        textAlign: 'center',
-      },
-    },
-    interactions: [{ type: 'element-active' }],
-  };
   const datatasktime = [
     {
       type: 'Planned Time',
@@ -72,32 +33,25 @@ const Subtract = () => {
     data: datatasktime,
     angleField: 'value',
     colorField: 'type',
-    radius: 1,
+    radius: 0.6,
     label: {
-      type: 'inner',
-      offset: '-40%',
+      type: 'spider',
       content: '{percentage}',
-      style: {
-        fontSize: 15,
-        textAlign: 'center',
-      },
     },
     interactions: [{ type: 'element-active' }],
   };
   return (
-    <div>
-      <div className={styles.SumTim}>
+    <>
+      <Card span={12} offset={6} className={styles.SumTim}>
         Total time of tasks on this day: {taskhours} hours {taskminutes} minutes
-      </div>
-      <Row>
-        <Col>
-          <Pie {...configtasktime} />
-        </Col>
-        <Col>
-          <Pie {...config} />
-        </Col>
-      </Row>
-    </div>
+      </Card>
+      <Card title="Pie chart of scheduled time to free time" style={{ width: 500 }}>
+        <Pie {...configtasktime} />
+      </Card>
+    </>
   );
+};
+Subtract.propTypes = {
+  users: PropTypes.array,
 };
 export default Subtract;
