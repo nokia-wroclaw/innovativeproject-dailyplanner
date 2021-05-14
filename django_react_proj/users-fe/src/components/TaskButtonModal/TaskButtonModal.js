@@ -4,27 +4,22 @@ import Button from 'antd/lib/button';
 import { CheckSquareOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
-const TaskButton = ({ setDoneState }) => {
-  const toastifyButton = () => toast.info('YOU SWITCHED STATE OF TASK!');
-
-  return (
-    <>
-      <Button
-        type="primary"
-        size="middle"
-        icon={<CheckSquareOutlined />}
-        onClick={() => {
-          setDoneState();
-          toastifyButton();
-        }}
-      >
-        <ToastContainer />
-      </Button>
-    </>
-  );
-};
+const TaskButton = ({ setDoneState }) => (
+  <>
+    <Button
+      type="primary"
+      size="middle"
+      icon={<CheckSquareOutlined />}
+      onClick={() => {
+        setDoneState();
+        toast.info('YOU SWITCHED STATE OF TASK!');
+      }}
+    >
+      <ToastContainer />
+    </Button>
+  </>
+);
 TaskButton.propTypes = {
   setDoneState: PropTypes.func,
 };

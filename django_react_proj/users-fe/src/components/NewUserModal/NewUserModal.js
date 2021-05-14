@@ -26,7 +26,7 @@ const NewUserModal = ({ resetState, user, create }) => {
     title = 'Create new task';
 
     button = (
-      <button className={styles.button} type="button" onClick={() => toggle()}>
+      <button className={styles.button} type="button" onClick={toggle}>
         Create new task
       </button>
     );

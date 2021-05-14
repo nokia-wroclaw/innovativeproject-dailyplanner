@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import { ToastContainer, toast } from 'react-toastify';
 import { API_URL } from '../../constants';
 import styles from './NewUserForm.module.css';
-import 'react-toastify/dist/ReactToastify.css';
 
 const NewUserForm = ({ user, resetState, toggle }) => {
   const [taskName, setTaskName] = useState(user?.taskName || '');
@@ -15,7 +14,6 @@ const NewUserForm = ({ user, resetState, toggle }) => {
   const [startTime, setStartTime] = useState(user?.startTime || '');
   const [endTime, setEndTime] = useState(user?.endTime || '');
   const types = ['', 'Meeting', 'Email', 'Housework'];
-  const toastifyEdit = () => toast.success('YOU EDITED TASK!');
   const onTaskNameChange = (event) => {
     setTaskName(event.target.value);
   };
@@ -52,7 +50,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
     });
     resetState();
     toggle();
-    toastifyEdit();
+    toast.success('YOU EDITED TASK!');
   };
   return (
     <Form onSubmit={user ? editUser : createUser}>
