@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Calendar } from 'antd';
+import Calendar from 'react-calendar';
 import { Button, Modal, Col, Container, Row } from 'reactstrap';
 import axios from 'axios';
 import { format } from 'date-fns';
@@ -58,7 +58,7 @@ const Home = () => {
         <Col>
           {button}
           <Modal isOpen={modalFlag} toggle={toggle}>
-            <Calendar fullscreen={false} onChange={(date) => setCurrentDate(date.toDate())} />
+            <Calendar onChange={setCurrentDate} currentDate={currentDate} />
           </Modal>
         </Col>
       </Row>

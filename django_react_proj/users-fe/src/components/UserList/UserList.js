@@ -36,13 +36,14 @@ const Actions = ({ user, resetState }) => {
     </>
   );
 };
-Actions.propTypes = {
-  user: PropTypes.object,
-  resetState: PropTypes.func,
-};
 
 const UserList = ({ users = [], resetState }) => (
-  <Table dataSource={users}>
+  <Table
+    selectedRowKeys="0"
+    backgroundcolor="Blue"
+    pagination={{ position: ['none', 'none'] }}
+    dataSource={users}
+  >
     <Column title="Task name" dataIndex="taskName" />
     <Column title="Description" dataIndex="taskDescription" />
     <Column
@@ -72,15 +73,17 @@ const UserList = ({ users = [], resetState }) => (
           }
         }
 
-        return <div style={{ height: '100px' }} className={rowColor} />;
+        return <div style={{ height: '30px', width: '30px' }} className={rowColor} />;
       }}
     />
-    <Column
-      title="Actions"
-      render={(value, user) => <Actions user={user} resetState={resetState} />}
-    />
+    <Column title="" render={(value, user) => <Actions user={user} resetState={resetState} />} />
   </Table>
 );
+
+Actions.propTypes = {
+  user: PropTypes.object,
+  resetState: PropTypes.func,
+};
 UserList.propTypes = {
   users: PropTypes.array,
   resetState: PropTypes.func,
