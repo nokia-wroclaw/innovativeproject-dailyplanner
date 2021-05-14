@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import Calendar from 'react-calendar';
-import { Button, Modal, Col, Container, Row } from 'reactstrap';
+import { Button, Modal, Col, Row, Card, Calendar } from 'antd';
+import 'antd/dist/antd.css';
 import axios from 'axios';
 import { format } from 'date-fns';
-import styles from './Home.module.css';
 import UserList from '../UserList/UserList';
 import NewUserModal from '../NewUserModal/NewUserModal';
 import { API_URL } from '../../constants';
 import TaskLegend from '../TaskLegend/TypesLegend';
-import 'react-calendar/dist/Calendar.css';
 import Subtract from '../SummingTime/SummingTime';
 import Statistic from '../TaskStatistic/TaskStatistic';
 
@@ -38,32 +36,32 @@ const Home = () => {
     getUsers();
   }, []);
   return (
-    <Container className={styles.Container}>
+    <Card>
       <Row>
-        <Col>
+        <Col span={5}>
           <Button type="button" onClick={() => setCurrentDate(getPreviousDay)}>
             Previous day
           </Button>
         </Col>
-        <Col>
+        <Col span={5}>
           <Button type="button" onClick={() => setCurrentDate(new Date())}>
             Current day
           </Button>
         </Col>
-        <Col>
+        <Col span={5}>
           <Button type="button" onClick={() => setCurrentDate(getNextDay)}>
             Next day
           </Button>
         </Col>
-        <Col>
+        <Col span={5}>
           {button}
-          <Modal isOpen={modalFlag} toggle={toggle}>
-            <Calendar onChange={setCurrentDate} currentDate={currentDate} />
+          <Modal visible={modalFlag} footer={null} onCancel={toggle}>
+            <Calendar fullscreen={false} onChange={(date) => setCurrentDate(date.toDate())} />
           </Modal>
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col flex="auto">
           <UserList users={getUserForView(users, currentDate)} resetState={getUsers} />
         </Col>
       </Row>
@@ -83,7 +81,7 @@ const Home = () => {
           </Col>
         </Row>
       </Row>
-    </Container>
+    </Card>
   );
 };
 export default Home;

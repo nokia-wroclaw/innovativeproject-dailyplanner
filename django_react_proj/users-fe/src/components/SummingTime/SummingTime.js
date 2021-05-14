@@ -43,7 +43,7 @@ const Subtract = ({ users }) => {
   return (
     <>
       <Card span={12} offset={6} className={styles.SumTim}>
-        Total time of tasks on this day: {taskhours} hours {taskminutes} minutes
+        Total time of tasks on this day.: {taskhours} hours {taskminutes} minutes
       </Card>
       <Card title="Pie chart of scheduled time to free time" style={{ width: 500 }}>
         <Pie {...configtasktime} />
