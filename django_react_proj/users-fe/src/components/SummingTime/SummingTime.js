@@ -45,8 +45,7 @@ const Subtract = ({ users, workHours }) => {
 
   if (users) {
     users.forEach((user) => {
-      const itisdone = String(user.done);
-      if (itisdone === 'true') {
+      if (user.done === true) {
         done += 1;
       } else {
         notDone += 1;
