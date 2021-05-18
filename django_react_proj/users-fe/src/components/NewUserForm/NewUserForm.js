@@ -43,7 +43,6 @@ const NewUserForm = ({ user, resetState, toggle }) => {
     },
   ];
 
-  const toastifyEdit = () => toast.success('YOU EDITED TASK!');
   const createUser = async (values) => {
     await axios.post(API_URL, {
       ...values,
