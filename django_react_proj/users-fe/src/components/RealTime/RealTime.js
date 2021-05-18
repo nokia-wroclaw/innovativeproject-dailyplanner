@@ -26,14 +26,12 @@ const Time = ({ users, firstNotifiaction, secondNotifiaction }) => {
         Math.floor(new Date(user.startTime).getTime() / 1000 - new Date(time).getTime() / 1000)
       );
       if (Subtract === second) {
-        console.log('second');
         toast.error(
           <div>
             you have incoming {Msg} in {secondTime} minute!
           </div>
         );
       } else if (Subtract === first) {
-        console.log('first');
         toast.warn(
           <div>
             you have incoming {Msg} in {firstTime} minute!

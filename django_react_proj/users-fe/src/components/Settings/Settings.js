@@ -12,15 +12,12 @@ const WorkSettings = ({
 }) => {
   const onChangeHours = (number) => {
     setworkHours(number);
-    console.log(number);
   };
   const onChangeFirstNotification = (number) => {
     setFisrtNotification(number);
-    console.log(number);
   };
   const onChangeSecondNotification = (number) => {
     setSecondNotification(number);
-    console.log(number);
   };
   const layout = {
     labelCol: { span: 12 },
