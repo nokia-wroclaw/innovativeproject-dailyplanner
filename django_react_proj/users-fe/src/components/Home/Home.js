@@ -39,6 +39,7 @@ const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) 
             <Calendar fullscreen={false} onChange={(date) => setCurrentDate(date.toDate())} />
           </Modal>
         </Col>
+        <Col>{currentDate.toDateString()}</Col>
       </Row>
       <Row>
         <Col span={16} offset={4}>

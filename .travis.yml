@@ -63,5 +63,9 @@ stages:
   - test 
   - eslint
   - fix
-
+deploy:
+  provider: heroku
+  api_key:
+    secure: "2b6009bc-775a-4650-8ff9-248ac6baafe9"
+  app: Daily-Planner
 
