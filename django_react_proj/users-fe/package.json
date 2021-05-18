@@ -13,6 +13,7 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
     "antd": "^4.15.1",
+    "antd-button-color": "^1.0.4",
     "apexcharts": "^3.26.1",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",

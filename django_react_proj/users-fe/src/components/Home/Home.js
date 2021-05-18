@@ -1,83 +1,66 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Modal, Col, Container, Row } from 'reactstrap';
-import axios from 'axios';
-import Calendar from 'react-calendar';
-import { format } from 'date-fns';
-import styles from './Home.module.css';
+import React, { useState } from 'react';
+import { Button, Modal, Col, Row, Card, Calendar } from 'antd';
+import 'antd/dist/antd.css';
+import PropTypes from 'prop-types';
 import UserList from '../UserList/UserList';
 import NewUserModal from '../NewUserModal/NewUserModal';
-import { API_URL } from '../../constants';
 import TaskLegend from '../TaskLegend/TypesLegend';
-import 'react-calendar/dist/Calendar.css';
-import Subtract from '../SummingTime/SummingTime';
 
-const getUserForView = (users = [], date = new Date()) => {
-  const m = (date.getMonth() + 1).toString().padStart(2, '0');
-  const y = date.getFullYear();
-  const d = date.getDate().toString().padStart(2, '0');
-  return users
-    .filter((user) => format(new Date(user.startTime), 'yyyy-MM-dd') === `${y}-${m}-${d}`)
-    .sort((userA, userB) => userA.startTime.localeCompare(userB.startTime));
-};
 const getPreviousDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1);
 const getNextDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
 
-const Home = () => {
-  const [users, setUsers] = useState();
-  const [currentDate, setCurrentDate] = useState(new Date());
+const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) => {
   const [modalFlag, setModalFlag] = useState(false);
   const toggle = () => {
     setModalFlag((previous) => !previous);
   };
   const button = <Button onClick={toggle}>Calendar</Button>;
-  const getUsers = () => {
-    axios.get(API_URL).then((res) => setUsers(res.data));
-  };
-  useEffect(() => {
-    getUsers();
-  }, []);
-
   return (
-    <Container className={styles.Container}>
+    <Card>
       <Row>
-        <Col>
+        <Col span={4} offset={5}>
           <Button type="button" onClick={() => setCurrentDate(getPreviousDay)}>
             Previous day
           </Button>
         </Col>
-        <Col>
+        <Col span={4}>
           <Button type="button" onClick={() => setCurrentDate(new Date())}>
             Current day
           </Button>
         </Col>
-        <Col>
+        <Col span={4}>
           <Button type="button" onClick={() => setCurrentDate(getNextDay)}>
             Next day
           </Button>
         </Col>
-        <Col>
+        <Col span={4}>
           {button}
-          <Modal isOpen={modalFlag} toggle={toggle}>
-            <Calendar onChange={setCurrentDate} currentDate={currentDate} />
+          <Modal visible={modalFlag} footer={null} onCancel={toggle}>
+            <Calendar fullscreen={false} onChange={(date) => setCurrentDate(date.toDate())} />
           </Modal>
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col span={16} offset={4}>
           <UserList users={getUserForView(users, currentDate)} resetState={getUsers} />
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col offset={17}>
           <NewUserModal create resetState={getUsers} />
         </Col>
       </Row>
-      <TaskLegend />
-      <Col>
-        <Subtract />
+      <Col offset={4}>
+        <TaskLegend />
       </Col>
-    </Container>
+    </Card>
   );
 };
-
+Home.propTypes = {
+  getUserForView: PropTypes.func,
+  setCurrentDate: PropTypes.func,
+  currentDate: PropTypes.any,
+  users: PropTypes.array,
+  getUsers: PropTypes.func,
+};
 export default Home;

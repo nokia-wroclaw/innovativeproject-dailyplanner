@@ -62,7 +62,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
     });
     resetState();
     toggle();
-    toastifyEdit();
+    toast.success('YOU EDITED TASK!');
   };
 
   return (
