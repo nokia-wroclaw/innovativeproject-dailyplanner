@@ -76,12 +76,20 @@ const NewUserForm = ({ user, resetState, toggle }) => {
         span: 14,
       }}
       layout="horizontal"
+      initialValues={{
+        taskName: user ? taskName : '',
+        taskType: user ? taskType : '',
+        taskPriority: user ? taskPriority : '',
+        startTime: user ? moment(startTime) : '',
+        endTime: user ? moment(endTime) : '',
+        taskDescription: user ? taskDescription : '',
+      }}
     >
       <Form.Item label="Task name" name="taskName">
-        <Input defaultValue={user ? taskName : ''} />
+        <Input />
       </Form.Item>
       <Form.Item label="Task type" name="taskType">
-        <Select defaultValue={user ? taskType : ''}>
+        <Select>
           {types.map((type) => (
             <Select.Option key={type} value={type}>
               {type}
@@ -90,7 +98,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
         </Select>
       </Form.Item>
       <Form.Item label="Task priority " name="taskPriority">
-        <Select defaultValue={user ? taskPriority : ''}>
+        <Select>
           {priority.map((p) => (
             <Select.Option key={p.p} value={p.p}>
               {p.pName}
@@ -99,13 +107,13 @@ const NewUserForm = ({ user, resetState, toggle }) => {
         </Select>
       </Form.Item>
       <Form.Item label="Task start" {...config} name="startTime">
-        <TimePicker format="HH:mm" defaultValue={user ? moment(startTime) : ''} />
+        <TimePicker format="HH:mm" />
       </Form.Item>
       <Form.Item label="Task end" {...config} name="endTime">
-        <TimePicker format="HH:mm" defaultValue={user ? moment(endTime) : ''} />
+        <TimePicker format="HH:mm" />
       </Form.Item>
       <Form.Item label="Description" name="taskDescription">
-        <TextArea rows={4} defaultValue={user ? taskDescription : ''} />
+        <TextArea rows={4} />
       </Form.Item>
       <Button type="primary" htmlType="submit" style={{ float: 'right' }}>
         Save
