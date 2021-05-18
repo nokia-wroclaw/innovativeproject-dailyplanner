@@ -12,6 +12,7 @@ const Subtract = ({ users, workHours }) => {
       const lowtimes = new Date(user.startTime).getTime();
       const sub = uptimes - lowtimes;
       const minutes = sub / 60000;
+      console.log(workHours, typeof workHours);
       timevalue += minutes;
     });
   }

@@ -24,6 +24,8 @@ const App = () => {
   };
   const [currentDate, setCurrentDate] = useState(new Date());
   const [workHours, setworkHours] = useState(8);
+  const [firstNotifiaction, setFisrtNotification] = useState(15);
+  const [secondNotifiaction, setSecondNotification] = useState(5);
   const [users, setUsers] = useState();
   const getUsers = () => {
     axios.get(API_URL).then((res) => setUsers(res.data));
@@ -42,7 +44,16 @@ const App = () => {
       />
     ),
     2: <Subtract users={getUserForView(users, currentDate)} workHours={workHours} />,
-    3: <WorkSettings setworkHours={setworkHours} workHours={workHours} />,
+    3: (
+      <WorkSettings
+        firstNotifiaction={firstNotifiaction}
+        setFisrtNotification={setFisrtNotification}
+        secondNotifiaction={secondNotifiaction}
+        setSecondNotification={setSecondNotification}
+        setworkHours={setworkHours}
+        workHours={workHours}
+      />
+    ),
   };
   return (
     <>
@@ -58,7 +69,11 @@ const App = () => {
         <Menu.Item key="2">Chart</Menu.Item>
         <Menu.Item key="3">Settings</Menu.Item>
       </Menu>
-      <Header users={getUserForView(users, currentDate)} />
+      <Header
+        firstNotifiaction={firstNotifiaction}
+        secondNotifiaction={secondNotifiaction}
+        users={getUserForView(users, currentDate)}
+      />
       <Card>{contentList[noTitleKey]}</Card>
     </>
   );

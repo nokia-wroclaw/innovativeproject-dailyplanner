@@ -7,7 +7,7 @@ import Time from '../RealTime/RealTime';
 import styles from '../RealTime/RealTime.module.css';
 
 const { Content } = Layout;
-const PageHeader = ({ users }) => (
+const PageHeader = ({ users, firstNotifiaction, secondNotifiaction }) => (
   <Layout className="layout">
     <Content style={{ padding: '0 50px' }}>
       <Breadcrumb style={{ margin: '16px 0' }}>
@@ -23,7 +23,11 @@ const PageHeader = ({ users }) => (
           />
         </Col>
         <Col className={styles.Time} span={2} offset={1}>
-          <Time users={users} />
+          <Time
+            firstNotifiaction={firstNotifiaction}
+            secondNotifiaction={secondNotifiaction}
+            users={users}
+          />
         </Col>
       </Row>
     </Content>
@@ -31,5 +35,7 @@ const PageHeader = ({ users }) => (
 );
 PageHeader.propTypes = {
   users: PropTypes.array,
+  firstNotifiaction: PropTypes.number,
+  secondNotifiaction: PropTypes.number,
 };
 export default PageHeader;

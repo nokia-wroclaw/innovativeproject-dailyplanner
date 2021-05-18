@@ -49,7 +49,7 @@ const WorkSettings = ({
       </Form.Item>
       <Form.Item label="Set first notification:">
         <InputNumber
-          min={10}
+          min={1}
           max={120}
           defaultValue={firstNotifiaction}
           onChange={onChangeFirstNotification}
