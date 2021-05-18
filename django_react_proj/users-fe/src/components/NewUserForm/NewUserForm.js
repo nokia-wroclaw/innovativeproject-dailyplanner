@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import 'antd/dist/antd.css';
-import { Button, Form, Input, Select, TimePicker } from 'antd';
+import { Button, Form, Input, Select, DatePicker } from 'antd';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
@@ -67,7 +67,6 @@ const NewUserForm = ({ user, resetState, toggle }) => {
   return (
     <Form
       onFinish={user ? editUser : createUser}
-      // onFinish={onFinish}
       labelCol={{
         span: 4,
       }}
@@ -106,10 +105,10 @@ const NewUserForm = ({ user, resetState, toggle }) => {
         </Select>
       </Form.Item>
       <Form.Item label="Task start" {...config} name="startTime">
-        <TimePicker format="HH:mm" />
+        <DatePicker showTime format="YYYY-MM-DD HH:mm" />
       </Form.Item>
       <Form.Item label="Task end" {...config} name="endTime">
-        <TimePicker format="HH:mm" />
+        <DatePicker showTime format="YYYY-MM-DD HH:mm" />
       </Form.Item>
       <Form.Item label="Description" name="taskDescription">
         <TextArea rows={4} />
