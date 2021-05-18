@@ -2,9 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, InputNumber, Button } from 'antd';
 
-const WorkSettings = ({ workHours, setworkHours }) => {
-  const onChange = (number) => {
+const WorkSettings = ({
+  workHours,
+  setworkHours,
+  firstNotifiaction,
+  setFisrtNotification,
+  secondNotifiaction,
+  setSecondNotification,
+}) => {
+  const onChangeHours = (number) => {
     setworkHours(number);
+    console.log(number);
+  };
+  const onChangeFirstNotification = (number) => {
+    setFisrtNotification(number);
+    console.log(number);
+  };
+  const onChangeSecondNotification = (number) => {
+    setSecondNotification(number);
     console.log(number);
   };
   const layout = {
@@ -30,7 +45,23 @@ const WorkSettings = ({ workHours, setworkHours }) => {
       onFinishFailed={onFinishFailed}
     >
       <Form.Item label="Set work hours:">
-        <InputNumber min={1} max={24} defaultValue={workHours} onChange={onChange} />
+        <InputNumber min={1} max={24} defaultValue={workHours} onChange={onChangeHours} />
+      </Form.Item>
+      <Form.Item label="Set first notification:">
+        <InputNumber
+          min={10}
+          max={120}
+          defaultValue={firstNotifiaction}
+          onChange={onChangeFirstNotification}
+        />
+      </Form.Item>
+      <Form.Item label="Set second notification:">
+        <InputNumber
+          min={1}
+          max={30}
+          defaultValue={secondNotifiaction}
+          onChange={onChangeSecondNotification}
+        />
       </Form.Item>
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
@@ -43,5 +74,9 @@ const WorkSettings = ({ workHours, setworkHours }) => {
 WorkSettings.propTypes = {
   setworkHours: PropTypes.func,
   workHours: PropTypes.number,
+  setFisrtNotification: PropTypes.func,
+  firstNotifiaction: PropTypes.number,
+  setSecondNotification: PropTypes.func,
+  secondNotifiaction: PropTypes.number,
 };
 export default WorkSettings;

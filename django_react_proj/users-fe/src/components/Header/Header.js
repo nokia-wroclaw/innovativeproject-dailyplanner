@@ -2,11 +2,12 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import './Header.css';
 import { Col, Row, Image, Layout, Breadcrumb } from 'antd';
+import PropTypes from 'prop-types';
 import Time from '../RealTime/RealTime';
 import styles from '../RealTime/RealTime.module.css';
 
 const { Content } = Layout;
-const PageHeader = () => (
+const PageHeader = ({ users }) => (
   <Layout className="layout">
     <Content style={{ padding: '0 50px' }}>
       <Breadcrumb style={{ margin: '16px 0' }}>
@@ -22,11 +23,13 @@ const PageHeader = () => (
           />
         </Col>
         <Col className={styles.Time} span={2} offset={1}>
-          <Time />
+          <Time users={users} />
         </Col>
       </Row>
     </Content>
   </Layout>
 );
-
+PageHeader.propTypes = {
+  users: PropTypes.array,
+};
 export default PageHeader;

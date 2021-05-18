@@ -58,7 +58,7 @@ const App = () => {
         <Menu.Item key="2">Chart</Menu.Item>
         <Menu.Item key="3">Settings</Menu.Item>
       </Menu>
-      <Header />
+      <Header users={getUserForView(users, currentDate)} />
       <Card>{contentList[noTitleKey]}</Card>
     </>
   );
