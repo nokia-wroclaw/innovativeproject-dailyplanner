@@ -3,10 +3,9 @@ import 'antd/dist/antd.css';
 import { Button, Form, Input, Select, TimePicker } from 'antd';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import moment from 'moment';
 import { API_URL } from '../../constants';
-import styles from './NewUserForm.module.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 const config = {
@@ -22,12 +21,12 @@ const config = {
 const { TextArea } = Input;
 
 const NewUserForm = ({ user, resetState, toggle }) => {
-  const [taskName, setTaskName] = useState(user?.taskName || '');
-  const [taskDescription, setTaskDescription] = useState(user?.taskDescription || '');
-  const [taskType, setTaskType] = useState(user?.taskType || '');
-  const [taskPriority, setTaskPriority] = useState(user?.taskPriority || '');
-  const [startTime, setStartTime] = useState(user?.startTime || '');
-  const [endTime, setEndTime] = useState(user?.endTime || '');
+  const [taskName] = useState(user?.taskName || '');
+  const [taskDescription] = useState(user?.taskDescription || '');
+  const [taskType] = useState(user?.taskType || '');
+  const [taskPriority] = useState(user?.taskPriority || '');
+  const [startTime] = useState(user?.startTime || '');
+  const [endTime] = useState(user?.endTime || '');
   const types = ['Meeting', 'Email', 'Housework'];
   const priority = [
     {
@@ -44,58 +43,26 @@ const NewUserForm = ({ user, resetState, toggle }) => {
     },
   ];
 
-  const formatStartTime = () => {
-    const timeFormat = '12:00';
-    setStartTime(timeFormat);
-  };
-
   const toastifyEdit = () => toast.success('YOU EDITED TASK!');
-  const onTaskNameChange = (event) => {
-    setTaskName(event.target.value);
-  };
-  const onTaskDescriptionChange = (event) => {
-    setTaskDescription(event.target.value);
-  };
-  const onTaskTypeChange = (event) => {
-    setTaskType(event.target.value);
-  };
-
-  const onTaskPriorityChange = (event) => {
-    setTaskPriority(event.target.value);
-  };
-
-  const dateValue = (value) => (typeof value === 'string' ? new Date(value) : value);
-  const createUser = async () => {
+  const createUser = async (values) => {
     await axios.post(API_URL, {
-      id: user?.id,
-      taskName,
-      taskDescription,
-      taskType,
-      taskPriority,
-      startTime,
-      endTime,
+      ...values,
+      startTime: new Date(values.startTime),
+      endTime: new Date(values.endTime),
     });
+    console.log(values.endTime);
     resetState();
     toggle();
   };
-  const editUser = async (event) => {
-    event.preventDefault();
+  const editUser = async (values) => {
     await axios.put(`${API_URL + user.id}/`, {
-      id: user.id,
-      taskName,
-      taskDescription,
-      taskType,
-      taskPriority,
-      startTime,
-      endTime,
+      ...values,
+      startTime: new Date(values.startTime),
+      endTime: new Date(values.endTime),
     });
     resetState();
     toggle();
     toastifyEdit();
-  };
-
-  const onFinish = (values) => {
-    console.log('recived values', values);
   };
 
   return (
@@ -111,10 +78,10 @@ const NewUserForm = ({ user, resetState, toggle }) => {
       layout="horizontal"
     >
       <Form.Item label="Task name" name="taskName">
-        <Input />
+        <Input defaultValue={user ? taskName : ''} />
       </Form.Item>
       <Form.Item label="Task type" name="taskType">
-        <Select>
+        <Select defaultValue={user ? taskType : ''}>
           {types.map((type) => (
             <Select.Option key={type} value={type}>
               {type}
@@ -123,7 +90,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
         </Select>
       </Form.Item>
       <Form.Item label="Task priority " name="taskPriority">
-        <Select>
+        <Select defaultValue={user ? taskPriority : ''}>
           {priority.map((p) => (
             <Select.Option key={p.p} value={p.p}>
               {p.pName}
@@ -132,13 +99,13 @@ const NewUserForm = ({ user, resetState, toggle }) => {
         </Select>
       </Form.Item>
       <Form.Item label="Task start" {...config} name="startTime">
-        <TimePicker format="HH:mm" />
+        <TimePicker format="HH:mm" defaultValue={user ? moment(startTime) : ''} />
       </Form.Item>
       <Form.Item label="Task end" {...config} name="endTime">
-        <TimePicker format="HH:mm" />
+        <TimePicker format="HH:mm" defaultValue={user ? moment(endTime) : ''} />
       </Form.Item>
       <Form.Item label="Description" name="taskDescription">
-        <TextArea rows={4} />
+        <TextArea rows={4} defaultValue={user ? taskDescription : ''} />
       </Form.Item>
       <Button type="primary" htmlType="submit" style={{ float: 'right' }}>
         Save
