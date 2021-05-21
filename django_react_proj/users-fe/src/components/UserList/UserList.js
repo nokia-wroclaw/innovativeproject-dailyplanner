@@ -56,7 +56,7 @@ const UserList = ({ users = [], resetState }) => (
       <Column
         title="Task priority"
         dataIndex="taskPriority"
-        render={(taskPriority, user) => {
+        render={(taskPriority) => {
           let priority = '';
           if (taskPriority === 2) {
             // priority = '#ffc069';
