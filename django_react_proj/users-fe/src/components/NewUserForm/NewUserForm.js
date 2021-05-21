@@ -50,7 +50,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
     });
     resetState();
     toggle();
-    toast.success('YOU EDITED TASK!');
+    toast.success('You edited task!');
   };
   return (
     <Form onSubmit={user ? editUser : createUser}>
