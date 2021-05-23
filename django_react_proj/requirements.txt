@@ -1,3 +1,6 @@
-django
+django==3.2
 django-cors-headers
 djangorestframework
+gunicorn
+django-heroku
+whitenoise
