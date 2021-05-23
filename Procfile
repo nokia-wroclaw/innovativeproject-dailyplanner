@@ -1,2 +1,2 @@
 release: python django_react_proj/manage.py migrate
-web: gunicorn django_react_proj.django_react_proj.wsgi
+web: gunicorn django_react_proj.django_react_proj.wsgi --log-file -
