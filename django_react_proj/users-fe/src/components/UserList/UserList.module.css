@@ -54,3 +54,11 @@
 .Mytable thead > tr > th{
     background: #034f84 ;
 }
+
+.Medium{
+    background-color: #fa8c16
+}
+
+.High{
+    background-color: #cf1322
+}

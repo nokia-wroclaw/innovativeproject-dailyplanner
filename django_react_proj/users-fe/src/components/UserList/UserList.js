@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Table } from 'antd';
+import { ExclamationOutlined } from '@ant-design/icons';
 import { format } from 'date-fns';
 import TaskButton from '../TaskButtonModal/TaskButtonModal';
 import NewUserModal from '../NewUserModal/NewUserModal';
@@ -51,6 +52,30 @@ const UserList = ({ users = [], resetState }) => (
             'HH:mm'
           )}`
         }
+      />
+      <Column
+        title="Task priority"
+        dataIndex="taskPriority"
+        render={(taskPriority) => {
+          let priority = '';
+          if (taskPriority === 2) {
+            // priority = '#ffc069';
+            priority = (
+              <div>
+                <ExclamationOutlined style={{ color: '#ffa940', fontSize: '200%' }} />
+              </div>
+            );
+          }
+          if (taskPriority === 3) {
+            priority = (
+              <div>
+                <ExclamationOutlined style={{ color: '#cf1322', fontSize: '200%' }} />
+                <ExclamationOutlined style={{ color: '#cf1322', fontSize: '200%' }} />
+              </div>
+            );
+          }
+          return priority;
+        }}
       />
       <Column
         title="Task type"
