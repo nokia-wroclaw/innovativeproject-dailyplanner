@@ -66,7 +66,7 @@ ROOT_URLCONF = 'django_react_proj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'users-fe/build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -133,8 +133,10 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'build', 'static')
-STATICFILES_DIRS = []
+#STATIC_ROOT = os.path.join(BASE_DIR,  'django_react_proj/users-fe' ,'build', 'static')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,  'users-fe/build/static'),
+)
 
 
 django_heroku.settings(locals())

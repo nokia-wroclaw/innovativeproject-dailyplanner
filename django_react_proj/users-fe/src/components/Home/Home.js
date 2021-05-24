@@ -25,7 +25,7 @@ const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) 
         </Col>
         <Col span={4}>
           <Button type="button" onClick={() => setCurrentDate(new Date())}>
-            Current day
+            {new Date().toDateString().substring(3, 10)}
           </Button>
         </Col>
         <Col span={4}>

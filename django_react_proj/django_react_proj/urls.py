@@ -16,8 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from users import views
-from django.conf.urls import url
-
+from django.views.generic import TemplateView 
 # urlpatterns = [
 #     path('admin/', admin.site.urls),
 #     re_path(r'^api/users/$', views.users_list),
@@ -27,5 +26,6 @@ from django.conf.urls import url
 urlpatterns = [
 path('admin/', admin.site.urls),
 re_path(r'^api/users/$', views.users_list),
-path('api/users/<int:id>/', views.users_detail)
+path('api/users/<int:id>/', views.users_detail),
+path('', TemplateView.as_view(template_name='index.html'))
 ]

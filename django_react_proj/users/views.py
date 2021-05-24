@@ -1,11 +1,15 @@
+from django.http import request
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
-
+from django.shortcuts import render
 from .models import User
 from .serializers import *
 
+
 @api_view(['GET', 'POST'])
+# def index(render):
+#     return render(request,  "users-fe/src/index.js")
 def users_list(request):
     if request.method == 'GET':
         data = User.objects.all()
