@@ -1,2 +1,2 @@
-release: python django_react_proj/manage.py migrate && cd django_react_proj/users-fe && npm run build && django_react_proj/manage.py collectstatic
+release: python django_react_proj/manage.py migrate && cd django_react_proj/users-fe && npm install&&npm run build && django_react_proj/manage.py collectstatic
 web: gunicorn --pythonpath django_react_proj django_react_proj.wsgi:application --preload --workers 1
