@@ -1,7 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import './Header.css';
-import { Col, Row, Image, Layout, Breadcrumb } from 'antd';
+import { Col, Row, Image, Layout } from 'antd';
 import Time from '../RealTime/RealTime';
 import styles from '../RealTime/RealTime.module.css';
 
@@ -9,11 +9,6 @@ const { Content } = Layout;
 const PageHeader = () => (
   <Layout className="layout">
     <Content style={{ padding: '0 50px' }}>
-      <Breadcrumb style={{ margin: '16px 0' }}>
-        <Breadcrumb.Item>Home</Breadcrumb.Item>
-        <Breadcrumb.Item>List</Breadcrumb.Item>
-        <Breadcrumb.Item>App</Breadcrumb.Item>
-      </Breadcrumb>
       <Row align="middle">
         <Col span={10} offset={7} className="Center">
           <Image

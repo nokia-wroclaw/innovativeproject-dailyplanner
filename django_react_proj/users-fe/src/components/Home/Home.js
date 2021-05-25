@@ -4,7 +4,6 @@ import 'antd/dist/antd.css';
 import PropTypes from 'prop-types';
 import UserList from '../UserList/UserList';
 import NewUserModal from '../NewUserModal/NewUserModal';
-import TaskLegend from '../TaskLegend/TypesLegend';
 
 const getPreviousDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1);
 const getNextDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
@@ -50,9 +49,6 @@ const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) 
           <NewUserModal create resetState={getUsers} />
         </Col>
       </Row>
-      <Col offset={4}>
-        <TaskLegend />
-      </Col>
     </Card>
   );
 };

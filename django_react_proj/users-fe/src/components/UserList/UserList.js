@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Table } from 'antd';
+import { Table, Tag } from 'antd';
 import { ExclamationOutlined } from '@ant-design/icons';
 import { format } from 'date-fns';
 import TaskButton from '../TaskButtonModal/TaskButtonModal';
@@ -81,23 +81,42 @@ const UserList = ({ users = [], resetState }) => (
         title="Task type"
         dataIndex="taskType"
         render={(taskType, user) => {
-          let rowColor = '';
-
           if (user.done) {
-            rowColor = styles.ButtonTrue;
-          } else {
             if (taskType === 'Meeting') {
-              rowColor = styles.Meeting;
+              return (
+                <>
+                  <Tag color="#6a1b9a">DONE</Tag>
+                  <Tag color="#f50">Meeting</Tag>
+                </>
+              );
             }
             if (taskType === 'Email') {
-              rowColor = styles.Email;
+              return (
+                <>
+                  <Tag color="#6a1b9a">DONE</Tag>
+                  <Tag color="#2db7f5">Email</Tag>
+                </>
+              );
             }
             if (taskType === 'Housework') {
-              rowColor = styles.Housework;
+              return (
+                <>
+                  <Tag color="#6a1b9a">DONE</Tag>
+                  <Tag color="#87d068">Housework</Tag>
+                </>
+              );
+            }
+          } else {
+            if (taskType === 'Meeting') {
+              return <Tag color="#f50">Meeting</Tag>;
+            }
+            if (taskType === 'Email') {
+              return <Tag color="#2db7f5">Email</Tag>;
+            }
+            if (taskType === 'Housework') {
+              return <Tag color="#87d068">Housework</Tag>;
             }
           }
-
-          return <div style={{ height: '30px', width: '30px' }} className={rowColor} />;
         }}
       />
       <Column title="" render={(value, user) => <Actions user={user} resetState={resetState} />} />
