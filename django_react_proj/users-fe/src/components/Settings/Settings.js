@@ -6,7 +6,7 @@ const WorkSettings = ({
   workHours,
   setworkHours,
   firstNotifiaction,
-  setFisrtNotification,
+  setFirstNotification,
   secondNotifiaction,
   setSecondNotification,
 }) => {
@@ -14,7 +14,7 @@ const WorkSettings = ({
     setworkHours(number);
   };
   const onChangeFirstNotification = (number) => {
-    setFisrtNotification(number);
+    setFirstNotification(number);
   };
   const onChangeSecondNotification = (number) => {
     setSecondNotification(number);
@@ -71,7 +71,7 @@ const WorkSettings = ({
 WorkSettings.propTypes = {
   setworkHours: PropTypes.func,
   workHours: PropTypes.number,
-  setFisrtNotification: PropTypes.func,
+  setFirstNotification: PropTypes.func,
   firstNotifiaction: PropTypes.number,
   setSecondNotification: PropTypes.func,
   secondNotifiaction: PropTypes.number,

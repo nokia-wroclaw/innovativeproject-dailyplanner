@@ -24,7 +24,7 @@ const App = () => {
   };
   const [currentDate, setCurrentDate] = useState(new Date());
   const [workHours, setworkHours] = useState(8);
-  const [firstNotifiaction, setFisrtNotification] = useState(15);
+  const [firstNotifiaction, setFirstNotification] = useState(15);
   const [secondNotifiaction, setSecondNotification] = useState(5);
   const [users, setUsers] = useState();
   const getUsers = () => {
@@ -47,7 +47,7 @@ const App = () => {
     3: (
       <WorkSettings
         firstNotifiaction={firstNotifiaction}
-        setFisrtNotification={setFisrtNotification}
+        setFirstNotification={setFirstNotification}
         secondNotifiaction={secondNotifiaction}
         setSecondNotification={setSecondNotification}
         setworkHours={setworkHours}
