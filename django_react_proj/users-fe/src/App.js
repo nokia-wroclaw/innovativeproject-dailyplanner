@@ -8,6 +8,7 @@ import Home from './components/Home/Home';
 import 'react-toastify/dist/ReactToastify.css';
 import Subtract from './components/SummingTime/SummingTime';
 import WorkSettings from './components/Settings/Settings';
+import AuthForm from './components/AuthForm/AuthForm';
 
 const App = () => {
   const [noTitleKey, setnoTitleKey] = useState('1');
@@ -60,6 +61,7 @@ const App = () => {
       </Menu>
       <Header />
       <Card>{contentList[noTitleKey]}</Card>
+      <AuthForm />
     </>
   );
 };
