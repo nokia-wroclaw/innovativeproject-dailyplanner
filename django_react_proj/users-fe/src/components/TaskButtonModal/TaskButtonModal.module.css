@@ -23,3 +23,8 @@
     min-width: 20px;
     border-radius: 4px;
 }
+.inbtn{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;   
+}

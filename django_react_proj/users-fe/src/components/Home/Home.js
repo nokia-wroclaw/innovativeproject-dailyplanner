@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import UserList from '../UserList/UserList';
 import NewUserModal from '../NewUserModal/NewUserModal';
 import TaskLegend from '../TaskLegend/TypesLegend';
+import styles from './Home.module.css';
 
 const getPreviousDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1);
 const getNextDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
@@ -16,7 +17,7 @@ const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) 
     setModalFlag((previous) => !previous);
   };
   const button = (
-    <Button onClick={toggle} shape="round" size="large">
+    <Button className={styles.inbtn} onClick={toggle} shape="round" size="large">
       <CalendarOutlined />
     </Button>
   );
@@ -25,10 +26,10 @@ const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) 
       <Row>
         <Col span={4} offset={5} align="top">
           <Button
+            className={styles.inbtn}
             type="button"
             shape="round"
             size="large"
-            align="center"
             onClick={() => setCurrentDate(getPreviousDay)}
           >
             <LeftOutlined />
@@ -36,10 +37,10 @@ const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) 
         </Col>
         <Col span={4}>
           <Button
+            className={styles.inbtn}
             type="button"
             shape="round"
             size="large"
-            align="center"
             onClick={() => setCurrentDate(new Date())}
           >
             {new Date().toDateString().substring(3, 10)}
@@ -47,10 +48,10 @@ const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) 
         </Col>
         <Col span={4}>
           <Button
+            className={styles.inbtn}
             type="button"
             shape="round"
             size="large"
-            align="center"
             onClick={() => setCurrentDate(getNextDay)}
           >
             <RightOutlined />

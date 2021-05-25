@@ -4,19 +4,21 @@ import Button from 'antd/lib/button';
 import { CheckSquareOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import { ToastContainer, toast } from 'react-toastify';
+import styles from './TaskButtonModal.module.css';
 
 const TaskButton = ({ setDoneState }) => (
   <>
     <Button
+      className={styles.inbtn}
       type="primary"
       size="middle"
       shape="round"
-      icon={<CheckSquareOutlined />}
       onClick={() => {
         setDoneState();
         toast.info('You switched state of task!');
       }}
     >
+      <CheckSquareOutlined />
       <ToastContainer />
     </Button>
   </>

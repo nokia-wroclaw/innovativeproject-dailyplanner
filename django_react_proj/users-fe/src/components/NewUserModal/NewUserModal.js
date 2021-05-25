@@ -15,12 +15,14 @@ const NewUserModal = ({ resetState, user, create }) => {
   let title = 'Edit task';
   let button = (
     <Button
+      className={styles.inbtn}
       type="primary"
       shape="round"
-      icon={<EditOutlined />}
       style={{ background: 'green', borderColor: 'green' }}
       onClick={toggle}
-    />
+    >
+      <EditOutlined />
+    </Button>
   );
 
   if (create) {
