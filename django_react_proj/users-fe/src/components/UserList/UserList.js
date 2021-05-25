@@ -3,12 +3,13 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Table } from 'antd';
 import { ExclamationOutlined } from '@ant-design/icons';
-import { format } from 'date-fns';
+import { format, addDays } from 'date-fns';
 import TaskButton from '../TaskButtonModal/TaskButtonModal';
 import NewUserModal from '../NewUserModal/NewUserModal';
 import ConfirmRemovalModal from '../ConfirmRemovalModal/ConfirmRemovalModal';
 import { API_URL } from '../../constants';
 import styles from './UserList.module.css';
+import NextDayButton from '../NextDayButton/NextDayButton';
 
 const { Column } = Table;
 
@@ -16,6 +17,14 @@ const Actions = ({ user, resetState }) => {
   const setDoneState = async () => {
     await axios.patch(`${API_URL + user.id}/`, {
       done: !user.done,
+    });
+    resetState();
+  };
+
+  const moveToNextDay = async () => {
+    await axios.put(`${API_URL + user.id}/`, {
+      startTime: addDays(new Date(user.startTime), 1),
+      endTime: addDays(new Date(user.endTime), 1),
     });
     resetState();
   };
@@ -31,6 +40,8 @@ const Actions = ({ user, resetState }) => {
 
   return (
     <>
+      <NextDayButton moveToNextDay={moveToNextDay} />
+      <> </>
       <TaskButton setDoneState={setDoneState} />
       <NewUserModal create={false} user={user} resetState={resetState} />
       <ConfirmRemovalModal id={user.id} deleteUser={deleteUser} />
