@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Menu } from 'antd';
+import { Card, Menu, Col, Row } from 'antd';
 import { format } from 'date-fns';
 import axios from 'axios';
 import { API_URL } from './constants';
@@ -8,6 +8,9 @@ import Home from './components/Home/Home';
 import 'react-toastify/dist/ReactToastify.css';
 import Subtract from './components/SummingTime/SummingTime';
 import WorkSettings from './components/Settings/Settings';
+import TaskTypeChart from './components/TaskTypeChart/TaskTypeChart';
+import TaskTimeStaticChart from './components/TaskTimeStaticChart/TaskTimeStaticChart';
+import TaskProgressChart from './components/TaskProgressChart/TaskProgressChart';
 
 const App = () => {
   const [noTitleKey, setnoTitleKey] = useState('1');
@@ -25,6 +28,8 @@ const App = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [workHours, setworkHours] = useState(8);
   const [users, setUsers] = useState();
+  const [WH, setWH] = useState(0);
+  const [WM, setWM] = useState(0);
   const getUsers = () => {
     axios.get(API_URL).then((res) => setUsers(res.data));
   };
@@ -41,7 +46,31 @@ const App = () => {
         users={users}
       />
     ),
-    2: <Subtract users={getUserForView(users, currentDate)} workHours={workHours} />,
+    2: (
+      <>
+        <Col span={6} offset={9}>
+          <Subtract
+            setWH={setWH}
+            setWM={setWM}
+            users={getUserForView(users, currentDate)}
+            workHours={workHours}
+          />
+        </Col>
+        <Row>
+          <Col span={4} offset={4}>
+            <TaskTypeChart users={getUserForView(users, currentDate)} />
+          </Col>
+          <Col span={4} offset={5}>
+            <TaskTimeStaticChart WH={WH} WM={WM} workHours={workHours} />
+          </Col>
+        </Row>
+        <Row>
+          <Col span={4} offset={4}>
+            <TaskProgressChart users={getUserForView(users, currentDate)} />
+          </Col>
+        </Row>
+      </>
+    ),
     3: <WorkSettings setworkHours={setworkHours} workHours={workHours} />,
   };
   return (
