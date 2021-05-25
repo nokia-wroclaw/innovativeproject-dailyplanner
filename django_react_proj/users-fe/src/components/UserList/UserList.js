@@ -41,8 +41,18 @@ const Actions = ({ user, resetState }) => {
 const UserList = ({ users = [], resetState }) => (
   <div className={styles.Mytable}>
     <Table pagination={{ position: ['none', 'none'] }} dataSource={users}>
-      <Column title="Task name" dataIndex="taskName" />
-      <Column title="Description" dataIndex="taskDescription" />
+      <Column
+        title="Task Name"
+        dataIndex="taskName"
+        sortDirections={['descend', 'ascend']}
+        sorter={(a, b) => a.taskName.localeCompare(b.taskName)}
+      />
+      <Column
+        title="Description"
+        dataIndex="taskDescription"
+        sortDirections={['descend', 'ascend']}
+        sorter={(a, b) => a.taskDescription.localeCompare(b.taskDescription)}
+      />
       <Column
         title="Task Time"
         dataIndex="taskName"
@@ -54,15 +64,23 @@ const UserList = ({ users = [], resetState }) => (
         }
       />
       <Column
-        title="Task priority"
+        title="Task Priority"
         dataIndex="taskPriority"
+        sortDirections={['descend', 'ascend']}
+        sorter={(a, b) => a.taskPriority - b.taskPriority}
         render={(taskPriority) => {
           let priority = '';
-          if (taskPriority === 2) {
-            // priority = '#ffc069';
+          if (taskPriority === 1) {
             priority = (
               <div>
                 <ExclamationOutlined style={{ color: '#ffa940', fontSize: '200%' }} />
+              </div>
+            );
+          }
+          if (taskPriority === 2) {
+            priority = (
+              <div>
+                <ExclamationOutlined style={{ color: '#cf1322', fontSize: '200%' }} />
               </div>
             );
           }
@@ -78,8 +96,25 @@ const UserList = ({ users = [], resetState }) => (
         }}
       />
       <Column
-        title="Task type"
+        title="Task Type"
         dataIndex="taskType"
+        sortDirections={['descend', 'ascend']}
+        sorter={(a, b) => a.taskType.localeCompare(b.taskType)}
+        filters={[
+          {
+            text: 'Email',
+            value: 'Email',
+          },
+          {
+            text: 'Meeting',
+            value: 'Meeting',
+          },
+          {
+            text: 'Housework',
+            value: 'Housework',
+          },
+        ]}
+        onFilter={(value, record) => record.taskType.indexOf(value) === 0}
         render={(taskType, user) => {
           let rowColor = '';
 
