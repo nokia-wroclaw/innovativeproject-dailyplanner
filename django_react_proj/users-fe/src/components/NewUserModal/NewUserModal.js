@@ -16,6 +16,7 @@ const NewUserModal = ({ resetState, user, create }) => {
   let button = (
     <Button
       type="primary"
+      shape="round"
       icon={<EditOutlined />}
       style={{ background: 'green', borderColor: 'green' }}
       onClick={toggle}

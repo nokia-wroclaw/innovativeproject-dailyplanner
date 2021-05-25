@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, Col, Row, Card, Calendar } from 'antd';
 import 'antd/dist/antd.css';
+import { LeftOutlined, RightOutlined, CalendarOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
 import UserList from '../UserList/UserList';
 import NewUserModal from '../NewUserModal/NewUserModal';
@@ -14,23 +15,45 @@ const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) 
   const toggle = () => {
     setModalFlag((previous) => !previous);
   };
-  const button = <Button onClick={toggle}>Calendar</Button>;
+  const button = (
+    <Button onClick={toggle} shape="round" size="large">
+      <CalendarOutlined />
+    </Button>
+  );
   return (
     <Card>
       <Row>
-        <Col span={4} offset={5}>
-          <Button type="button" onClick={() => setCurrentDate(getPreviousDay)}>
-            Previous day
+        <Col span={4} offset={5} align="top">
+          <Button
+            type="button"
+            shape="round"
+            size="large"
+            align="center"
+            onClick={() => setCurrentDate(getPreviousDay)}
+          >
+            <LeftOutlined />
           </Button>
         </Col>
         <Col span={4}>
-          <Button type="button" onClick={() => setCurrentDate(new Date())}>
-            Current day
+          <Button
+            type="button"
+            shape="round"
+            size="large"
+            align="center"
+            onClick={() => setCurrentDate(new Date())}
+          >
+            {new Date().toDateString().substring(3, 10)}
           </Button>
         </Col>
         <Col span={4}>
-          <Button type="button" onClick={() => setCurrentDate(getNextDay)}>
-            Next day
+          <Button
+            type="button"
+            shape="round"
+            size="large"
+            align="center"
+            onClick={() => setCurrentDate(getNextDay)}
+          >
+            <RightOutlined />
           </Button>
         </Col>
         <Col span={4}>
@@ -39,7 +62,9 @@ const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) 
             <Calendar fullscreen={false} onChange={(date) => setCurrentDate(date.toDate())} />
           </Modal>
         </Col>
+        <Col>{currentDate.toDateString().substring(3)}</Col>
       </Row>
+      <br />
       <Row>
         <Col span={16} offset={4}>
           <UserList users={getUserForView(users, currentDate)} resetState={getUsers} />

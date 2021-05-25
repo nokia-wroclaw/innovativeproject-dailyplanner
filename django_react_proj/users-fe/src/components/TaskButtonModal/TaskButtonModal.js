@@ -10,6 +10,7 @@ const TaskButton = ({ setDoneState }) => (
     <Button
       type="primary"
       size="middle"
+      shape="round"
       icon={<CheckSquareOutlined />}
       onClick={() => {
         setDoneState();

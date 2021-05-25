@@ -32,7 +32,9 @@ const Actions = ({ user, resetState }) => {
   return (
     <>
       <TaskButton setDoneState={setDoneState} />
+      <> </>
       <NewUserModal create={false} user={user} resetState={resetState} />
+      <> </>
       <ConfirmRemovalModal id={user.id} deleteUser={deleteUser} />
     </>
   );

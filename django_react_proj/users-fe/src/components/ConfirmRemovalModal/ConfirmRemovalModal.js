@@ -30,7 +30,7 @@ const ConfirmRemovalModal = ({ id, deleteUser }) => {
   };
   return (
     <>
-      <Button type="danger" icon={<DeleteFilled />} onClick={showModal} />
+      <Button type="danger" icon={<DeleteFilled />} shape="round" onClick={showModal} />
       <Modal
         title="Do you want to delete task?"
         visible={isModalVisible}
