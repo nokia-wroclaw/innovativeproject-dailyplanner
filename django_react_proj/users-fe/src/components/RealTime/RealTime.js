@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 
-const Time = ({ users, firstNotifiaction, secondNotifiaction }) => {
+const Time = ({ users, firstNotification, secondNotification }) => {
   const [time, setTime] = React.useState(0);
   const currentCallback = () => {
     const date = new Date();
@@ -17,24 +17,24 @@ const Time = ({ users, firstNotifiaction, secondNotifiaction }) => {
   }, []);
   if (users) {
     users.forEach((user) => {
-      const Msg = user.taskName;
-      const firstTime = firstNotifiaction;
-      const secondTime = secondNotifiaction;
-      const first = Number(firstNotifiaction * 60);
-      const second = Number(secondNotifiaction * 60);
+      const msg = user.taskName;
+      const firstTime = firstNotification;
+      const secondTime = secondNotification;
+      const first = Number(firstNotification * 60);
+      const second = Number(secondNotification * 60);
       const Subtract = Number(
         Math.floor(new Date(user.startTime).getTime() / 1000 - new Date(time).getTime() / 1000)
       );
       if (Subtract === second) {
         toast.error(
           <div>
-            you have incoming {Msg} in {secondTime} minute!
+            you have incoming {msg} in {secondTime} minute!
           </div>
         );
       } else if (Subtract === first) {
         toast.warn(
           <div>
-            you have incoming {Msg} in {firstTime} minute!
+            you have incoming {msg} in {firstTime} minute!
           </div>
         );
       }
@@ -44,7 +44,7 @@ const Time = ({ users, firstNotifiaction, secondNotifiaction }) => {
 };
 Time.propTypes = {
   users: PropTypes.array,
-  firstNotifiaction: PropTypes.number,
-  secondNotifiaction: PropTypes.number,
+  firstNotification: PropTypes.number,
+  secondNotification: PropTypes.number,
 };
 export default Time;

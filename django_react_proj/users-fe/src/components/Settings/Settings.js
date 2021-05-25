@@ -5,9 +5,9 @@ import { Form, InputNumber, Button } from 'antd';
 const WorkSettings = ({
   workHours,
   setworkHours,
-  firstNotifiaction,
+  firstNotification,
   setFirstNotification,
-  secondNotifiaction,
+  secondNotification,
   setSecondNotification,
 }) => {
   const onChangeHours = (number) => {
@@ -41,22 +41,28 @@ const WorkSettings = ({
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
     >
-      <Form.Item label="Set work hours:">
+      <Form.Item tooltip="Daily working time" label="Work hours:">
         <InputNumber min={1} max={24} defaultValue={workHours} onChange={onChangeHours} />
       </Form.Item>
-      <Form.Item label="Set first notification:">
+      <Form.Item
+        label="First notification:"
+        tooltip="Time when you need to be informed first time before incoming task"
+      >
         <InputNumber
           min={1}
           max={120}
-          defaultValue={firstNotifiaction}
+          defaultValue={firstNotification}
           onChange={onChangeFirstNotification}
         />
       </Form.Item>
-      <Form.Item label="Set second notification:">
+      <Form.Item
+        label="Second notification:"
+        tooltip="Time when you need to be informed second time before incoming task"
+      >
         <InputNumber
           min={1}
           max={30}
-          defaultValue={secondNotifiaction}
+          defaultValue={secondNotification}
           onChange={onChangeSecondNotification}
         />
       </Form.Item>
@@ -72,8 +78,8 @@ WorkSettings.propTypes = {
   setworkHours: PropTypes.func,
   workHours: PropTypes.number,
   setFirstNotification: PropTypes.func,
-  firstNotifiaction: PropTypes.number,
+  firstNotification: PropTypes.number,
   setSecondNotification: PropTypes.func,
-  secondNotifiaction: PropTypes.number,
+  secondNotification: PropTypes.number,
 };
 export default WorkSettings;
