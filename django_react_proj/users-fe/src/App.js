@@ -48,7 +48,7 @@ const App = () => {
     ),
     2: (
       <>
-        <Col span={6} offset={9}>
+        <Col span={5} offset={10}>
           <Subtract
             setWH={setWH}
             setWM={setWM}

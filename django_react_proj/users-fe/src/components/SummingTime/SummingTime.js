@@ -1,7 +1,5 @@
-import { Card } from 'antd';
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './SummingTime.module.css';
 
 const Subtract = ({ users, setWH, setWM }) => {
   let timevalue = 0;
@@ -21,9 +19,7 @@ const Subtract = ({ users, setWH, setWM }) => {
 
   return (
     <>
-      <Card className={styles.SumTim} span={6} offset={10}>
-        Time of tasks on this day: {taskhours} hours {taskminutes} minutes
-      </Card>
+      Time of tasks on this day: {taskhours} hours {taskminutes} minutes
     </>
   );
 };

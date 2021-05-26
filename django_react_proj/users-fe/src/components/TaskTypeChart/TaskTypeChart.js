@@ -9,16 +9,16 @@ const TaskTypeChart = ({ users }) => {
   let eTask = 0;
   if (users) {
     users.forEach((user) => {
-      const tasktypetostr = user.taskType;
-      if (tasktypetostr === 'Housework') {
-        hTask = +1;
-      } else if (tasktypetostr === 'Email') {
-        eTask = +1;
-      } else if (tasktypetostr === 'Meeting') {
-        mTask = +1;
+      if (String(user.taskType) === 'Housework') {
+        hTask += 1;
+      } else if (String(user.taskType) === 'Email') {
+        eTask += 1;
+      } else if (String(user.taskType) === 'Meeting') {
+        mTask += 1;
       }
     });
   }
+  console.log(eTask);
   const dataTypeTask = [
     {
       type: 'Housework',
