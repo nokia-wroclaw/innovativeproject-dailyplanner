@@ -5,7 +5,6 @@ import { Form, InputNumber, Button } from 'antd';
 const WorkSettings = ({ workHours, setworkHours }) => {
   const onChange = (number) => {
     setworkHours(number);
-    console.log(number);
   };
   const layout = {
     labelCol: { span: 12 },
