@@ -3,13 +3,15 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Table } from 'antd';
 import { ExclamationOutlined } from '@ant-design/icons';
-import { format, addDays } from 'date-fns';
+import { format, addDays, isSameDay } from 'date-fns';
+import { toast } from 'react-toastify';
 import TaskButton from '../TaskButtonModal/TaskButtonModal';
 import NewUserModal from '../NewUserModal/NewUserModal';
 import ConfirmRemovalModal from '../ConfirmRemovalModal/ConfirmRemovalModal';
 import { API_URL } from '../../constants';
 import styles from './UserList.module.css';
 import NextDayButton from '../NextDayButton/NextDayButton';
+import PreviousDayButton from '../PreviousDayButton/PreviousDayButton';
 
 const { Column } = Table;
 
@@ -20,7 +22,20 @@ const Actions = ({ user, resetState }) => {
     });
     resetState();
   };
-
+  const moveToPreviousDay = async () => {
+    const result = isSameDay(new Date(), new Date(user.startTime));
+    if (result === false) {
+      await axios.put(`${API_URL + user.id}/`, {
+        startTime: addDays(new Date(user.startTime), -1),
+        endTime: addDays(new Date(user.endTime), -1),
+      });
+      resetState();
+      toast.info('You moved task to the previous day!');
+    } else if (result === true) {
+      toast.info('You cant move task to previous day!');
+      resetState();
+    }
+  };
   const moveToNextDay = async () => {
     await axios.put(`${API_URL + user.id}/`, {
       startTime: addDays(new Date(user.startTime), 1),
@@ -40,6 +55,8 @@ const Actions = ({ user, resetState }) => {
 
   return (
     <>
+      <PreviousDayButton moveToPreviousDay={moveToPreviousDay} />
+      <> </>
       <NextDayButton moveToNextDay={moveToNextDay} />
       <> </>
       <TaskButton setDoneState={setDoneState} />
