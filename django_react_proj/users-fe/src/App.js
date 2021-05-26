@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Menu, Col, Row } from 'antd';
+import { Card, Menu } from 'antd';
 import { format } from 'date-fns';
 import axios from 'axios';
 import { API_URL } from './constants';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import 'react-toastify/dist/ReactToastify.css';
-import Subtract from './components/SummingTime/SummingTime';
 import WorkSettings from './components/Settings/Settings';
-import TaskTypeChart from './components/TaskTypeChart/TaskTypeChart';
-import TaskTimeStaticChart from './components/TaskTimeStaticChart/TaskTimeStaticChart';
-import TaskProgressChart from './components/TaskProgressChart/TaskProgressChart';
+import Charts from './components/Charts/Charts';
 
 const App = () => {
   const [noTitleKey, setnoTitleKey] = useState('1');
@@ -47,29 +44,14 @@ const App = () => {
       />
     ),
     2: (
-      <>
-        <Col span={5} offset={10}>
-          <Subtract
-            setWH={setWH}
-            setWM={setWM}
-            users={getUserForView(users, currentDate)}
-            workHours={workHours}
-          />
-        </Col>
-        <Row>
-          <Col span={4} offset={4}>
-            <TaskTypeChart users={getUserForView(users, currentDate)} />
-          </Col>
-          <Col span={4} offset={5}>
-            <TaskTimeStaticChart WH={WH} WM={WM} workHours={workHours} />
-          </Col>
-        </Row>
-        <Row>
-          <Col span={4} offset={4}>
-            <TaskProgressChart users={getUserForView(users, currentDate)} />
-          </Col>
-        </Row>
-      </>
+      <Charts
+        setWH={setWH}
+        setWM={setWM}
+        users={getUserForView(users, currentDate)}
+        WH={WH}
+        WM={WM}
+        workHours={workHours}
+      />
     ),
     3: <WorkSettings setworkHours={setworkHours} workHours={workHours} />,
   };

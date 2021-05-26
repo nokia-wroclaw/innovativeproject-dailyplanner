@@ -40,11 +40,9 @@ const TaskProgressChart = ({ users }) => {
     interactions: [{ type: 'element-active' }],
   };
   return (
-    <>
-      <Card title="Pie chart of task done to task not done" style={{ width: 500 }}>
-        <Pie {...config} />
-      </Card>
-    </>
+    <Card title="Pie chart of task done to task not done" style={{ width: 500 }}>
+      <Pie {...config} />
+    </Card>
   );
 };
 TaskProgressChart.propTypes = {
