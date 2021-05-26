@@ -5,17 +5,15 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 import 'antd-button-color/dist/css/style.css';
 
 const PreviousDayButton = ({ moveToPreviousDay }) => (
-  <>
-    <Button
-      type="warning"
-      size="middle"
-      shape="round"
-      icon={<ArrowLeftOutlined />}
-      onClick={() => {
-        moveToPreviousDay();
-      }}
-    />
-  </>
+  <Button
+    type="warning"
+    size="middle"
+    shape="round"
+    icon={<ArrowLeftOutlined />}
+    onClick={() => {
+      moveToPreviousDay();
+    }}
+  />
 );
 PreviousDayButton.propTypes = {
   moveToPreviousDay: PropTypes.func,

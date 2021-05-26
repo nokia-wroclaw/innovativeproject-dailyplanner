@@ -56,9 +56,7 @@ const Actions = ({ user, resetState }) => {
   return (
     <>
       <PreviousDayButton moveToPreviousDay={moveToPreviousDay} />
-      <> </>
       <NextDayButton moveToNextDay={moveToNextDay} />
-      <> </>
       <TaskButton setDoneState={setDoneState} />
       <NewUserModal create={false} user={user} resetState={resetState} />
       <ConfirmRemovalModal id={user.id} deleteUser={deleteUser} />
