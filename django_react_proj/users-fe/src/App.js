@@ -6,8 +6,9 @@ import { API_URL } from './constants';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import 'react-toastify/dist/ReactToastify.css';
-import Subtract from './components/SummingTime/SummingTime';
 import WorkSettings from './components/Settings/Settings';
+import Charts from './components/Charts/Charts';
+import 'antd/dist/antd.css';
 
 const App = () => {
   const [noTitleKey, setnoTitleKey] = useState('1');
@@ -24,7 +25,11 @@ const App = () => {
   };
   const [currentDate, setCurrentDate] = useState(new Date());
   const [workHours, setworkHours] = useState(8);
+  const [firstNotification, setFirstNotification] = useState(15);
+  const [secondNotification, setSecondNotification] = useState(5);
   const [users, setUsers] = useState();
+  const [WH, setWH] = useState(0);
+  const [WM, setWM] = useState(0);
   const getUsers = () => {
     axios.get(API_URL).then((res) => setUsers(res.data));
   };
@@ -41,8 +46,26 @@ const App = () => {
         users={users}
       />
     ),
-    2: <Subtract users={getUserForView(users, currentDate)} workHours={workHours} />,
-    3: <WorkSettings setworkHours={setworkHours} workHours={workHours} />,
+    2: (
+      <Charts
+        setWH={setWH}
+        setWM={setWM}
+        users={getUserForView(users, currentDate)}
+        WH={WH}
+        WM={WM}
+        workHours={workHours}
+      />
+    ),
+    3: (
+      <WorkSettings
+        firstNotification={firstNotification}
+        setFirstNotification={setFirstNotification}
+        secondNotification={secondNotification}
+        setSecondNotification={setSecondNotification}
+        setworkHours={setworkHours}
+        workHours={workHours}
+      />
+    ),
   };
   return (
     <>
@@ -58,7 +81,11 @@ const App = () => {
         <Menu.Item key="2">Chart</Menu.Item>
         <Menu.Item key="3">Settings</Menu.Item>
       </Menu>
-      <Header />
+      <Header
+        firstNotification={firstNotification}
+        secondNotification={secondNotification}
+        users={getUserForView(users, currentDate)}
+      />
       <Card>{contentList[noTitleKey]}</Card>
     </>
   );
