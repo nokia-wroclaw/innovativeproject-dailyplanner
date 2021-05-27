@@ -13,7 +13,7 @@ const TaskButton = ({ setDoneState }) => (
       icon={<CheckSquareOutlined />}
       onClick={() => {
         setDoneState();
-        toast.info('YOU SWITCHED STATE OF TASK!');
+        toast.info('You switched state of task!');
       }}
     >
       <ToastContainer />

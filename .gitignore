@@ -1,13 +1,16 @@
 # Byte-compiled / optimized / DLL files
 */**/__pycache__/
+__pycache__/
 *.py[cod]
 *.pyc
 *$py.classgit 
+*.pyo
 
 # C extensions
 *.so
 
 # Distribution / packaging
+bin/
 .Python
 build/
 develop-eggs/
@@ -137,3 +140,6 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+node_modules
+
+.vscode

@@ -2,12 +2,16 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Table } from 'antd';
-import { format } from 'date-fns';
+import { ExclamationOutlined } from '@ant-design/icons';
+import { format, addDays, isSameDay } from 'date-fns';
+import { toast } from 'react-toastify';
 import TaskButton from '../TaskButtonModal/TaskButtonModal';
 import NewUserModal from '../NewUserModal/NewUserModal';
 import ConfirmRemovalModal from '../ConfirmRemovalModal/ConfirmRemovalModal';
 import { API_URL } from '../../constants';
 import styles from './UserList.module.css';
+import NextDayButton from '../NextDayButton/NextDayButton';
+import PreviousDayButton from '../PreviousDayButton/PreviousDayButton';
 
 const { Column } = Table;
 
@@ -15,6 +19,27 @@ const Actions = ({ user, resetState }) => {
   const setDoneState = async () => {
     await axios.patch(`${API_URL + user.id}/`, {
       done: !user.done,
+    });
+    resetState();
+  };
+  const moveToPreviousDay = async () => {
+    const result = isSameDay(new Date(), new Date(user.startTime));
+    if (result === false) {
+      await axios.put(`${API_URL + user.id}/`, {
+        startTime: addDays(new Date(user.startTime), -1),
+        endTime: addDays(new Date(user.endTime), -1),
+      });
+      resetState();
+      toast.info('You moved task to the previous day!');
+    } else if (result === true) {
+      toast.info('You cant move task to previous day!');
+      resetState();
+    }
+  };
+  const moveToNextDay = async () => {
+    await axios.put(`${API_URL + user.id}/`, {
+      startTime: addDays(new Date(user.startTime), 1),
+      endTime: addDays(new Date(user.endTime), 1),
     });
     resetState();
   };
@@ -30,6 +55,8 @@ const Actions = ({ user, resetState }) => {
 
   return (
     <>
+      <PreviousDayButton moveToPreviousDay={moveToPreviousDay} />
+      <NextDayButton moveToNextDay={moveToNextDay} />
       <TaskButton setDoneState={setDoneState} />
       <NewUserModal create={false} user={user} resetState={resetState} />
       <ConfirmRemovalModal id={user.id} deleteUser={deleteUser} />
@@ -51,6 +78,30 @@ const UserList = ({ users = [], resetState }) => (
             'HH:mm'
           )}`
         }
+      />
+      <Column
+        title="Task priority"
+        dataIndex="taskPriority"
+        render={(taskPriority) => {
+          let priority = '';
+          if (taskPriority === 2) {
+            // priority = '#ffc069';
+            priority = (
+              <div>
+                <ExclamationOutlined style={{ color: '#ffa940', fontSize: '200%' }} />
+              </div>
+            );
+          }
+          if (taskPriority === 3) {
+            priority = (
+              <div>
+                <ExclamationOutlined style={{ color: '#cf1322', fontSize: '200%' }} />
+                <ExclamationOutlined style={{ color: '#cf1322', fontSize: '200%' }} />
+              </div>
+            );
+          }
+          return priority;
+        }}
       />
       <Column
         title="Task type"

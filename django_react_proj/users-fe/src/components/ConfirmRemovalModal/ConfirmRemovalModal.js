@@ -10,7 +10,7 @@ const ConfirmRemovalModal = ({ id, deleteUser }) => {
 
   const toggleT = () => {
     setIsModalVisible((previous) => !previous);
-    toast.error('YOU DELETED TASK!');
+    toast.error('You deleted task!');
   };
   const handlerDeleteUser = async (id) => {
     try {

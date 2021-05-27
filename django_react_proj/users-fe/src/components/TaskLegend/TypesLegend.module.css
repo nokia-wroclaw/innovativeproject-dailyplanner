@@ -13,15 +13,15 @@
 }
 
 .Meeting {
-    background: blue;
+    background: #0d47a1;
 }
 
 .Email {
-    background: rgb(255, 0, 242);
+    background: #4dd0e1;
 }
 
 .Housework {
-    background-color: rgb(0, 228, 245);
+    background-color: #ec407a;
 }
 .col-sm-2 > span, .col-sm-2 > p {
   display: inline-block;

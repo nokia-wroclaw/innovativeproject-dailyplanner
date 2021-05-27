@@ -6,8 +6,9 @@ import { API_URL } from './constants';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import 'react-toastify/dist/ReactToastify.css';
-import Subtract from './components/SummingTime/SummingTime';
 import WorkSettings from './components/Settings/Settings';
+import Subtract from './components/SummingTime/SummingTime';
+import 'antd/dist/antd.css';
 
 const App = () => {
   const [noTitleKey, setnoTitleKey] = useState('1');
