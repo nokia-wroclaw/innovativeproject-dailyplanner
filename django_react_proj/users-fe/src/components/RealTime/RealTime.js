@@ -7,7 +7,8 @@ const Time = ({ users, firstNotification, secondNotification }) => {
   const [time, setTime] = React.useState(0);
   const currentCallback = () => {
     const date = new Date();
-    setTime(date);
+    const dateformat = format(date, 'dd.MM.yyyy HH:mm:ss');
+    setTime(dateformat);
   };
   React.useEffect(() => {
     const handle = setInterval(currentCallback, 1000);
@@ -40,7 +41,7 @@ const Time = ({ users, firstNotification, secondNotification }) => {
       }
     });
   }
-  return format(time, 'HH:mm');
+  return time;
 };
 Time.propTypes = {
   users: PropTypes.array,
