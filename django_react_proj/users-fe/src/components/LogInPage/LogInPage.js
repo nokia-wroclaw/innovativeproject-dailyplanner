@@ -7,12 +7,12 @@ import { githubProvider, googleProvider } from '../config/authMethods';
 import socialMediaAuth from '../service/socialMediaAuth';
 import Auth from '../AuthCheck/Auth';
 
-const LogInPage = ({ prop }) => {
+const LogInPage = ({ history }) => {
   const handleOnClickGithub = async (provider) => {
     const res = await socialMediaAuth(provider);
     console.log(res.email);
     Auth.login(() => {
-      prop.history.push('/app');
+      history.push('/app');
     });
   };
   return (
@@ -40,7 +40,7 @@ const LogInPage = ({ prop }) => {
 };
 
 LogInPage.propTypes = {
-  prop: PropTypes.any,
+  history: PropTypes.object,
 };
 
 export default LogInPage;
