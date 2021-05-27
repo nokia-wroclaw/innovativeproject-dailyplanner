@@ -2,9 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, InputNumber, Button } from 'antd';
 
-const WorkSettings = ({ workHours, setworkHours }) => {
-  const onChange = (number) => {
+const WorkSettings = ({
+  workHours,
+  setworkHours,
+  firstNotification,
+  setFirstNotification,
+  secondNotification,
+  setSecondNotification,
+}) => {
+  const onChangeHours = (number) => {
     setworkHours(number);
+  };
+  const onChangeFirstNotification = (number) => {
+    setFirstNotification(number);
+  };
+  const onChangeSecondNotification = (number) => {
+    setSecondNotification(number);
   };
   const layout = {
     labelCol: { span: 12 },
@@ -28,8 +41,30 @@ const WorkSettings = ({ workHours, setworkHours }) => {
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
     >
-      <Form.Item label="Set work hours:">
-        <InputNumber min={1} max={24} defaultValue={workHours} onChange={onChange} />
+      <Form.Item tooltip="Daily working time" label="Work hours:">
+        <InputNumber min={1} max={24} defaultValue={workHours} onChange={onChangeHours} />
+      </Form.Item>
+      <Form.Item
+        label="First notification:"
+        tooltip="Time when you need to be informed first time before incoming task"
+      >
+        <InputNumber
+          min={1}
+          max={120}
+          defaultValue={firstNotification}
+          onChange={onChangeFirstNotification}
+        />
+      </Form.Item>
+      <Form.Item
+        label="Second notification:"
+        tooltip="Time when you need to be informed second time before incoming task"
+      >
+        <InputNumber
+          min={1}
+          max={30}
+          defaultValue={secondNotification}
+          onChange={onChangeSecondNotification}
+        />
       </Form.Item>
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
@@ -42,5 +77,9 @@ const WorkSettings = ({ workHours, setworkHours }) => {
 WorkSettings.propTypes = {
   setworkHours: PropTypes.func,
   workHours: PropTypes.number,
+  setFirstNotification: PropTypes.func,
+  firstNotification: PropTypes.number,
+  setSecondNotification: PropTypes.func,
+  secondNotification: PropTypes.number,
 };
 export default WorkSettings;
