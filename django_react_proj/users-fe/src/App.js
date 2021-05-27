@@ -49,7 +49,7 @@ const App = () => {
         firstNotification={firstNotification}
         setFirstNotification={setFirstNotification}
         secondNotification={secondNotification}
-        setSecondNotificationn={setSecondNotification}
+        setSecondNotification={setSecondNotification}
         setworkHours={setworkHours}
         workHours={workHours}
       />
