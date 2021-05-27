@@ -6,8 +6,8 @@ import socialMediaAuth from '../service/socialMediaAuth';
 
 const AuthForm = () => {
   const handleOnClickGithub = async (provider) => {
-    const res = socialMediaAuth(provider);
-    console.log(res);
+    const res = await socialMediaAuth(provider);
+    console.log(res.email);
   };
   return (
     <>
