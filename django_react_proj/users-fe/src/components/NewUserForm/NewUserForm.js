@@ -49,7 +49,6 @@ const NewUserForm = ({ user, resetState, toggle }) => {
       startTime: new Date(values.startTime),
       endTime: new Date(values.endTime),
     });
-    console.log(values.endTime);
     resetState();
     toggle();
   };

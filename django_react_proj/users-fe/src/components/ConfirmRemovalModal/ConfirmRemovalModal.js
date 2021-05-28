@@ -4,7 +4,7 @@ import { Modal, Button } from 'antd';
 import { DeleteFilled } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import { toast } from 'react-toastify';
-import styles from './ConfirmRemovalModal.module.css';
+import commonStyles from '../CommonCSS/CommonCSS.module.css';
 
 const ConfirmRemovalModal = ({ id, deleteUser }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -31,7 +31,7 @@ const ConfirmRemovalModal = ({ id, deleteUser }) => {
   };
   return (
     <>
-      <Button className={styles.inbtn} type="danger" shape="round" onClick={showModal}>
+      <Button className={commonStyles.inbtn} type="danger" shape="round" onClick={showModal}>
         <DeleteFilled />
         <Modal
           title="Do you want to delete task?"

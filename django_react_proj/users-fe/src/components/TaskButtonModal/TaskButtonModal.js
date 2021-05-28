@@ -4,12 +4,12 @@ import Button from 'antd/lib/button';
 import { CheckSquareOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import { ToastContainer, toast } from 'react-toastify';
-import styles from './TaskButtonModal.module.css';
+import commonStyles from '../CommonCSS/CommonCSS.module.css';
 
 const TaskButton = ({ setDoneState }) => (
   <>
     <Button
-      className={styles.inbtn}
+      className={commonStyles.inbtn}
       type="primary"
       size="middle"
       shape="round"

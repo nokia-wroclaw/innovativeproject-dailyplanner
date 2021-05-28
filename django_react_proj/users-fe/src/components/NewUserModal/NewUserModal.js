@@ -6,6 +6,7 @@ import 'antd/dist/antd.css';
 import { EditOutlined } from '@ant-design/icons';
 import NewUserForm from '../NewUserForm/NewUserForm';
 import styles from './NewUserModal.module.css';
+import commonStyles from '../CommonCSS/CommonCSS.module.css';
 
 const NewUserModal = ({ resetState, user, create }) => {
   const [modal, setModal] = useState();
@@ -15,7 +16,7 @@ const NewUserModal = ({ resetState, user, create }) => {
   let title = 'Edit task';
   let button = (
     <Button
-      className={styles.inbtn}
+      className={commonStyles.inbtn}
       type="primary"
       shape="round"
       style={{ background: 'green', borderColor: 'green' }}

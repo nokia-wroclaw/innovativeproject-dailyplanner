@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
 import { Button, Modal, Col, Row, Card, Calendar } from 'antd';
 import 'antd/dist/antd.css';
+import { format } from 'date-fns';
 import { LeftOutlined, RightOutlined, CalendarOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
 import UserList from '../UserList/UserList';
 import NewUserModal from '../NewUserModal/NewUserModal';
-import TaskLegend from '../TaskLegend/TypesLegend';
-import styles from './Home.module.css';
+import commonStyles from '../CommonCSS/CommonCSS.module.css';
 
 const getPreviousDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1);
 const getNextDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
-
 const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) => {
   const [modalFlag, setModalFlag] = useState(false);
   const toggle = () => {
     setModalFlag((previous) => !previous);
   };
   const button = (
-    <Button className={styles.inbtn} onClick={toggle} shape="round" size="large">
+    <Button className={commonStyles.inbtn} onClick={toggle} shape="round" size="large">
       <CalendarOutlined />
     </Button>
   );
@@ -26,7 +25,7 @@ const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) 
       <Row>
         <Col span={4} offset={5} align="top">
           <Button
-            className={styles.inbtn}
+            className={commonStyles.inbtn}
             type="button"
             shape="round"
             size="large"
@@ -37,7 +36,7 @@ const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) 
         </Col>
         <Col span={4}>
           <Button
-            className={styles.inbtn}
+            className={commonStyles.inbtn}
             type="button"
             shape="round"
             size="large"
@@ -48,7 +47,7 @@ const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) 
         </Col>
         <Col span={4}>
           <Button
-            className={styles.inbtn}
+            className={commonStyles.inbtn}
             type="button"
             shape="round"
             size="large"
@@ -63,7 +62,7 @@ const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) 
             <Calendar fullscreen={false} onChange={(date) => setCurrentDate(date.toDate())} />
           </Modal>
         </Col>
-        <Col>{currentDate.toDateString().substring(3)}</Col>
+        <Col>{format(currentDate, 'dd-MM-yy')}</Col>
       </Row>
       <br />
       <Row>
@@ -76,9 +75,6 @@ const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) 
           <NewUserModal create resetState={getUsers} />
         </Col>
       </Row>
-      <Col offset={4}>
-        <TaskLegend />
-      </Col>
     </Card>
   );
 };
