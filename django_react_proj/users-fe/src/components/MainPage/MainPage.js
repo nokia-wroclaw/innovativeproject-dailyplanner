@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Menu } from 'antd';
+import { Card, Menu, Button } from 'antd';
 import { format } from 'date-fns';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { API_URL } from '../../constants';
 import Header from '../Header/Header';
 import Home from '../Home/Home';
 import 'react-toastify/dist/ReactToastify.css';
 import Subtract from '../SummingTime/SummingTime';
 import WorkSettings from '../Settings/Settings';
+import auth from '../AuthCheck/Auth';
 
-const MainPage = () => {
+const MainPage = ({ history }) => {
   const [noTitleKey, setnoTitleKey] = useState('1');
   const handleClick = (event) => {
     setnoTitleKey(event.key);
@@ -59,8 +61,21 @@ const MainPage = () => {
       </Menu>
       <Header />
       <Card>{contentList[noTitleKey]}</Card>
+      <Button
+        onClick={() => {
+          auth.logout(() => {
+            history.push('/');
+          });
+        }}
+      >
+        Logout
+      </Button>
     </>
   );
+};
+
+MainPage.propTypes = {
+  history: PropTypes.object,
 };
 
 export default MainPage;
