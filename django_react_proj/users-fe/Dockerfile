@@ -7,6 +7,8 @@ RUN npm ci
 
 COPY . .
 
+ARG REACT_APP_API_URL=https://daily-planner-demo-api.herokuapp.com/api/users
+
 RUN npm run build
 
 FROM nginx:mainline-alpine
