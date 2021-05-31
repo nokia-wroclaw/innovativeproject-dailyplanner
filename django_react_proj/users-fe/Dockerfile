@@ -7,7 +7,7 @@ RUN npm ci
 
 COPY . .
 
-ARG REACT_APP_API_URL=https://daily-planner-demo-api.herokuapp.com/api/users
+ARG REACT_APP_API_URL=https://daily-planner-demo-api.herokuapp.com/api/users/
 
 RUN npm run build
 
