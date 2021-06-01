@@ -26,6 +26,6 @@ from django.conf.urls import url
 
 urlpatterns = [
 path('admin/', admin.site.urls),
-re_path(r'^api/users/$', views.users_list),
+path('api/<str:email>/', views.users_list),
 path('api/users/<int:id>/', views.users_detail)
 ]
