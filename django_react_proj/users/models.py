@@ -9,7 +9,7 @@ class User(models.Model):
     endTime = models.DateTimeField('EndTime', auto_now=False, auto_now_add=False, default='')
     done = models.BooleanField('Done', default=False)
     registrationDate = models.DateField("Registration Date", auto_now_add=True)
-    email = models.CharField("Email", max_length= 254, null = True)
+    email = models.CharField("Email", max_length= 254, null = False)
 
     def __str__(self):
         return self.name

@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useContext } from 'react';
 import 'antd/dist/antd.css';
 import { Button, Form, Input, Select, DatePicker } from 'antd';
 import axios from 'axios';
@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import moment from 'moment';
 import { API_URL } from '../../constants';
 import 'react-toastify/dist/ReactToastify.css';
+import { EmailContext } from '../EmailContext/EmailContext';
 
 const config = {
   rules: [
@@ -27,6 +28,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
   const [taskPriority] = useState(user?.taskPriority || '');
   const [startTime] = useState(user?.startTime || '');
   const [endTime] = useState(user?.endTime || '');
+  const { email } = useContext(EmailContext);
   const types = ['Meeting', 'Email', 'Housework'];
   const priority = [
     {
@@ -46,10 +48,10 @@ const NewUserForm = ({ user, resetState, toggle }) => {
   const createUser = async (values) => {
     await axios.post(API_URL, {
       ...values,
+      email,
       startTime: new Date(values.startTime),
       endTime: new Date(values.endTime),
     });
-    console.log(values.endTime);
     resetState();
     toggle();
   };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Card, Menu, Button } from 'antd';
 import { format } from 'date-fns';
 import axios from 'axios';
@@ -10,9 +10,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import Subtract from '../SummingTime/SummingTime';
 import WorkSettings from '../Settings/Settings';
 import auth from '../AuthCheck/Auth';
+import { EmailContext } from '../EmailContext/EmailContext';
 
 const MainPage = ({ history }) => {
   const [noTitleKey, setnoTitleKey] = useState('1');
+  const { email } = useContext(EmailContext);
   const handleClick = (event) => {
     setnoTitleKey(event.key);
   };
@@ -21,6 +23,7 @@ const MainPage = ({ history }) => {
     const y = date.getFullYear();
     const d = date.getDate().toString().padStart(2, '0');
     return users
+      .filter((user) => user.email === email)
       .filter((user) => format(new Date(user.startTime), 'yyyy-MM-dd') === `${y}-${m}-${d}`)
       .sort((userA, userB) => userA.startTime.localeCompare(userB.startTime));
   };
