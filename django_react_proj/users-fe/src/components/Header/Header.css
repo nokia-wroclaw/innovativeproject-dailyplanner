@@ -1,0 +1,23 @@
+.Layout {
+  min-height: 280px;
+  padding: 24px;
+  background: #fff;
+}
+.ant-row-rtl #components-layout-demo-top .logo {
+  float: right;
+  margin: 16px 0 16px 24px;
+}
+
+.Center{
+  text-align:center;
+  height:100%;
+  display:flex; 
+  align-items:center;
+  justify-content:center;
+}
+
+.Image {
+  Height: 20%;
+  Width: 20%;
+  margin-bottom: 20px;
+}

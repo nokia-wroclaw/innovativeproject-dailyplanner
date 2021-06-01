@@ -1,0 +1,64 @@
+.Image{
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.Center{
+    text-align: center;
+    height: auto;
+}
+
+.Svg{
+    flex-direction: row;
+    height: auto;
+    width: 300px;
+    display: block;
+    word-wrap: break-word;
+    float: left;
+}
+
+.RowDone{
+    background-color: green;
+}
+
+.ButtonTrue{
+    background-color: lightgreen;
+}
+
+.ButtonFalse{
+
+}
+
+.ButtonTrue{
+    background-color: lightgreen;
+}
+
+/* .ButtonFalse{
+
+} */
+
+.Meeting{
+    background-color: #0d47a1;
+}
+
+.Email{
+    background: #4dd0e1;
+}
+
+.Housework{
+    background-color: #ec407a;
+}
+.Mytable thead > tr > th{
+    background: #034f84 ;
+}
+
+.Medium{
+    background-color: #fa8c16
+}
+
+.High{
+    background-color: #cf1322
+}
