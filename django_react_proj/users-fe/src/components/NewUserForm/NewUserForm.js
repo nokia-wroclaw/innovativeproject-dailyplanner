@@ -6,7 +6,6 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import moment from 'moment';
-import { FontSizeOutlined } from '@ant-design/icons';
 import { API_URL } from '../../constants';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -70,9 +69,9 @@ const NewUserForm = ({ user, resetState, toggle }) => {
         getHours(new Date(values.startTime)) === getHours(new Date(values.endTime)) &&
         getMinutes(new Date(values.startTime)) <= getMinutes(new Date(values.endTime))
       ) {
-        editUser(values);
+        createUser(values);
       } else if (getHours(new Date(values.startTime)) < getHours(new Date(values.endTime))) {
-        editUser(values);
+        createUser(values);
       } else {
         toast.error('Task start must be earlier than Task end!');
       }
@@ -87,9 +86,9 @@ const NewUserForm = ({ user, resetState, toggle }) => {
         getHours(new Date(values.startTime)) === getHours(new Date(values.endTime)) &&
         getMinutes(new Date(values.startTime)) <= getMinutes(new Date(values.endTime))
       ) {
-        createUser(values);
+        editUser(values);
       } else if (getHours(new Date(values.startTime)) < getHours(new Date(values.endTime))) {
-        createUser(values);
+        editUser(values);
       } else {
         toast.error('Task start must be earlier than Task end!');
       }

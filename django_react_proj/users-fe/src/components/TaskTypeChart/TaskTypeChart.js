@@ -18,7 +18,6 @@ const TaskTypeChart = ({ users }) => {
       }
     });
   }
-  console.log(eTask);
   const dataTypeTask = [
     {
       type: 'Housework',
