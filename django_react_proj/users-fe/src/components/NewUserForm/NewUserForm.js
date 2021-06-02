@@ -82,10 +82,28 @@ const NewUserForm = ({ user, resetState, toggle }) => {
         taskDescription: user ? taskDescription : '',
       }}
     >
-      <Form.Item label="Task name" name="taskName">
+      <Form.Item
+        label="Task name"
+        name="taskName"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your task name!',
+          },
+        ]}
+      >
         <Input />
       </Form.Item>
-      <Form.Item label="Task type" name="taskType">
+      <Form.Item
+        label="Task type"
+        name="taskType"
+        rules={[
+          {
+            required: true,
+            message: 'Please select your task type!',
+          },
+        ]}
+      >
         <Select>
           {types.map((type) => (
             <Select.Option key={type} value={type}>
@@ -94,7 +112,16 @@ const NewUserForm = ({ user, resetState, toggle }) => {
           ))}
         </Select>
       </Form.Item>
-      <Form.Item label="Task priority " name="taskPriority">
+      <Form.Item
+        label="Task priority "
+        name="taskPriority"
+        rules={[
+          {
+            required: true,
+            message: 'Please select your task priority!',
+          },
+        ]}
+      >
         <Select>
           {priority.map((p) => (
             <Select.Option key={p.p} value={p.p}>
@@ -109,7 +136,16 @@ const NewUserForm = ({ user, resetState, toggle }) => {
       <Form.Item label="Task end" {...config} name="endTime">
         <DatePicker showTime format="YYYY-MM-DD HH:mm" />
       </Form.Item>
-      <Form.Item label="Description" name="taskDescription">
+      <Form.Item
+        label="Description"
+        name="taskDescription"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your task description!',
+          },
+        ]}
+      >
         <TextArea rows={4} />
       </Form.Item>
       <Button type="primary" htmlType="submit" style={{ float: 'right' }}>
