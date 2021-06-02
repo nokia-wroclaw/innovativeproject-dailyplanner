@@ -58,6 +58,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
   const editUser = async (values) => {
     await axios.put(`${API_URL + user.id}/`, {
       ...values,
+      email,
       startTime: new Date(values.startTime),
       endTime: new Date(values.endTime),
     });
