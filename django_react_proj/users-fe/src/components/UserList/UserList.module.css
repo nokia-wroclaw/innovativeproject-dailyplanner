@@ -41,15 +41,15 @@
 } */
 
 .Meeting{
-    background-color: blue;
+    background-color: #0d47a1;
 }
 
 .Email{
-    background: rgb(255, 0, 242);
+    background: #4dd0e1;
 }
 
 .Housework{
-    background-color: rgb(0, 228, 245);
+    background-color: #ec407a;
 }
 .Mytable thead > tr > th{
     background: #034f84 ;

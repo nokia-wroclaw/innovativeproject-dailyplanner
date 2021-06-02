@@ -1,36 +1,59 @@
 import React, { useState } from 'react';
 import { Button, Modal, Col, Row, Card, Calendar } from 'antd';
 import 'antd/dist/antd.css';
+import { format } from 'date-fns';
+import { LeftOutlined, RightOutlined, CalendarOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
 import UserList from '../UserList/UserList';
 import NewUserModal from '../NewUserModal/NewUserModal';
-import TaskLegend from '../TaskLegend/TypesLegend';
+import commonStyles from '../CommonCSS/CommonCSS.module.css';
 
 const getPreviousDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1);
 const getNextDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
-
 const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) => {
   const [modalFlag, setModalFlag] = useState(false);
   const toggle = () => {
     setModalFlag((previous) => !previous);
   };
-  const button = <Button onClick={toggle}>Calendar</Button>;
+  const button = (
+    <Button className={commonStyles.inbtn} onClick={toggle} shape="round" size="large">
+      <CalendarOutlined />
+    </Button>
+  );
   return (
     <Card>
       <Row>
-        <Col span={4} offset={5}>
-          <Button type="button" onClick={() => setCurrentDate(getPreviousDay)}>
-            Previous day
+        <Col span={4} offset={5} align="top">
+          <Button
+            className={commonStyles.inbtn}
+            type="button"
+            shape="round"
+            size="large"
+            onClick={() => setCurrentDate(getPreviousDay)}
+          >
+            <LeftOutlined />
           </Button>
         </Col>
         <Col span={4}>
-          <Button type="button" onClick={() => setCurrentDate(new Date())}>
-            Current day
+          <Button
+            className={commonStyles.inbtn}
+            type="button"
+            shape="round"
+            size="large"
+            onClick={() => setCurrentDate(new Date())}
+          >
+            {new Date().toDateString().substring(3, 10)}
           </Button>
         </Col>
         <Col span={4}>
-          <Button type="button" onClick={() => setCurrentDate(getNextDay)}>
-            Next day
+          <Button
+            className={commonStyles.inbtn}
+            type="button"
+            shape="round"
+            size="large"
+            onClick={() => setCurrentDate(getNextDay)}
+          >
+            <RightOutlined />
           </Button>
         </Col>
         <Col span={4}>
@@ -39,7 +62,9 @@ const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) 
             <Calendar fullscreen={false} onChange={(date) => setCurrentDate(date.toDate())} />
           </Modal>
         </Col>
+        <Col>{format(currentDate, 'dd-MM-yy')}</Col>
       </Row>
+      <br />
       <Row>
         <Col span={16} offset={4}>
           <UserList users={getUserForView(users, currentDate)} resetState={getUsers} />
@@ -50,9 +75,6 @@ const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) 
           <NewUserModal create resetState={getUsers} />
         </Col>
       </Row>
-      <Col offset={4}>
-        <TaskLegend />
-      </Col>
     </Card>
   );
 };
