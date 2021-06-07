@@ -37,7 +37,7 @@ const TaskTypeChart = ({ users }) => {
     data: dataTypeTask,
     angleField: 'value',
     colorField: 'type',
-    color: ['#ec407a', '#0d47a1', '#4dd0e1'],
+    color: ['#87d068', '#f50', '#2db7f5'],
     radius: 0.6,
     label: {
       type: 'spider',

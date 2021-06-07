@@ -6,7 +6,7 @@ from .models import User
 from .serializers import *
 
 @api_view(['GET', 'POST'])
-def users_list(request):
+def users_list(request, email):
     if request.method == 'GET':
         data = User.objects.all()
         serializer = UserSerializer(data, context={'request': request}, many=True)
