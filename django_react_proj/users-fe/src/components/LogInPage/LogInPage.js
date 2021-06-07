@@ -18,21 +18,25 @@ const LogInPage = ({ history }) => {
     setEmail(res.email);
   };
   return (
-    <Card title="Log In" bordered={false}>
-      <Row>
+    <Card title="Log In" bordered={false} style={{ textAlign: 'center' }}>
+      <Row justify="center">
         <Button
           onClick={() => handleOnClickGithub(githubProvider)}
           icon={<GithubOutlined />}
           color="#8c8c8c"
+          size="large"
+          style={{ background: '#bfbfbf' }}
         >
           GitHub
         </Button>
       </Row>
-      <Row>
+      <Row justify="center">
         <Button
           onClick={() => handleOnClickGithub(googleProvider)}
           icon={<GoogleOutlined />}
           color="#f5222d"
+          size="large"
+          style={{ background: '#096dd9' }}
         >
           Google
         </Button>
