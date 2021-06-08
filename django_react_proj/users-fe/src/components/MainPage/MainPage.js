@@ -12,6 +12,7 @@ import auth from '../AuthCheck/Auth';
 import { EmailContext } from '../EmailContext/EmailContext';
 import Charts from '../Charts/Charts';
 import 'antd/dist/antd.css';
+import { WorkHoursProvider } from '../WorkHoursContext/WorkHoursContext';
 
 const MainPage = ({ history }) => {
   const [noTitleKey, setnoTitleKey] = useState('1');
@@ -29,12 +30,9 @@ const MainPage = ({ history }) => {
       .sort((userA, userB) => userA.startTime.localeCompare(userB.startTime));
   };
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [workHours, setworkHours] = useState(8);
   const [firstNotification, setFirstNotification] = useState(15);
   const [secondNotification, setSecondNotification] = useState(5);
   const [users, setUsers] = useState();
-  const [WH, setWH] = useState(0);
-  const [WM, setWM] = useState(0);
   const getUsers = () => {
     axios.get(API_URL).then((res) => setUsers(res.data));
   };
@@ -43,33 +41,30 @@ const MainPage = ({ history }) => {
   }, []);
   const contentList = {
     1: (
-      <Home
-        getUserForView={getUserForView}
-        setCurrentDate={setCurrentDate}
-        currentDate={currentDate}
-        getUsers={getUsers}
-        users={users}
-      />
+      <WorkHoursProvider>
+        <Home
+          getUserForView={getUserForView}
+          setCurrentDate={setCurrentDate}
+          currentDate={currentDate}
+          getUsers={getUsers}
+          users={users}
+        />
+      </WorkHoursProvider>
     ),
     2: (
-      <Charts
-        setWH={setWH}
-        setWM={setWM}
-        users={getUserForView(users, currentDate)}
-        WH={WH}
-        WM={WM}
-        workHours={workHours}
-      />
+      <WorkHoursProvider>
+        <Charts users={getUserForView(users, currentDate)} />
+      </WorkHoursProvider>
     ),
     3: (
-      <WorkSettings
-        firstNotification={firstNotification}
-        setFirstNotification={setFirstNotification}
-        secondNotification={secondNotification}
-        setSecondNotification={setSecondNotification}
-        setworkHours={setworkHours}
-        workHours={workHours}
-      />
+      <WorkHoursProvider>
+        <WorkSettings
+          firstNotification={firstNotification}
+          setFirstNotification={setFirstNotification}
+          secondNotification={secondNotification}
+          setSecondNotification={setSecondNotification}
+        />
+      </WorkHoursProvider>
     ),
   };
   return (

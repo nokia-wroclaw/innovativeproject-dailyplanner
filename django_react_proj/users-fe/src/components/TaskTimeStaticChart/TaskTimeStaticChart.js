@@ -1,9 +1,10 @@
+import { React, useContext } from 'react';
 import { Pie } from '@ant-design/charts';
 import { Card } from 'antd';
-import React from 'react';
-import PropTypes from 'prop-types';
+import { WorkHoursContext } from '../WorkHoursContext/WorkHoursContext';
 
-const TaskTimeStaticChart = ({ WH, WM, workHours }) => {
+const TaskTimeStaticChart = () => {
+  const { WH, WM, workHours } = useContext(WorkHoursContext);
   const timevalue = WH * 60 + WM;
   const substrpiechart = workHours * 60 - timevalue;
   const datatasktime = [
@@ -38,9 +39,4 @@ const TaskTimeStaticChart = ({ WH, WM, workHours }) => {
   );
 };
 
-TaskTimeStaticChart.propTypes = {
-  WH: PropTypes.number,
-  WM: PropTypes.number,
-  workHours: PropTypes.number,
-};
 export default TaskTimeStaticChart;

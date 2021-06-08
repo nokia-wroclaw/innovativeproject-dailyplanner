@@ -25,7 +25,7 @@ const Actions = ({ user, resetState }) => {
   const moveToPreviousDay = async () => {
     const result = isSameDay(new Date(), new Date(user.startTime));
     if (result === false) {
-      await axios.put(`${API_URL + user.id}/`, {
+      await axios.patch(`${API_URL + user.id}/`, {
         startTime: addDays(new Date(user.startTime), -1),
         endTime: addDays(new Date(user.endTime), -1),
       });
@@ -37,10 +37,11 @@ const Actions = ({ user, resetState }) => {
     }
   };
   const moveToNextDay = async () => {
-    await axios.put(`${API_URL + user.id}/`, {
+    await axios.patch(`${API_URL + user.id}/`, {
       startTime: addDays(new Date(user.startTime), 1),
       endTime: addDays(new Date(user.endTime), 1),
     });
+    toast.info('You moved task to the next day!');
     resetState();
   };
 

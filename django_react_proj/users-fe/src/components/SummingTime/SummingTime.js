@@ -1,8 +1,10 @@
-import React from 'react';
+import { React, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { getHours, getMinutes } from 'date-fns';
+import { WorkHoursContext } from '../WorkHoursContext/WorkHoursContext';
 
-const Subtract = ({ users, setWH, setWM }) => {
+const Subtract = ({ users }) => {
+  const { setWH, setWM } = useContext(WorkHoursContext);
   let timevalue = 0;
   if (users) {
     users.forEach((user) => {
@@ -14,11 +16,10 @@ const Subtract = ({ users, setWH, setWM }) => {
       timevalue += sub;
     });
   }
-  console.log(timevalue, 'co');
   const taskhours = Math.floor(timevalue / 60);
   const taskminutes = timevalue % 60;
   setWH(taskhours);
-  setWM(taskminutes, 'taskmin');
+  setWM(taskminutes);
 
   return (
     <>
@@ -28,7 +29,5 @@ const Subtract = ({ users, setWH, setWM }) => {
 };
 Subtract.propTypes = {
   users: PropTypes.array,
-  setWH: PropTypes.func,
-  setWM: PropTypes.func,
 };
 export default Subtract;
