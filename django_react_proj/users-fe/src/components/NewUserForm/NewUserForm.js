@@ -87,8 +87,9 @@ const NewUserForm = ({ user, resetState, toggle }) => {
     const uptimesm = getMinutes(new Date(values.endTime));
     const lowtimesm = getMinutes(new Date(values.startTime));
     const sub = uptimes * 60 - lowtimes * 60 + uptimesm - lowtimesm;
-    const workHoursTotal = WH * 60 + WM;
-    if (sub + workHoursTotal <= workHours * 60) {
+    const workHoursTotal = WH * 60 + WM - sub;
+    console.log(workHoursTotal, workHours * 60);
+    if (workHoursTotal <= workHours * 60) {
       editUser(values);
     } else {
       toast.error('Task time exceeded scheduled time!');
