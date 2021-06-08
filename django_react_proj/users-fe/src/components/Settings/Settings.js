@@ -1,15 +1,15 @@
-import React from 'react';
+import { React, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Form, InputNumber, Button } from 'antd';
+import { WorkHoursContext } from '../WorkHoursContext/WorkHoursContext';
 
 const WorkSettings = ({
-  workHours,
-  setworkHours,
   firstNotification,
   setFirstNotification,
   secondNotification,
   setSecondNotification,
 }) => {
+  const { workHours, setworkHours } = useContext(WorkHoursContext);
   const onChangeHours = (number) => {
     setworkHours(number);
   };
@@ -75,8 +75,6 @@ const WorkSettings = ({
   );
 };
 WorkSettings.propTypes = {
-  setworkHours: PropTypes.func,
-  workHours: PropTypes.number,
   setFirstNotification: PropTypes.func,
   firstNotification: PropTypes.number,
   setSecondNotification: PropTypes.func,

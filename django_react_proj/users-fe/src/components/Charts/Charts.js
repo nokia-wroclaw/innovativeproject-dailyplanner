@@ -5,17 +5,17 @@ import TaskTimeStaticChart from '../TaskTimeStaticChart/TaskTimeStaticChart';
 import TaskProgressChart from '../TaskProgressChart/TaskProgressChart';
 import Subtract from '../SummingTime/SummingTime';
 
-const Charts = ({ setWH, setWM, WH, WM, users, workHours }) => (
+const Charts = ({ users }) => (
   <>
     <Col span={5} offset={10}>
-      <Subtract setWH={setWH} setWM={setWM} users={users} workHours={workHours} />
+      <Subtract users={users} />
     </Col>
     <Row>
       <Col span={4} offset={4}>
         <TaskTypeChart users={users} />
       </Col>
       <Col span={4} offset={5}>
-        <TaskTimeStaticChart WH={WH} WM={WM} workHours={workHours} />
+        <TaskTimeStaticChart />
       </Col>
     </Row>
     <Row>
@@ -27,10 +27,5 @@ const Charts = ({ setWH, setWM, WH, WM, users, workHours }) => (
 );
 Charts.propTypes = {
   users: PropTypes.array,
-  setWH: PropTypes.func,
-  setWM: PropTypes.func,
-  WH: PropTypes.number,
-  WM: PropTypes.number,
-  workHours: PropTypes.number,
 };
 export default Charts;

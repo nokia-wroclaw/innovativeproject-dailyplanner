@@ -9,6 +9,7 @@ import moment from 'moment';
 import { API_URL } from '../../constants';
 import 'react-toastify/dist/ReactToastify.css';
 import { EmailContext } from '../EmailContext/EmailContext';
+import { WorkHoursContext } from '../WorkHoursContext/WorkHoursContext';
 
 const config = {
   rules: [
@@ -23,6 +24,7 @@ const config = {
 const { TextArea } = Input;
 
 const NewUserForm = ({ user, resetState, toggle }) => {
+  const { WH, WM, workHours } = useContext(WorkHoursContext);
   const [taskName] = useState(user?.taskName || '');
   const [taskDescription] = useState(user?.taskDescription || '');
   const [taskType] = useState(user?.taskType || '');
@@ -66,6 +68,32 @@ const NewUserForm = ({ user, resetState, toggle }) => {
     toggle();
     toast.success('You edited task!');
   };
+  const workHoursCheckCreate = (values) => {
+    const uptimes = getHours(new Date(values.endTime));
+    const lowtimes = getHours(new Date(values.startTime));
+    const uptimesm = getMinutes(new Date(values.endTime));
+    const lowtimesm = getMinutes(new Date(values.startTime));
+    const sub = uptimes * 60 - lowtimes * 60 + uptimesm - lowtimesm;
+    const workHoursTotal = WH * 60 + WM;
+    if (sub + workHoursTotal <= workHours * 60) {
+      createUser(values);
+    } else {
+      toast.error('Task time exceeded scheduled time!');
+    }
+  };
+  const workHoursCheckEdit = (values) => {
+    const uptimes = getHours(new Date(values.endTime));
+    const lowtimes = getHours(new Date(values.startTime));
+    const uptimesm = getMinutes(new Date(values.endTime));
+    const lowtimesm = getMinutes(new Date(values.startTime));
+    const sub = uptimes * 60 - lowtimes * 60 + uptimesm - lowtimesm;
+    const workHoursTotal = WH * 60 + WM;
+    if (sub + workHoursTotal <= workHours * 60) {
+      editUser(values);
+    } else {
+      toast.error('Task time exceeded scheduled time!');
+    }
+  };
   const dateCheckCreate = (values) => {
     const result = isSameDay(new Date(values.startTime), new Date(values.endTime));
     if (result === true) {
@@ -73,9 +101,9 @@ const NewUserForm = ({ user, resetState, toggle }) => {
         getHours(new Date(values.startTime)) === getHours(new Date(values.endTime)) &&
         getMinutes(new Date(values.startTime)) <= getMinutes(new Date(values.endTime))
       ) {
-        createUser(values);
+        workHoursCheckCreate(values);
       } else if (getHours(new Date(values.startTime)) < getHours(new Date(values.endTime))) {
-        createUser(values);
+        workHoursCheckCreate(values);
       } else {
         toast.error('Task start must be earlier than Task end!');
       }
@@ -90,9 +118,9 @@ const NewUserForm = ({ user, resetState, toggle }) => {
         getHours(new Date(values.startTime)) === getHours(new Date(values.endTime)) &&
         getMinutes(new Date(values.startTime)) <= getMinutes(new Date(values.endTime))
       ) {
-        editUser(values);
+        workHoursCheckEdit(values);
       } else if (getHours(new Date(values.startTime)) < getHours(new Date(values.endTime))) {
-        editUser(values);
+        workHoursCheckEdit(values);
       } else {
         toast.error('Task start must be earlier than Task end!');
       }
