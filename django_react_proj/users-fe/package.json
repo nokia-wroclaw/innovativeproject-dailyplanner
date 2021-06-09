@@ -21,6 +21,7 @@
     "date-fns": "^2.21.1",
     "firebase": "^8.6.2",
     "firebase-auth": "^0.1.2",
+    "mini-store": "^3.0.6",
     "moment": "^2.29.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
