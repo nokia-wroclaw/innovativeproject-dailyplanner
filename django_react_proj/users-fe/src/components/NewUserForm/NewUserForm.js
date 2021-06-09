@@ -24,7 +24,7 @@ const config = {
 const { TextArea } = Input;
 
 const NewUserForm = ({ user, resetState, toggle }) => {
-  const { WH, WM, workHours } = useContext(WorkHoursContext);
+  const { WH, WM, workHours, types } = useContext(WorkHoursContext);
   const [taskName] = useState(user?.taskName || '');
   const [taskDescription] = useState(user?.taskDescription || '');
   const [taskType] = useState(user?.taskType || '');
@@ -32,7 +32,6 @@ const NewUserForm = ({ user, resetState, toggle }) => {
   const [startTime] = useState(user?.startTime || '');
   const [endTime] = useState(user?.endTime || '');
   const { email } = useContext(EmailContext);
-  const types = ['Meeting', 'Email', 'Housework'];
   const priority = [
     {
       p: 1,
@@ -172,8 +171,8 @@ const NewUserForm = ({ user, resetState, toggle }) => {
       >
         <Select>
           {types.map((type) => (
-            <Select.Option key={type} value={type}>
-              {type}
+            <Select.Option key={type.name} value={type.name}>
+              {type.name}
             </Select.Option>
           ))}
         </Select>
