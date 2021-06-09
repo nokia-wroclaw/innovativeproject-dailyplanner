@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Card, Menu, Button } from 'antd';
+import { Card, Menu } from 'antd';
 import { format } from 'date-fns';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -8,7 +8,6 @@ import Header from '../Header/Header';
 import Home from '../Home/Home';
 import 'react-toastify/dist/ReactToastify.css';
 import WorkSettings from '../Settings/Settings';
-import auth from '../AuthCheck/Auth';
 import { EmailContext } from '../EmailContext/EmailContext';
 import Charts from '../Charts/Charts';
 import 'antd/dist/antd.css';
@@ -84,17 +83,9 @@ const MainPage = ({ history }) => {
         firstNotification={firstNotification}
         secondNotification={secondNotification}
         users={getUserForView(users, currentDate)}
+        history={history}
       />
       <Card>{contentList[noTitleKey]}</Card>
-      <Button
-        onClick={() => {
-          auth.logout(() => {
-            history.push('/');
-          });
-        }}
-      >
-        Logout
-      </Button>
     </>
   );
 };
