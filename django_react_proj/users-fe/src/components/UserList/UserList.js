@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Table, Tag } from 'antd';
@@ -12,6 +12,7 @@ import { API_URL } from '../../constants';
 import styles from './UserList.module.css';
 import NextDayButton from '../NextDayButton/NextDayButton';
 import PreviousDayButton from '../PreviousDayButton/PreviousDayButton';
+import { WorkHoursContext } from '../WorkHoursContext/WorkHoursContext';
 
 const { Column } = Table;
 
@@ -65,126 +66,106 @@ const Actions = ({ user, resetState }) => {
   );
 };
 
-const UserList = ({ users = [], resetState }) => (
-  <div className={styles.Mytable}>
-    <Table pagination={{ position: ['none', 'none'] }} dataSource={users}>
-      <Column
-        title="Task Name"
-        dataIndex="taskName"
-        sortDirections={['descend', 'ascend']}
-        sorter={(a, b) => a.taskName.localeCompare(b.taskName)}
-      />
-      <Column
-        title="Description"
-        dataIndex="taskDescription"
-        sortDirections={['descend', 'ascend']}
-        sorter={(a, b) => a.taskDescription.localeCompare(b.taskDescription)}
-      />
-      <Column
-        title="Task Time"
-        dataIndex="taskName"
-        render={(value, user) =>
-          `${format(new Date(user.startTime), 'HH:mm')} - ${format(
-            new Date(user.endTime),
-            'HH:mm'
-          )}`
-        }
-      />
-      <Column
-        title="Task Priority"
-        dataIndex="taskPriority"
-        sortDirections={['descend', 'ascend']}
-        sorter={(a, b) => a.taskPriority - b.taskPriority}
-        render={(taskPriority) => {
-          let priority = '';
-          if (taskPriority === 1) {
-            priority = (
-              <div>
-                <ExclamationOutlined style={{ color: '#ffa940', fontSize: '200%' }} />
-              </div>
-            );
+const UserList = ({ users = [], resetState }) => {
+  const { types } = useContext(WorkHoursContext);
+  return (
+    <div className={styles.Mytable}>
+      <Table pagination={{ position: ['none', 'none'] }} dataSource={users}>
+        <Column
+          title="Task Name"
+          dataIndex="taskName"
+          sortDirections={['descend', 'ascend']}
+          sorter={(a, b) => a.taskName.localeCompare(b.taskName)}
+        />
+        <Column
+          title="Description"
+          dataIndex="taskDescription"
+          sortDirections={['descend', 'ascend']}
+          sorter={(a, b) => a.taskDescription.localeCompare(b.taskDescription)}
+        />
+        <Column
+          title="Task Time"
+          dataIndex="taskName"
+          render={(value, user) =>
+            `${format(new Date(user.startTime), 'HH:mm')} - ${format(
+              new Date(user.endTime),
+              'HH:mm'
+            )}`
           }
-          if (taskPriority === 2) {
-            priority = (
-              <div>
-                <ExclamationOutlined style={{ color: '#cf1322', fontSize: '200%' }} />
-              </div>
-            );
-          }
-          if (taskPriority === 3) {
-            priority = (
-              <div>
-                <ExclamationOutlined style={{ color: '#cf1322', fontSize: '200%' }} />
-                <ExclamationOutlined style={{ color: '#cf1322', fontSize: '200%' }} />
-              </div>
-            );
-          }
-          return priority;
-        }}
-      />
-      <Column
-        title="Task Type"
-        dataIndex="taskType"
-        sortDirections={['descend', 'ascend']}
-        sorter={(a, b) => a.taskType.localeCompare(b.taskType)}
-        filters={[
-          {
-            text: 'Email',
-            value: 'Email',
-          },
-          {
-            text: 'Meeting',
-            value: 'Meeting',
-          },
-          {
-            text: 'Housework',
-            value: 'Housework',
-          },
-        ]}
-        onFilter={(value, record) => record.taskType.indexOf(value) === 0}
-        render={(taskType, user) => {
-          if (user.done) {
-            if (taskType === 'Meeting') {
+        />
+        <Column
+          title="Task Priority"
+          dataIndex="taskPriority"
+          sortDirections={['descend', 'ascend']}
+          sorter={(a, b) => a.taskPriority - b.taskPriority}
+          render={(taskPriority) => {
+            let priority = '';
+            if (taskPriority === 1) {
+              priority = (
+                <div>
+                  <ExclamationOutlined style={{ color: '#ffa940', fontSize: '200%' }} />
+                </div>
+              );
+            }
+            if (taskPriority === 2) {
+              priority = (
+                <div>
+                  <ExclamationOutlined style={{ color: '#cf1322', fontSize: '200%' }} />
+                </div>
+              );
+            }
+            if (taskPriority === 3) {
+              priority = (
+                <div>
+                  <ExclamationOutlined style={{ color: '#cf1322', fontSize: '200%' }} />
+                  <ExclamationOutlined style={{ color: '#cf1322', fontSize: '200%' }} />
+                </div>
+              );
+            }
+            return priority;
+          }}
+        />
+        <Column
+          title="Task Type"
+          dataIndex="taskType"
+          sortDirections={['descend', 'ascend']}
+          sorter={(a, b) => a.taskType.localeCompare(b.taskType)}
+          filters={[
+            {
+              text: 'Email',
+              value: 'Email',
+            },
+            {
+              text: 'Meeting',
+              value: 'Meeting',
+            },
+            {
+              text: 'Housework',
+              value: 'Housework',
+            },
+          ]}
+          onFilter={(value, record) => record.taskType.indexOf(value) === 0}
+          render={(taskType, user) => {
+            const whereismytask = types.find((type) => type.name === taskType);
+            if (user.done) {
               return (
                 <>
                   <Tag color="#6a1b9a">DONE</Tag>
-                  <Tag color="#f50">Meeting</Tag>
+                  <Tag color={whereismytask.color.hex}>{whereismytask.name}</Tag>
                 </>
               );
             }
-            if (taskType === 'Email') {
-              return (
-                <>
-                  <Tag color="#6a1b9a">DONE</Tag>
-                  <Tag color="#2db7f5">Email</Tag>
-                </>
-              );
-            }
-            if (taskType === 'Housework') {
-              return (
-                <>
-                  <Tag color="#6a1b9a">DONE</Tag>
-                  <Tag color="#87d068">Housework</Tag>
-                </>
-              );
-            }
-          } else {
-            if (taskType === 'Meeting') {
-              return <Tag color="#f50">Meeting</Tag>;
-            }
-            if (taskType === 'Email') {
-              return <Tag color="#2db7f5">Email</Tag>;
-            }
-            if (taskType === 'Housework') {
-              return <Tag color="#87d068">Housework</Tag>;
-            }
-          }
-        }}
-      />
-      <Column title="" render={(value, user) => <Actions user={user} resetState={resetState} />} />
-    </Table>
-  </div>
-);
+            return <Tag color={whereismytask.color.hex}>{whereismytask.name}</Tag>;
+          }}
+        />
+        <Column
+          title=""
+          render={(value, user) => <Actions user={user} resetState={resetState} />}
+        />
+      </Table>
+    </div>
+  );
+};
 
 Actions.propTypes = {
   user: PropTypes.object,

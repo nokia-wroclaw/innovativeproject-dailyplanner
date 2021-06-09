@@ -1,43 +1,66 @@
+import { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Pie } from '@ant-design/charts';
 import { Card } from 'antd';
-import React from 'react';
-import PropTypes from 'prop-types';
+import { WorkHoursContext } from '../WorkHoursContext/WorkHoursContext';
+import { EmailContext } from '../EmailContext/EmailContext';
 
 const TaskTypeChart = ({ users }) => {
-  let mTask = 0;
-  let hTask = 0;
-  let eTask = 0;
+  const { types } = useContext(WorkHoursContext);
+  const { email } = useContext(EmailContext);
+  const dlugosc = types.length;
+  const tablica = new Array(dlugosc).fill(0);
+  const [oldTab, setOldTab] = useState('');
+  const [colorTab, setColorTab] = useState('');
+  const dataTypeToRender = () => {
+    for (let i = 1; i <= dlugosc + 1; i++) {
+      types.forEach((type) => {
+        if (i === type.id - 1) {
+          const newTab = [
+            {
+              type: type.name,
+              value: tablica[i],
+            },
+          ];
+          setOldTab(oldTab.concat(newTab));
+        }
+      });
+    }
+  };
+  const colours = () => {
+    for (let i = 1; i <= dlugosc + 1; i++) {
+      types.forEach((type) => {
+        if (i === type.id - 1) {
+          const newTab = [
+            {
+              color: type.color,
+            },
+          ];
+          setColorTab(colorTab.concat(newTab));
+        }
+      });
+    }
+  };
   if (users) {
     users.forEach((user) => {
-      if (String(user.taskType) === 'Housework') {
-        hTask += 1;
-      } else if (String(user.taskType) === 'Email') {
-        eTask += 1;
-      } else if (String(user.taskType) === 'Meeting') {
-        mTask += 1;
+      if (email === user.email) {
+        types.forEach((type) => {
+          if (user.taskType === type.name) {
+            tablica[type.id - 1] += 1;
+          }
+        });
       }
     });
   }
-  const dataTypeTask = [
-    {
-      type: 'Housework',
-      value: hTask,
-    },
-    {
-      type: 'Meeting',
-      value: mTask,
-    },
-    {
-      type: 'Email',
-      value: eTask,
-    },
-  ];
+  dataTypeToRender();
+  colours();
+  console.log(oldTab, 'after');
   const configTypeTask = {
     appendPadding: 10,
-    data: dataTypeTask,
+    data: oldTab,
     angleField: 'value',
     colorField: 'type',
-    color: ['#87d068', '#f50', '#2db7f5'],
+    color: colorTab,
     radius: 0.6,
     label: {
       type: 'spider',
