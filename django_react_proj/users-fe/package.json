@@ -21,18 +21,14 @@
     "date-fns": "^2.21.1",
     "firebase": "^8.6.2",
     "firebase-auth": "^0.1.2",
-    "mini-store": "^3.0.6",
     "moment": "^2.29.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
-    "react-color": "^2.19.3",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-toastify": "^7.0.4",
-    "reactcss": "^1.2.3",
     "reactstrap": "^8.9.0",
-    "rgb-hex": "^4.0.0",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
