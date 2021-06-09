@@ -146,16 +146,16 @@ const UserList = ({ users = [], resetState }) => {
           ]}
           onFilter={(value, record) => record.taskType.indexOf(value) === 0}
           render={(taskType, user) => {
-            const whereismytask = types.find((type) => type.name === taskType);
+            const whereIsMyTask = types.find((type) => type.name === taskType);
             if (user.done) {
               return (
                 <>
                   <Tag color="#6a1b9a">DONE</Tag>
-                  <Tag color={whereismytask.color.hex}>{whereismytask.name}</Tag>
+                  <Tag color={whereIsMyTask.color.hex}>{whereIsMyTask.name}</Tag>
                 </>
               );
             }
-            return <Tag color={whereismytask.color.hex}>{whereismytask.name}</Tag>;
+            return <Tag color={whereIsMyTask.color.hex}>{whereIsMyTask.name}</Tag>;
           }}
         />
         <Column

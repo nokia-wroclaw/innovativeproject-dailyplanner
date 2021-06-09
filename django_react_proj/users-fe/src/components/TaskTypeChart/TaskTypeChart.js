@@ -12,6 +12,7 @@ const TaskTypeChart = ({ users }) => {
   const tablica = new Array(dlugosc).fill(0);
   const oldTab = new Array(dlugosc).fill(0);
   const colorTab = new Array(dlugosc).fill(0);
+
   for (let i = 0; i <= dlugosc; i++) {
     types.forEach((type) => {
       if (i === type.id - 1) {
@@ -39,6 +40,7 @@ const TaskTypeChart = ({ users }) => {
           type: type.name,
           value: tablica[i],
         };
+        console.log(oldTab);
       }
     });
   }
