@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Pie } from '@ant-design/charts';
 import { Card } from 'antd';
@@ -10,37 +10,16 @@ const TaskTypeChart = ({ users }) => {
   const { email } = useContext(EmailContext);
   const dlugosc = types.length;
   const tablica = new Array(dlugosc).fill(0);
-  const [oldTab, setOldTab] = useState('');
-  const [colorTab, setColorTab] = useState('');
-  const dataTypeToRender = () => {
-    for (let i = 1; i <= dlugosc + 1; i++) {
-      types.forEach((type) => {
-        if (i === type.id - 1) {
-          const newTab = [
-            {
-              type: type.name,
-              value: tablica[i],
-            },
-          ];
-          setOldTab(oldTab.concat(newTab));
-        }
-      });
-    }
-  };
-  const colours = () => {
-    for (let i = 1; i <= dlugosc + 1; i++) {
-      types.forEach((type) => {
-        if (i === type.id - 1) {
-          const newTab = [
-            {
-              color: type.color,
-            },
-          ];
-          setColorTab(colorTab.concat(newTab));
-        }
-      });
-    }
-  };
+  const oldTab = new Array(dlugosc).fill(0);
+  const colorTab = new Array(dlugosc).fill(0);
+  for (let i = 0; i <= dlugosc; i++) {
+    types.forEach((type) => {
+      if (i === type.id - 1) {
+        colorTab[i] = type.color.hex;
+      }
+    });
+  }
+
   if (users) {
     users.forEach((user) => {
       if (email === user.email) {
@@ -52,9 +31,17 @@ const TaskTypeChart = ({ users }) => {
       }
     });
   }
-  dataTypeToRender();
-  colours();
-  console.log(oldTab, 'after');
+
+  for (let i = 0; i < dlugosc; i++) {
+    types.forEach((type) => {
+      if (i === type.id - 1) {
+        oldTab[i] = {
+          type: type.name,
+          value: tablica[i],
+        };
+      }
+    });
+  }
   const configTypeTask = {
     appendPadding: 10,
     data: oldTab,
