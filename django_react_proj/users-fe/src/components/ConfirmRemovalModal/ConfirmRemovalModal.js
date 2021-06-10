@@ -9,14 +9,27 @@ import commonStyles from '../CommonCSS/CommonCSS.module.css';
 const ConfirmRemovalModal = ({ id, deleteUser }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const toggleT = () => {
+  const toggleDelete = () => {
     setIsModalVisible((previous) => !previous);
     toast.error('You deleted task!');
   };
+  const toggleDeleteCancel = () => {
+    setIsModalVisible((previous) => !previous);
+  };
+
   const handlerDeleteUser = async (id) => {
     try {
       await deleteUser(id);
-      toggleT();
+      toggleDelete();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDeleteCancel = async () => {
+    try {
+      await setIsModalVisible(false);
+      toggleDeleteCancel();
     } catch (error) {
       console.log(error);
     }
@@ -26,9 +39,6 @@ const ConfirmRemovalModal = ({ id, deleteUser }) => {
     setIsModalVisible(true);
   };
 
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
   return (
     <>
       <Button className={commonStyles.inbtn} type="danger" shape="round" onClick={showModal}>
@@ -37,7 +47,7 @@ const ConfirmRemovalModal = ({ id, deleteUser }) => {
           title="Do you want to delete task?"
           visible={isModalVisible}
           onOk={() => handlerDeleteUser(id)}
-          onCancel={handleCancel}
+          onCancel={handleDeleteCancel}
           cancelText="No"
           okText="Yes"
           okType="danger"
