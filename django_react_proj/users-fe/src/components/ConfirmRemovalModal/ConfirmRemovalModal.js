@@ -16,6 +16,7 @@ const ConfirmRemovalModal = ({ id, deleteUser }) => {
   const toggleDeleteCancel = () => {
     setIsModalVisible((previous) => !previous);
   };
+
   const handlerDeleteUser = async (id) => {
     try {
       await deleteUser(id);
