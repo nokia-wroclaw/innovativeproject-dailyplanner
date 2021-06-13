@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Table, Tag } from 'antd';
+import { Table, Tag, Space } from 'antd';
 import { ExclamationOutlined } from '@ant-design/icons';
 import { format, addDays, isSameDay } from 'date-fns';
 import { toast } from 'react-toastify';
@@ -56,13 +56,13 @@ const Actions = ({ user, resetState }) => {
   };
 
   return (
-    <>
+    <Space>
       <PreviousDayButton moveToPreviousDay={moveToPreviousDay} />
       <NextDayButton moveToNextDay={moveToNextDay} />
       <TaskButton setDoneState={setDoneState} />
       <NewUserModal create={false} user={user} resetState={resetState} />
       <ConfirmRemovalModal id={user.id} deleteUser={deleteUser} />
-    </>
+    </Space>
   );
 };
 
@@ -72,18 +72,21 @@ const UserList = ({ users = [], resetState }) => {
     <div className={styles.Mytable}>
       <Table pagination={{ position: ['none', 'none'] }} dataSource={users}>
         <Column
+          className={styles.ColumnTN}
           title="Task Name"
           dataIndex="taskName"
           sortDirections={['descend', 'ascend']}
           sorter={(a, b) => a.taskName.localeCompare(b.taskName)}
         />
         <Column
+          className={styles.Description}
           title="Description"
           dataIndex="taskDescription"
           sortDirections={['descend', 'ascend']}
           sorter={(a, b) => a.taskDescription.localeCompare(b.taskDescription)}
         />
         <Column
+          className={styles.ColumnTT}
           title="Task Time"
           dataIndex="taskName"
           render={(value, user) =>
@@ -94,6 +97,7 @@ const UserList = ({ users = [], resetState }) => {
           }
         />
         <Column
+          className={styles.ColumnTP}
           title="Task Priority"
           dataIndex="taskPriority"
           sortDirections={['descend', 'ascend']}
@@ -126,6 +130,7 @@ const UserList = ({ users = [], resetState }) => {
           }}
         />
         <Column
+          className={styles.ColumnTTT}
           title="Task Type"
           dataIndex="taskType"
           sortDirections={['descend', 'ascend']}
