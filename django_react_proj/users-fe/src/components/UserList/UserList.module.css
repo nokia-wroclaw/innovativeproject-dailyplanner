@@ -52,9 +52,36 @@
     background-color: #ec407a;
 }
 .Mytable thead > tr > th{
-    background: #034f84 ;
+    background: #034f84;
+    color: #ddd;
+    text-align: center;
 }
 
+.ColumnTN {
+    width: 150px;
+    text-align: center;
+}
+
+.ColumnTT {
+    width: 125px;
+    text-align: center;
+}
+
+.ColumnTP {
+    width: 125px;
+    text-align: center;
+}
+
+.ColumnTTT {
+    width: 125px;
+    text-align: center;
+}
+
+.Description {
+    text-align: center;
+    width: 300px;
+    max-height: 50px;
+}
 .Medium{
     background-color: #fa8c16
 }

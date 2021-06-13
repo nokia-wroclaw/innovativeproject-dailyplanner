@@ -32,10 +32,14 @@ const WorkSettings = ({
   const [form] = Form.useForm();
   const taskName = '';
   const taskColor = '';
-  const { types, workHours, setworkHours, setTaskName, setTaskColor, setTypes } =
+  const { WH, WM, types, workHours, setworkHours, setTaskName, setTaskColor, setTypes } =
     useContext(WorkHoursContext);
   const onChangeHours = (number) => {
-    setworkHours(number);
+    if (WH + WM / 60 <= number) {
+      setworkHours(number);
+    } else {
+      toast.error('The working time must exceed the time of the scheduled tasks!');
+    }
   };
   const onChangeFirstNotification = (number) => {
     setFirstNotification(number);

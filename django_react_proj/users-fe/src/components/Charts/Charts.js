@@ -1,16 +1,26 @@
-import { Col, Row } from 'antd';
+import { Col, Row, Button } from 'antd';
 import PropTypes from 'prop-types';
 import TaskTypeChart from '../TaskTypeChart/TaskTypeChart';
 import TaskTimeStaticChart from '../TaskTimeStaticChart/TaskTimeStaticChart';
 import TaskProgressChart from '../TaskProgressChart/TaskProgressChart';
 import Subtract from '../SummingTime/SummingTime';
+import commonStyles from '../CommonCSS/CommonCSS.module.css';
 
-const Charts = ({ users }) => (
+const Charts = ({ users, currentDate }) => (
   <>
-    <Col span={5} offset={10}>
-      <Subtract users={users} />
-    </Col>
-    <Row>
+    <Row style={{ marginTop: '20px' }}>
+      <Col span={2} offset={8}>
+        <Button className={commonStyles.inbtn} type="button" shape="round" size="large">
+          Displayed day: {new Date(currentDate).toDateString().substring(3, 10)}
+        </Button>
+      </Col>
+      <Col span={2} offset={3}>
+        <Button className={commonStyles.inbtn} type="button" shape="round" size="large">
+          <Subtract users={users} />
+        </Button>
+      </Col>
+    </Row>
+    <Row style={{ marginTop: '20px' }}>
       <Col span={4} offset={4}>
         <TaskTypeChart users={users} />
       </Col>
@@ -27,5 +37,6 @@ const Charts = ({ users }) => (
 );
 Charts.propTypes = {
   users: PropTypes.array,
+  currentDate: PropTypes.any,
 };
 export default Charts;

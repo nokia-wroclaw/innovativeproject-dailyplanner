@@ -28,6 +28,9 @@ const PageHeader = ({ users, firstNotification, secondNotification, history }) =
             </Row>
             <Row>
               <Button
+                type="button"
+                shape="round"
+                size="large"
                 onClick={() => {
                   auth.logout(() => {
                     history.push('/');

@@ -23,7 +23,7 @@ const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) 
   return (
     <Card>
       <Row>
-        <Col span={4} offset={5} align="top">
+        <Col span={2} offset={5} align="top">
           <Button
             className={commonStyles.inbtn}
             type="button"
@@ -34,7 +34,7 @@ const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) 
             <LeftOutlined />
           </Button>
         </Col>
-        <Col span={4}>
+        <Col span={2}>
           <Button
             className={commonStyles.inbtn}
             type="button"
@@ -43,6 +43,11 @@ const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) 
             onClick={() => setCurrentDate(new Date())}
           >
             {new Date().toDateString().substring(3, 10)}
+          </Button>
+        </Col>
+        <Col span={4}>
+          <Button className={commonStyles.inbtn} type="button" shape="round" size="large">
+            Displayed day: {new Date(currentDate).toDateString().substring(3, 10)}
           </Button>
         </Col>
         <Col span={4}>
@@ -56,13 +61,12 @@ const Home = ({ getUserForView, setCurrentDate, currentDate, users, getUsers }) 
             <RightOutlined />
           </Button>
         </Col>
-        <Col span={4}>
+        <Col span={2}>
           {button}
           <Modal visible={modalFlag} footer={null} onCancel={toggle}>
             <Calendar fullscreen={false} onChange={(date) => setCurrentDate(date.toDate())} />
           </Modal>
         </Col>
-        <Col>{format(currentDate, 'dd-MM-yy')}</Col>
       </Row>
       <br />
       <Row>

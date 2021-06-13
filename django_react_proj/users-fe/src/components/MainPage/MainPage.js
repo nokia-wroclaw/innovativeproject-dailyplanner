@@ -52,7 +52,7 @@ const MainPage = ({ history }) => {
     ),
     2: (
       <WorkHoursProvider>
-        <Charts users={getUserForView(users, currentDate)} />
+        <Charts currentDate={currentDate} users={getUserForView(users, currentDate)} />
       </WorkHoursProvider>
     ),
     3: (
