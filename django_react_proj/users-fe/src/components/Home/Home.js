@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal, Col, Row, Card, Calendar } from 'antd';
 import 'antd/dist/antd.css';
-import { format } from 'date-fns';
 import { LeftOutlined, RightOutlined, CalendarOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
 import UserList from '../UserList/UserList';
