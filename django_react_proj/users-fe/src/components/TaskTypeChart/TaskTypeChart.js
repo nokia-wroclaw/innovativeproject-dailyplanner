@@ -14,19 +14,19 @@ const TaskTypeChart = ({ users }) => {
   const colorTab = new Array(dlugosc).fill(0);
 
   for (let i = 0; i <= dlugosc; i++) {
-    types.forEach((type) => {
-      if (i === type.id - 1) {
+    types.forEach((type, index) => {
+      if (i === index) {
         colorTab[i] = type.color.hex;
       }
     });
   }
 
   if (users) {
-    users.forEach((user) => {
+    users.forEach((user, index) => {
       if (email === user.email) {
         types.forEach((type) => {
           if (user.taskType === type.name) {
-            tablica[type.id - 1] += 1;
+            tablica[index] += 1;
           }
         });
       }
@@ -34,8 +34,8 @@ const TaskTypeChart = ({ users }) => {
   }
 
   for (let i = 0; i < dlugosc; i++) {
-    types.forEach((type) => {
-      if (i === type.id - 1) {
+    types.forEach((type, index) => {
+      if (i === index) {
         oldTab[i] = {
           type: type.name,
           value: tablica[i],

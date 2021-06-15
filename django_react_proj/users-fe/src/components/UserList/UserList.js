@@ -152,15 +152,25 @@ const UserList = ({ users = [], resetState }) => {
           onFilter={(value, record) => record.taskType.indexOf(value) === 0}
           render={(taskType, user) => {
             const whereIsMyTask = types.find((type) => type.name === taskType);
+            console.log(whereIsMyTask);
             if (user.done) {
+              if (whereIsMyTask !== undefined) {
+                return (
+                  <>
+                    <Tag color="#6a1b9a">DONE</Tag>
+                    <Tag color={whereIsMyTask.color.hex}>{whereIsMyTask.name}</Tag>
+                  </>
+                );
+              }
               return (
                 <>
                   <Tag color="#6a1b9a">DONE</Tag>
-                  <Tag color={whereIsMyTask.color.hex}>{whereIsMyTask.name}</Tag>
                 </>
               );
             }
-            return <Tag color={whereIsMyTask.color.hex}>{whereIsMyTask.name}</Tag>;
+            if (whereIsMyTask !== undefined) {
+              return <Tag color={whereIsMyTask.color.hex}>{whereIsMyTask.name}</Tag>;
+            }
           }}
         />
         <Column
