@@ -162,7 +162,7 @@ const WorkSettings = ({
               tooltip="Insert new task type name"
               name="taskName"
             >
-              <Input maxLength={30} style={{ width: 180 }} />
+              <Input maxLength={20} style={{ width: 180 }} />
             </Form.Item>
             <Form.Item
               label="Task type color:"

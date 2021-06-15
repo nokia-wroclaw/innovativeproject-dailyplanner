@@ -29,7 +29,9 @@ export const WorkHoursProvider = ({ children }) => {
   ];
 
   const typeStorage = JSON.parse(localStorage.getItem('types'));
-  const [types, setTypes] = useState(typeStorage === null ? type : typeStorage);
+  const [types, setTypes] = useState(
+    typeStorage === null || typeStorage.length === 0 ? type : typeStorage
+  );
   const [taskName, setTaskName] = useState('');
   const [taskColor, setTaskColor] = useState('');
   const [workHours, setworkHours] = useState(8);
