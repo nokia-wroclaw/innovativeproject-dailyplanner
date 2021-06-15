@@ -22,9 +22,9 @@ const TaskTypeChart = ({ users }) => {
   }
 
   if (users) {
-    users.forEach((user, index) => {
+    users.forEach((user) => {
       if (email === user.email) {
-        types.forEach((type) => {
+        types.forEach((type, index) => {
           if (user.taskType === type.name) {
             tablica[index] += 1;
           }
