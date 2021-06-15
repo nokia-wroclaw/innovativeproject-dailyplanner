@@ -40,7 +40,6 @@ const TaskTypeChart = ({ users }) => {
           type: type.name,
           value: tablica[i],
         };
-        console.log(oldTab);
       }
     });
   }
