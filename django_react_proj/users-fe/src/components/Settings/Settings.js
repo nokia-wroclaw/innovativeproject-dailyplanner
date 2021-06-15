@@ -66,7 +66,6 @@ const WorkSettings = ({
   };
   const saveTaskType = (values) => {
     const checkName = types.find((type) => type.name === values.taskName);
-    console.log(checkName);
     const checkColor = types.find((type) => type.color.hex === values.taskColor.hex);
     if (checkName) {
       toast.error(<div>{values.taskName} type name was created before!</div>);
