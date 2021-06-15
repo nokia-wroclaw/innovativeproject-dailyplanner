@@ -7,6 +7,7 @@ import { githubProvider, googleProvider } from '../config/authMethods';
 import socialMediaAuth from '../service/socialMediaAuth';
 import Auth from '../AuthCheck/Auth';
 import { EmailContext } from '../EmailContext/EmailContext';
+import commonStyles from '../CommonCSS/CommonCSS.module.css';
 
 const LogInPage = ({ history }) => {
   const { setEmail } = useContext(EmailContext);
@@ -41,10 +42,13 @@ const LogInPage = ({ history }) => {
             </a>
           </Row>
         </Col>
-        <Col style={{ marginLeft: 100, marginTop: 50 }}>
-          <h2>Log in</h2>
-          <Row style={{ marginBottom: 40, marginTop: 20 }}>
+        <Col style={{ marginLeft: 50, marginTop: 50, textAlign: 'center' }}>
+          <h1 style={{ textAlign: 'center' }}>Daily Planner</h1>
+          <b6>Helps user to plan the day </b6>
+          <h3 style={{ textAlign: 'left', marginTop: 20 }}>Log in</h3>
+          <Row style={{ marginBottom: 1, marginTop: 10 }}>
             <Button
+              className={commonStyles.inbtn}
               onClick={() => handleOnClickGithub(githubProvider)}
               icon={<GithubOutlined />}
               color="#8c8c8c"
@@ -53,14 +57,13 @@ const LogInPage = ({ history }) => {
             >
               GitHub
             </Button>
-          </Row>
-          <Row>
             <Button
+              className={commonStyles.inbtn}
               onClick={() => handleOnClickGithub(googleProvider)}
               icon={<GoogleOutlined />}
               color="#f5222d"
               size="large"
-              style={{ background: '#096dd9' }}
+              style={{ background: '#fafafa' }}
             >
               Google
             </Button>
