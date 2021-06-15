@@ -59,28 +59,32 @@
 
 .ColumnTN {
     width: 150px;
+    max-width: 150px;
     text-align: center;
 }
 
 .ColumnTT {
     width: 125px;
+    max-width: 125px;
     text-align: center;
 }
 
 .ColumnTP {
     width: 125px;
+    max-width: 125px;
     text-align: center;
 }
 
 .ColumnTTT {
     width: 125px;
+    max-width: 125px;
     text-align: center;
 }
 
 .Description {
     text-align: center;
     width: 300px;
-    max-height: 50px;
+    max-width: 300px;
 }
 .Medium{
     background-color: #fa8c16
