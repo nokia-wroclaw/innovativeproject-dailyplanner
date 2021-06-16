@@ -135,24 +135,8 @@ const UserList = ({ users = [], resetState }) => {
           dataIndex="taskType"
           sortDirections={['descend', 'ascend']}
           sorter={(a, b) => a.taskType.localeCompare(b.taskType)}
-          filters={[
-            {
-              text: 'Email',
-              value: 'Email',
-            },
-            {
-              text: 'Meeting',
-              value: 'Meeting',
-            },
-            {
-              text: 'Housework',
-              value: 'Housework',
-            },
-          ]}
-          onFilter={(value, record) => record.taskType.indexOf(value) === 0}
           render={(taskType, user) => {
             const whereIsMyTask = types.find((type) => type.name === taskType);
-            console.log(whereIsMyTask);
             if (user.done) {
               if (whereIsMyTask !== undefined) {
                 return (

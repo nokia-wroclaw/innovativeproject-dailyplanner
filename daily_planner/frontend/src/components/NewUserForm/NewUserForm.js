@@ -91,7 +91,7 @@ const NewUserForm = ({ user, resetState, toggle }) => {
     const oldTimeLow = getHours(new Date(user.startTime));
     const oldTimeUpM = getMinutes(new Date(user.endTime));
     const oldTimeLowM = getMinutes(new Date(user.startTime));
-    const oldSub = oldTimeUp * 60 - oldTimeLow * 60 + oldTimeUpM * 60 - oldTimeLowM * 60;
+    const oldSub = oldTimeUp * 60 - oldTimeLow * 60 + oldTimeUpM - oldTimeLowM;
     if (workHoursTotal - oldSub + sub <= workHours * 60) {
       editUser(values);
     } else {

@@ -1,6 +1,6 @@
 {
   "proxy": "http://localhost:8000",
-  "name": "users-fe",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
