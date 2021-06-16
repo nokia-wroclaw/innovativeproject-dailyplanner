@@ -45,9 +45,8 @@ Login window
 </div>
 
 Main page
-Login window
 <div style="text-align:center">
-<img src="images/mainpage.PNG" alt="mainpage" width="1000" height="500" style="border: 1px solid black">
+<img src="images/mainpage.PNG" alt="mainpage" width="1000" height="500" style="border: 1px solid black" />
 </div>
 
 Charts
@@ -57,7 +56,7 @@ Charts
 
 Settings
 <div style="text-align:center">
-<img src="images/charts.PNG" alt="charts" width="1000" height="500" style="border: 1px solid black">
+<img src="images/charts.PNG" alt="charts" width="1000" height="500" style="border: 1px solid black" />
 </div>
 
 Home page of aplication
