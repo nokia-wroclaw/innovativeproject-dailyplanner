@@ -35,7 +35,12 @@ npm start
 ```
 
 ## About aplication
-#elo
+The goal of our project is to solve the following problem that we have a lot of tasks during the day,
+often new ones appear, which may lead to impaired performance of the current tasks or
+forgetting about them. Many tasks may move to the next day, change priorities or times
+task instances. Our application is designed to support this process, controlling tasks to
+be completed by introducing prioritization, easy postponement to the next day, and
+the ability to see the statistics.
 
 ## Usage
 
