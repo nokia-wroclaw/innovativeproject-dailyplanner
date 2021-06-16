@@ -10,37 +10,37 @@ jobs:
     - language: node_js
       cache:
         directories:
-          - "./django_react_proj/users-fe/node_modules"
+          - "./django_react_proj/frontend/node_modules"
       name: test
-      install: cd django_react_proj/users-fe/ && npm install
+      install: cd django_react_proj/frontend/ && npm install
       script: npm test
       stage: test
     - language: node_js
       cache:
         directories:
-          - "./django_react_proj/users-fe/node_modules"
+          - "./django_react_proj/frontend/node_modules"
         npm: true
       name: build
-      install: cd django_react_proj/users-fe/ && npm install
+      install: cd django_react_proj/frontend/ && npm install
       script: npm run build
       stage: build
     - language: node_js
       cache:
         directories:
-          - "./django_react_proj/users-fe/node_modules"
+          - "./django_react_proj/frontend/node_modules"
         npm: true
       name: fix
-      install: cd django_react_proj/users-fe/ && npm install
+      install: cd django_react_proj/v/ && npm install
       script: npm run fix
       stage: fix
 
     - language: node_js
       cache:
         directories:
-          - "./django_react_proj/users-fe/node_modules"
+          - "./django_react_proj/frontend/node_modules"
         npm: true
       name: eslint
-      install: cd django_react_proj/users-fe/ && npm install
+      install: cd django_react_proj/frontend/ && npm install
       script: npm run eslint
       stage: eslint
 
