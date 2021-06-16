@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0005_user_taskpriority'),
+        ('backend', '0005_user_taskpriority'),
     ]
 
     operations = [
