@@ -41,23 +41,23 @@ npm start
 
 Login window
 <div style="text-align:center">
-<img src="images/loginpage.jpg" alt="loginpage" width="500" height="290" style="border: 1px solid black">
+<img src="images/loginpage.PNG" alt="loginpage" width="500" height="290" style="border: 1px solid black">
 </div>
 
 Main page
 Login window
 <div style="text-align:center">
-<img src="images/mainpage.jpg" alt="mainpage" width="500" height="290" style="border: 1px solid black">
+<img src="images/mainpage.PNG" alt="mainpage" width="500" height="290" style="border: 1px solid black">
 </div>
 
 Charts
 <div style="text-align:center">
-<img src="images/settings.jpg" alt="settings" width="500" height="290" style="border: 1px solid black">
+<img src="images/settings.PNG" alt="settings" width="500" height="290" style="border: 1px solid black">
 </div>
 
 Settings
 <div style="text-align:center">
-<img src="images/charts.jpg" alt="charts" width="500" height="290" style="border: 1px solid black">
+<img src="images/charts.PNG" alt="charts" width="500" height="290" style="border: 1px solid black">
 </div>
 
 Home page of aplication
