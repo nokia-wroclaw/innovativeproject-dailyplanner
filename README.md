@@ -3,9 +3,6 @@
 <!--ts-->
    * [Table of contents](#table-of-contents)
    * [How to run](#how-to-run)
-      * [Prerequisites](#prerequisites)
-      * [Run](#run)
-      * [Exit](#exit)
    * [Interaction](#interaction)
       * [API](#api)
       * [Browsable API documentation](#browsable-api-documentation)
@@ -23,7 +20,7 @@ python -m venv .venv
 .venv\Scripts\activate
 ```
 
-Next go to daily_planner folder and instal django from requirements.txt.
+Next go to daily_planner folder and install django from requirements.txt.
 ```bash
 cd daily_planner
 pip install -r requirements.txt
