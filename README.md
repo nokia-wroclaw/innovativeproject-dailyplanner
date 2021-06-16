@@ -37,7 +37,7 @@ npm start
 
 Login window
 <div style="text-align:center">
-<img src="loginpage.jpg" alt="loginpage" width="500" height="290" style="border: 1px solid black">
+<img src="images/loginpage.jpg" alt="loginpage" width="500" height="290" style="border: 1px solid black">
 </div>
 
 ## Heroku deployment
