@@ -4,6 +4,7 @@
    * [Table of contents](#table-of-contents)
    * [How to run](#how-to-run)
    * [About aplication](#about-aplication)
+   * [Usage](#usage)
    * [Heroku deployment](#heroku-deployment)
 <!--te-->
 
@@ -35,11 +36,31 @@ npm start
 
 ## About aplication
 
+
+## Usage
+
 Login window
 <div style="text-align:center">
 <img src="images/loginpage.jpg" alt="loginpage" width="500" height="290" style="border: 1px solid black">
 </div>
 
+Main page
+Login window
+<div style="text-align:center">
+<img src="images/mainpage.jpg" alt="mainpage" width="500" height="290" style="border: 1px solid black">
+</div>
+
+Charts
+<div style="text-align:center">
+<img src="images/settings.jpg" alt="settings" width="500" height="290" style="border: 1px solid black">
+</div>
+
+Settings
+<div style="text-align:center">
+<img src="images/charts.jpg" alt="charts" width="500" height="290" style="border: 1px solid black">
+</div>
+
+Home page of aplication
 ## Heroku deployment
 [Daily planner online](https://daily-planner-demo.herokuapp.com)
 You can see our work without downloading end installing everything :)
