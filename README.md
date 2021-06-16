@@ -1,7 +1,6 @@
 # Daily Planner
-
-<!--ts-->
 ##Table of contents
+<!--ts-->
    * [How to run](#how-to-run)
    * [About aplication](#about-aplication)
    * [Usage](#usage)
