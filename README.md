@@ -3,14 +3,8 @@
 <!--ts-->
    * [Table of contents](#table-of-contents)
    * [How to run](#how-to-run)
-   * [Interaction](#interaction)
-      * [API](#api)
-      * [Browsable API documentation](#browsable-api-documentation)
-      * [Backend](#backend)
-      * [Frontend](#frontend)
-      * [Database](#database)
-   * [Mobile](#mobile)
-   * [License](#license)
+   * [About aplication](#about-aplication)
+   * [Heroku deployment](#heroku-deployment)
 <!--te-->
 
 ## How to run:
@@ -38,3 +32,4 @@ cd frontend
 npm install
 npm start
 ```
+## Heroku deployment
