@@ -66,13 +66,10 @@ Charts
 
 
 Settings
-<div style="text-align:center">
+<div style="text-align:center margin-top:100px">
 <img src="images/charts.png" alt="charts" width="1000" height="500" style="border: 1px solid black" />
 </div>
 
-
-
-Home page of aplication
 ## Heroku deployment
 [Daily planner online](https://daily-planner-demo.herokuapp.com)
 You can see our work without downloading end installing everything :)
