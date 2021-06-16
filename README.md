@@ -52,7 +52,7 @@ Login window
 
 Charts
 <div style="text-align:center">
-<img src="images/settings.PNG" alt="settings" width="500" height="290" style="border: 1px solid black">
+<img src="images/settings.PNG" alt="settings" width="1000" height="500" style="border: 1px solid black">
 </div>
 
 Settings
