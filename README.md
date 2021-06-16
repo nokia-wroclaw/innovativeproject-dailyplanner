@@ -41,14 +41,14 @@ npm start
 
 Login window
 <div style="text-align:center">
-<img src="images/loginpage.PNG" alt="loginpage" width="500" height="290" style="border: 1px solid black">
+<img src="images/loginpage.PNG" alt="loginpage" width="1000" height="500" style="border: 1px solid black">
 </div>
 
 *
 
 Main page
 <div style="text-align:center">
-<img src="images/mainpage.PNG" alt="mainpage" width="1000" height="500" style="border: 1px solid black" />
+<img src="images/mainpage.png" alt="mainpage" width="1000" height="500" style="border: 1px solid black" />
 </div>
 
 *
@@ -62,7 +62,7 @@ Charts
 
 Settings
 <div style="text-align:center">
-<img src="images/charts.PNG" alt="charts" width="1000" height="500" style="border: 1px solid black" />
+<img src="images/charts.png" alt="charts" width="1000" height="500" style="border: 1px solid black" />
 </div>
 
 *
