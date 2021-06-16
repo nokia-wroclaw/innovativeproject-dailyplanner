@@ -122,14 +122,14 @@ const WorkSettings = ({
             </Form.Item>
             <Form.Item
               label="First notification:"
-              tooltip="Time when you need to be informed first time before incoming task"
+              tooltip="Time when you need to be informed first time before incoming task in minutes"
               name="firstNotification"
             >
               <InputNumber min={1} max={120} />
             </Form.Item>
             <Form.Item
               label="Second notification:"
-              tooltip="Time when you need to be informed second time before incoming task"
+              tooltip="Time when you need to be informed second time before incoming task in minutes"
               name="secondNotification"
             >
               <InputNumber min={1} max={30} />
