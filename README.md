@@ -72,3 +72,12 @@ Settings:
 ## Heroku deployment
 [Daily planner online](https://daily-planner-demo.herokuapp.com)
 You can see our work without downloading end installing everything :)
+
+## Contributors
+-[Łukasz Gancarz](https://github.com/lukaszgancarz98)
+-[Damian Mańkowski](https://github.com/DamianMankowski)
+-[Artur Urzędowski](https://github.com/DamianMankowski)
+-[Tomasz Talaga](https://github.com/TomekPaluch)
+-[Ewa Kaczmarek](https://github.com/ekaczmar)
+-[Maciej Bakowicz](https://github.com/bakowroc)
+-[Karol Szymończyk](https://github.com/karolszymonczyk)
