@@ -71,7 +71,7 @@ Settings:
 
 ## Heroku deployment
 [Daily planner online](https://daily-planner-demo.herokuapp.com)
-You can see our work without downloading end installing everything :)
+You can see our work without downloading and installing everything :)
 
 ## Contributors
 * [Łukasz Gancarz](https://github.com/lukaszgancarz98)
